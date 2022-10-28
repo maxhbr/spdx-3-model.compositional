@@ -21,13 +21,13 @@
       '';
     # Add libvmi precompiled library to rustc search path
     RUSTFLAGS = (builtins.map (a: ''-L ${a}/lib'') [
-      pkgs.libvmi
+      # pkgs.libvmi
     ]);
     # Add libvmi, glibc, clang, glib headers to bindgen search path
     BINDGEN_EXTRA_CLANG_ARGS = 
     # Includes with normal include path
     (builtins.map (a: ''-I"${a}/include"'') [
-      pkgs.libvmi
+      # pkgs.libvmi
       pkgs.glibc.dev 
     ])
     # Includes with special directory paths

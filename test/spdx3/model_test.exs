@@ -2,7 +2,10 @@ defmodule SPDX3.ModelTest do
   use ExUnit.Case
   doctest SPDX3.Model
 
-  test "greets the world" do
-    assert SPDX3.Model.hello() == :world
+  test "exmaple should have expected name" do
+    element = SPDX3.Model.example()
+    IO.inspect(element)
+    name = SPDX3.Model.Element.name(element)
+    assert name == "example"
   end
 end

@@ -1,6 +1,7 @@
 module Main (main) where
 
-import Lib
+import SPDX3.Model
+import SPDX3.Example
 
 main :: IO ()
-main = someFunc
+main = print mkExample

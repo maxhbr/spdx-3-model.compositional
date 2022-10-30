@@ -21,8 +21,12 @@ description:         Please see the README on GitHub at <https://github.com/maxh
 
 dependencies:
 - base >= 4.7 && < 5
-- text
 - aeson
+- lens
+- singletons
+- singletons-th
+- text
+- vinyl
 
 ghc-options:
 - -Wall
@@ -59,3 +63,8 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - spdx3model
+    - tasty
+    - tasty-hunit
+    - tasty-smallcheck
+    - tasty-quickcheck
+  

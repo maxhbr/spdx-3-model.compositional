@@ -25,7 +25,7 @@ source-repository head
 
 library
   exposed-modules:
-      Lib
+      SPDX3.Example
       SPDX3.Model
   other-modules:
       Paths_spdx3model
@@ -35,7 +35,11 @@ library
   build-depends:
       aeson
     , base >=4.7 && <5
+    , lens
+    , singletons
+    , singletons-th
     , text
+    , vinyl
   default-language: Haskell2010
 
 executable spdx3model-exe
@@ -48,8 +52,12 @@ executable spdx3model-exe
   build-depends:
       aeson
     , base >=4.7 && <5
+    , lens
+    , singletons
+    , singletons-th
     , spdx3model
     , text
+    , vinyl
   default-language: Haskell2010
 
 test-suite spdx3model-test
@@ -63,6 +71,14 @@ test-suite spdx3model-test
   build-depends:
       aeson
     , base >=4.7 && <5
+    , lens
+    , singletons
+    , singletons-th
     , spdx3model
+    , tasty
+    , tasty-hunit
+    , tasty-quickcheck
+    , tasty-smallcheck
     , text
+    , vinyl
   default-language: Haskell2010

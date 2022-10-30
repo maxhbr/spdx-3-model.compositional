@@ -26,6 +26,7 @@ source-repository head
 library
   exposed-modules:
       Lib
+      SPDX3.Model
   other-modules:
       Paths_spdx3model
   hs-source-dirs:
@@ -33,6 +34,7 @@ library
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
       base >=4.7 && <5
+    , text
   default-language: Haskell2010
 
 executable spdx3model-exe
@@ -45,6 +47,7 @@ executable spdx3model-exe
   build-depends:
       base >=4.7 && <5
     , spdx3model
+    , text
   default-language: Haskell2010
 
 test-suite spdx3model-test
@@ -58,4 +61,5 @@ test-suite spdx3model-test
   build-depends:
       base >=4.7 && <5
     , spdx3model
+    , text
   default-language: Haskell2010

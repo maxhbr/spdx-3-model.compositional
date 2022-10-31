@@ -1,0 +1,113 @@
+@startuml
+left to right direction
+package profile:core {
+    package "sealed trait: Element" as element {
+        abstract AbstractElement
+        AbstractElement : SPDXID: SPDXID
+    }
+
+    package "sealed trait: ElementContent" as elementContent {
+        abstract AbstractContent
+    }
+
+    map CreationInfo {
+        specVer => SemVer
+        profile => [ProfileIdentifier]
+        created => DateTime
+        dataLicense => 'CC0'
+        createdBy => [Actor]
+    }
+    object VerifiedUsing
+    object ExternalReferences
+    object ExternalIdentifiers
+    object Extensions
+    package element {
+        map "Element<T AbstractContent>" as Element {
+            SPDXID => SPDXID
+            name => Maybe<String>
+            summary => Maybe<String>
+            description => Maybe<String>
+            comment => Maybe<String>
+            annotations => List<Annotation>
+            creationInfo *--> profile:core.CreationInfo
+            verifiedUsing *--> profile:core.VerifiedUsing
+            externalReferences *--> profile:core.ExternalReferences
+            externalIdentifiers *--> profile:core.ExternalIdentifiers
+            extensions *--> profile:core.Extensions
+            content : T *---> profile:core.elementContent.AbstractContent
+        }
+        AbstractElement <|--- Element
+        map ElementRef {
+            SPDXID => SPDXID
+        }
+        AbstractElement <|- ElementRef
+        ElementRef::SPDXID .> Element::SPDXID
+    }
+
+    package elementContent {
+        map Artifact {
+            originatedBy => [Actor]
+        }
+        AbstractContent <|-- Artifact
+        
+        map Collection {
+            namespaces => List<NamespaceMap>
+            imports => List<ExternalMap>
+            elments => List<AbstractElement>
+            rootElements => List<SPDXID>
+            context => Maybe<String>
+        }
+        AbstractContent <|-- Collection
+
+        map Relationship {
+            relationshipType => RelationshipType
+            completness => RelationshipCompletness
+            from => AbstractElement
+            to => List<AbstractElement>
+        }
+        AbstractContent <|-- Relationship
+
+        object Actor {
+        }
+        AbstractContent <|-- Actor
+
+
+        map Identity {
+            IdentityType => Person\nOrganization\nTool
+        }
+        AbstractContent <|-- Identity
+    }
+}
+
+
+' package profile:software {
+'     map Package {
+'         packagePurpose => [SoftwarePurpose]
+'         downloadLocation => Maybe<URL>
+'         homePage => Maybe<URL>
+'     }
+'     Artifact <|-- Package
+'     map File {
+'         filePurpose => [SoftwarePurpose]
+'         contentType => Maybe<MediaType>
+'     }
+'     Artifact <|-- File
+'     Map Snippet {
+'         snippetPurpose => [SnippetPurpose]
+'         location => SnippetLocation
+'     }
+'     Artifact <|-- Snippet
+' }
+' package ElementContent {
+
+'     map Artifact {
+'         originatedBy => Actor
+'     }
+'     contentDia -d-> Artifact
+'     map Collection {
+'         elments *---> elementDia
+'     }
+'     contentDia -d-> Collection
+' }
+
+@enduml

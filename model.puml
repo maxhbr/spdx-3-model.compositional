@@ -1,113 +1,133 @@
 @startuml
 left to right direction
-package profile:core {
-    package "sealed trait: Element" as element {
-        abstract AbstractElement
-        AbstractElement : SPDXID: SPDXID
+
+map CreationInfo {
+    specVer => SemVer
+    profile => [ProfileIdentifier]
+    created => DateTime
+    dataLicense => 'CC0'
+    createdBy => [Actor]
+}
+object VerifiedUsing
+object ExternalReferences
+object ExternalIdentifiers
+object Extensions
+rectangle element {
+    abstract AbstractElement
+    AbstractElement : SPDXID: SPDXID
+    map Element {
+        SPDXID => SPDXID
+        creationInfo *--> CreationInfo
+        name => Maybe<String>
+        summary => Maybe<String>
+        description => Maybe<String>
+        comment => Maybe<String>
+        annotations => List<Annotation>
+        verifiedUsing *--> VerifiedUsing
+        externalReferences *--> ExternalReferences
+        externalIdentifiers *--> ExternalIdentifiers
+        extensions *--> Extensions
     }
-
-    package "sealed trait: ElementContent" as elementContent {
-        abstract AbstractContent
+    AbstractElement <|--- Element
+    map ElementRef {
+        SPDXID => SPDXID
     }
+    AbstractElement <|- ElementRef
+    ElementRef::SPDXID .> Element::SPDXID
+    diamond dia
+    dia --> Element
+}
 
-    map CreationInfo {
-        specVer => SemVer
-        profile => [ProfileIdentifier]
-        created => DateTime
-        dataLicense => 'CC0'
-        createdBy => [Actor]
-    }
-    object VerifiedUsing
-    object ExternalReferences
-    object ExternalIdentifiers
-    object Extensions
-    package element {
-        map "Element<T AbstractContent>" as Element {
-            SPDXID => SPDXID
-            name => Maybe<String>
-            summary => Maybe<String>
-            description => Maybe<String>
-            comment => Maybe<String>
-            annotations => List<Annotation>
-            creationInfo *--> profile:core.CreationInfo
-            verifiedUsing *--> profile:core.VerifiedUsing
-            externalReferences *--> profile:core.ExternalReferences
-            externalIdentifiers *--> profile:core.ExternalIdentifiers
-            extensions *--> profile:core.Extensions
-            content : T *---> profile:core.elementContent.AbstractContent
-        }
-        AbstractElement <|--- Element
-        map ElementRef {
-            SPDXID => SPDXID
-        }
-        AbstractElement <|- ElementRef
-        ElementRef::SPDXID .> Element::SPDXID
-    }
+map Artifact {
+    _element *---> element.dia
+    originatedBy => [Actor]
+    software =>
+    licensing =>
+}
 
-    package elementContent {
-        map Artifact {
-            originatedBy => [Actor]
-        }
-        AbstractContent <|-- Artifact
-        
-        map Collection {
-            namespaces => List<NamespaceMap>
-            imports => List<ExternalMap>
-            elments => List<AbstractElement>
-            rootElements => List<SPDXID>
-            context => Maybe<String>
-        }
-        AbstractContent <|-- Collection
+map Collection {
+    _element *---> element.dia
+    namespaces => List<NamespaceMap>
+    imports => List<ExternalMap>
+    elments => List<AbstractElement>
+    rootElements => List<SPDXID>
+    context => Maybe<String>
+}
 
-        map Relationship {
-            relationshipType => RelationshipType
-            completness => RelationshipCompletness
-            from => AbstractElement
-            to => List<AbstractElement>
-        }
-        AbstractContent <|-- Relationship
+map Relationship {
+    _element *---> element.dia
+    relationshipType => RelationshipType
+    completness => RelationshipCompletness
+    from => AbstractElement
+    to => List<AbstractElement>
+}
 
-        object Actor {
-        }
-        AbstractContent <|-- Actor
+map Actor {
+    _element *---> element.dia
+}
 
-
-        map Identity {
-            IdentityType => Person\nOrganization\nTool
-        }
-        AbstractContent <|-- Identity
-    }
+map Identity {
+    _element *---> element.dia
+    IdentityType => Person\nOrganization\nTool
 }
 
 
-' package profile:software {
+
+' package profile_software {
 '     map Package {
+'         _artifact *--> Artifact
 '         packagePurpose => [SoftwarePurpose]
 '         downloadLocation => Maybe<URL>
 '         homePage => Maybe<URL>
 '     }
-'     Artifact <|-- Package
 '     map File {
+'         _artifact *--> Artifact
 '         filePurpose => [SoftwarePurpose]
 '         contentType => Maybe<MediaType>
 '     }
-'     Artifact <|-- File
 '     Map Snippet {
+'         _artifact *--> Artifact
 '         snippetPurpose => [SnippetPurpose]
 '         location => SnippetLocation
 '     }
-'     Artifact <|-- Snippet
+'     map SBOM {
+'         _collection *--> Collection
+'     }
 ' }
-' package ElementContent {
+' package profile_licensing {
+'     map profile_licensing.Package {
+'         _artifact *--> Artifact
+'     }
+' }
 
-'     map Artifact {
-'         originatedBy => Actor
-'     }
-'     contentDia -d-> Artifact
-'     map Collection {
-'         elments *---> elementDia
-'     }
-'     contentDia -d-> Collection
-' }
+package software {
+    map Package {
+        packagePurpose => [SoftwarePurpose]
+        downloadLocation => Maybe<URL>
+        homePage => Maybe<URL>
+    }
+    map File {
+        filePurpose => [SoftwarePurpose]
+        contentType => Maybe<MediaType>
+    }
+    Map Snippet {
+        snippetPurpose => [SnippetPurpose]
+        location => SnippetLocation
+    }
+    diamond artifact_software.dia
+    artifact_software.dia --> Package
+    artifact_software.dia --> File
+    artifact_software.dia --> Snippet
+    Artifact::software --> artifact_software.dia
+}
+
+package licensing {
+    map LicensInformation {
+        licenseConcluded => 
+        LicenseInfoInFile =>
+        CopyrightText =>
+    }
+    Artifact::licensing --> LicensInformation
+}
 
 @enduml

@@ -8,45 +8,54 @@ map CreationInfo {
     dataLicense => 'CC0'
     createdBy => [Actor]
 }
-object VerifiedUsing
-object ExternalReferences
-object ExternalIdentifiers
 object Extensions
-rectangle element {
-    abstract AbstractElement
-    AbstractElement : SPDXID: SPDXID
-    map Element {
-        SPDXID => SPDXID
-        creationInfo *--> CreationInfo
-        name => Maybe<String>
-        summary => Maybe<String>
-        description => Maybe<String>
-        comment => Maybe<String>
-        annotations => List<Annotation>
-        verifiedUsing *--> VerifiedUsing
-        externalReferences *--> ExternalReferences
-        externalIdentifiers *--> ExternalIdentifiers
-        extensions *--> Extensions
-    }
-    AbstractElement <|--- Element
-    map ElementRef {
-        SPDXID => SPDXID
-    }
-    AbstractElement <|- ElementRef
-    ElementRef::SPDXID .> Element::SPDXID
-    diamond dia
-    dia --> Element
+map Element {
+    SPDXID => SPDXID
+    creationInfo *--> CreationInfo
+    name => Maybe<String>
+    summary => Maybe<String>
+    description => Maybe<String>
+    comment => Maybe<String>
+    annotations => List<Annotation>
+    verifiedUsing => List<IntegrityMethod>
+    externalReferences => List<ExternalReference>
+    externalIdentifiers => List<ExternalIdentifier>
+    extensions *--> Extensions
 }
+map Annotation {
+    statement => Maybe<String>
+    annotationType => AnnotationType
+    contentType => Maybe<MediaType>
+}
+Element::annotations .. Annotation
+map ExternalReference {
+    externalReferenceType => ExternalReferenceType
+    locator => IRI
+    contentType => Maybe<MediaType>
+    comments => Maybe<String>
+}
+Element::externalReferences .. ExternalReference
+Map Hash {
+    algorithm => HashAlgorithm
+    hashValue => String
+}
+Element::verifiedUsing .. Hash
+Map ExternalIdentifier {
+    externalIdentifierType => ExternalIdentifierType
+    identifier => IRI
+    comments => Maybe<String>
+}
+Element::externalIdentifiers .. ExternalIdentifier
 
 map Artifact {
-    _element *---> element.dia
+    _element *--> Element
     originatedBy => [Actor]
     software =>
     licensing =>
 }
 
 map Collection {
-    _element *---> element.dia
+    _element *--> Element
     namespaces => List<NamespaceMap>
     imports => List<ExternalMap>
     elments => List<AbstractElement>
@@ -55,50 +64,22 @@ map Collection {
 }
 
 map Relationship {
-    _element *---> element.dia
+    _element *--> Element
     relationshipType => RelationshipType
-    completness => RelationshipCompletness
+    completness => KNOWN\nINCOMPLETE\nUNKNOWN
     from => AbstractElement
     to => List<AbstractElement>
 }
 
 map Actor {
-    _element *---> element.dia
+    _element *--> Element
 }
 
 map Identity {
-    _element *---> element.dia
+    _element *--> Element
     IdentityType => Person\nOrganization\nTool
 }
 
-
-
-' package profile_software {
-'     map Package {
-'         _artifact *--> Artifact
-'         packagePurpose => [SoftwarePurpose]
-'         downloadLocation => Maybe<URL>
-'         homePage => Maybe<URL>
-'     }
-'     map File {
-'         _artifact *--> Artifact
-'         filePurpose => [SoftwarePurpose]
-'         contentType => Maybe<MediaType>
-'     }
-'     Map Snippet {
-'         _artifact *--> Artifact
-'         snippetPurpose => [SnippetPurpose]
-'         location => SnippetLocation
-'     }
-'     map SBOM {
-'         _collection *--> Collection
-'     }
-' }
-' package profile_licensing {
-'     map profile_licensing.Package {
-'         _artifact *--> Artifact
-'     }
-' }
 
 package software {
     map Package {
@@ -123,11 +104,29 @@ package software {
 
 package licensing {
     map LicensInformation {
-        licenseConcluded => 
-        LicenseInfoInFile =>
-        CopyrightText =>
+        licenseConcluded => LicenseExpression
+        LicenseInfoInFile => LicenseExpression
+        CopyrightText => [String]
     }
     Artifact::licensing --> LicensInformation
 }
+
+
+
+
+map ElementRef {
+    SPDXID => SPDXID
+}
+ElementRef::SPDXID .. Element::SPDXID
+
+
+abstract AbstractElement
+AbstractElement : SPDXID: SPDXID
+AbstractElement <|-- ElementRef
+AbstractElement <|-- Identity
+AbstractElement <|-- Actor
+AbstractElement <|-- Relationship
+AbstractElement <|-- Collection
+AbstractElement <|-- Artifact
 
 @enduml

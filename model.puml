@@ -56,6 +56,7 @@ map Artifact {
 
 map Collection {
     _element *--> Element
+    collectionType => Other\nSpdxDocument\nBOM
     namespaces => List<NamespaceMap>
     imports => List<ExternalMap>
     elments => List<AbstractElement>
@@ -120,8 +121,10 @@ map ElementRef {
 ElementRef::SPDXID .. Element::SPDXID
 
 
-abstract AbstractElement
-AbstractElement : SPDXID: SPDXID
+abstract AbstractElement {
+  SPDXID: SPDXID
+  ' {method} toElementRef: AbstractElement
+}
 AbstractElement <|-- ElementRef
 AbstractElement <|-- Identity
 AbstractElement <|-- Actor

@@ -1,6 +1,8 @@
 @startuml
 left to right direction
 
+together {
+
 map CreationInfo {
     specVer => SemVer
     profile => [ProfileIdentifier]
@@ -9,7 +11,7 @@ map CreationInfo {
     createdBy => [Actor]
 }
 object Extensions
-map Element {
+map ElementMetadata {
     SPDXID => SPDXID
     creationInfo *--> CreationInfo
     name => Maybe<String>
@@ -24,60 +26,61 @@ map Element {
 }
 map Annotation {
     statement => Maybe<String>
-    annotationType => AnnotationType
+    annotationType => REVIEW\nOTHER
     contentType => Maybe<MediaType>
 }
-Element::annotations .. Annotation
+ElementMetadata::annotations .. Annotation
 map ExternalReference {
     externalReferenceType => ExternalReferenceType
     locator => IRI
     contentType => Maybe<MediaType>
     comments => Maybe<String>
 }
-Element::externalReferences .. ExternalReference
+ElementMetadata::externalReferences .. ExternalReference
 Map Hash {
     algorithm => HashAlgorithm
     hashValue => String
 }
-Element::verifiedUsing .. Hash
+ElementMetadata::verifiedUsing .. Hash
 Map ExternalIdentifier {
     externalIdentifierType => ExternalIdentifierType
     identifier => IRI
     comments => Maybe<String>
 }
-Element::externalIdentifiers .. ExternalIdentifier
+ElementMetadata::externalIdentifiers .. ExternalIdentifier
 
 map Artifact {
-    _element *--> Element
+    _metadata *--> ElementMetadata
     originatedBy => [Actor]
     software =>
     licensing =>
 }
 
 map Collection {
-    _element *--> Element
+    _metadata *--> ElementMetadata
     collectionType => Other\nSpdxDocument\nBOM
     namespaces => List<NamespaceMap>
     imports => List<ExternalMap>
-    elments => List<AbstractElement>
+    elments => List<Element>
     rootElements => List<SPDXID>
     context => Maybe<String>
 }
 
+
 map Relationship {
-    _element *--> Element
+    _metadata *--> ElementMetadata
     relationshipType => RelationshipType
     completness => KNOWN\nINCOMPLETE\nUNKNOWN
-    from => AbstractElement
-    to => List<AbstractElement>
+    from => Element
+    to => List<Element>
 }
 
 map Actor {
-    _element *--> Element
+    _metadata *--> ElementMetadata
 }
 
 map Identity {
-    _element *--> Element
+    _metadata *--> ElementMetadata
     IdentityType => Person\nOrganization\nTool
 }
 
@@ -118,18 +121,90 @@ package licensing {
 map ElementRef {
     SPDXID => SPDXID
 }
-ElementRef::SPDXID .. Element::SPDXID
+ElementRef::SPDXID .. ElementMetadata::SPDXID
 
 
-abstract AbstractElement {
+
+abstract Element {
   SPDXID: SPDXID
-  ' {method} toElementRef: AbstractElement
+  ' {method} toElementRef: Element
 }
-AbstractElement <|-- ElementRef
-AbstractElement <|-- Identity
-AbstractElement <|-- Actor
-AbstractElement <|-- Relationship
-AbstractElement <|-- Collection
-AbstractElement <|-- Artifact
+Element <|-- ElementRef
+Element <|-- Identity
+Element <|-- Actor
+Element <|-- Relationship
+Element <|-- Collection
+Element <|-- Artifact
+
+}
+
+' enum RelationshipType {
+' DESCRIBES
+' AMENDS
+' CONTAINS
+' ANCESTOR [do we need both?]
+' DESCENDANT [do we need both?]
+' VARIANT
+' DEPENDS_ON
+' BUILD_DEPENDENCY
+' DEV_DEPENDENCY
+' OPTIONAL_DEPENDENCY
+' PROVIDED_DEPENDENCY
+' TEST_DEPENDENCY
+' RUNTIME_DEPENDENCY
+' DEPENDENCY_MANIFEST
+' DYNAMIC_LINK
+' STATIC_LINK
+' PREREQUISITE
+
+' BUILD_TOOL
+' DEV_TOOL
+' TEST_TOOL
+
+' GENERATES
+
+' DISTRIBUTION_ARTIFACT
+' EXAMPLE
+' DATA_FILE
+' TEST_CASE
+' DOCUMENTATION
+' METAFILE
+' TEST
+' OPTIONAL_COMPONENT
+' PACKAGES
+
+' PATCH
+' COPY
+' EXPANDED_FROM_ARCHIVE
+' FILE_ADDED
+' FILE_DELETED
+' FILE_MODIFIED
+
+' SUPPLIED_BY *new*
+' OTHER
+' }
+' enum HashAlgorithm {
+' SHA1
+' SHA224
+' SHA256 [default]
+' SHA384
+' SHA512
+' SHA3-224
+' SHA3-256
+' SHA3-384
+' SHA3-512
+' MD2
+' MD4
+' MD5
+' MD6
+' SPDX-PVC-SHA1
+' SPDX-PVC-SHA256
+' BLAKE2b-256
+' BLAKE2b-384
+' BLAKE2b-512
+' BLAKE3
+' }
+
+' RelationshipType -[hidden]-> HashAlgorithm
 
 @enduml

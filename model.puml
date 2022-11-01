@@ -70,7 +70,7 @@ map Collection {
 map Relationship {
     _metadata *--> ElementMetadata
     relationshipType => RelationshipType
-    completness => KNOWN\nINCOMPLETE\nUNKNOWN
+    completeness => KNOWN\nINCOMPLETE\nUNKNOWN
     from => Element
     to => List<Element>
 }

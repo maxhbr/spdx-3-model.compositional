@@ -8,12 +8,16 @@ import Data.List
 import Data.Ord
 
 import SPDX3.Model
-import SPDX3.Example (mkExample)
+import Data.Aeson.Encode.Pretty (encodePretty)
+import qualified Data.ByteString.Lazy.Char8 as B
 
 main :: IO ()
 main = do
+    let example = mkExample
     putStrLn ""
-    print mkExample
+    print example
+    putStrLn ""
+    B.putStrLn $ encodePretty example
     putStrLn ""
     defaultMain tests
 
@@ -21,15 +25,7 @@ tests :: TestTree
 tests = testGroup "Tests" [unitTests, testsOnExample]
 
 unitTests = testGroup "Unit tests"
-  [ testCase "test getSPDXID for element" $ let
-      spdxid = "urn://some/spdx/id"
-      element = mkElement spdxid
-    in getSPDXID element @?= spdxid
-  , testCase "test getSPDXID for package" $ let
-      spdxid = "urn://some/spdx/id"
-      actor = mkElement "urn://actor"
-      package = mkPackage (mkArtifact (mkElement spdxid) [actor]) "Purpose"
-    in getSPDXID package @?= spdxid
+  [ 
   ]
 testsOnExample = let
     exmaple = mkExample

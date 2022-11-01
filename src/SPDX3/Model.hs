@@ -1,208 +1,164 @@
-{-# LANGUAGE DataKinds, PolyKinds, TypeOperators, TypeFamilies #-}
-{-# LANGUAGE FlexibleContexts, FlexibleInstances, NoMonomorphismRestriction #-}
-{-# LANGUAGE GADTs, TypeSynonymInstances, TemplateHaskell, StandaloneDeriving #-}
-{-# LANGUAGE TypeApplications #-}
-{-# LANGUAGE CPP #-}
-#if __GLASGOW_HASKELL__ >= 810
-{-# LANGUAGE StandaloneKindSignatures #-}
-#endif
+{-# LANGUAGE DeriveGeneric #-}
+
 module SPDX3.Model
     where
+import GHC.Generics (Generic)
+import Data.Aeson
+import SPDX3.RelationshipType
 
-import Data.Vinyl
-import Data.Vinyl.Functor
-import Control.Lens hiding (Identity)
-import Data.Char
-import Data.Singletons.TH (genSingletons)
-import Data.Text (Text)
-import Data.Aeson as A
-import qualified Data.Aeson.Types as A
-import Data.Aeson.TH (mkParseJSON)
-
-type IRI = String
+type SPDXID = String
+class HasSPDXID a where
+    getSPDXID :: a -> SPDXID
+    toRef :: a -> Element
+    toRef = ElementRef . getSPDXID
 type SemVer = String
 type ProfileIdentifier = String
-type DateTime = String
 data DataLicense = CC0
-    deriving Show
-
-data CreationInformation'
-    = CreationInformation'
-    { _specVersion :: SemVer
+    deriving (Generic, Eq, Show)
+instance ToJSON DataLicense where
+    toEncoding = genericToEncoding defaultOptions
+data CreationInfo
+    = CreationInfo
+    { _specVer :: SemVer
     , _profile :: [ProfileIdentifier]
-    , _created :: DateTime
+    , _created :: String
     , _dataLicense :: DataLicense
-    -- , createdBy :: [Rec Attr Actor]
+    , createdBy :: [SPDXID]
     }
-    deriving Show
-data ElementProperties'
-    = ElementProperties'
-    { _name :: Maybe Text
-    , _summary :: Maybe Text
-    , _description :: Maybe Text
-    , _comment :: Maybe Text
-    -- , verifiedUsing    
-    -- , externalReferences   
-    -- , externalIdentifiers
-    -- , extensions
+    deriving (Generic, Eq, Show)
+instance ToJSON CreationInfo where
+    toEncoding = genericToEncoding defaultOptions
+data ElementMetadata
+    = ElementMetadata
+    { _SPDXID :: SPDXID
+    , _creationInfo :: CreationInfo
+    , _name :: Maybe String
+    , _summary :: Maybe String
     }
-    deriving Show
-emptyElementProperties = ElementProperties' Nothing Nothing Nothing Nothing
+    deriving (Generic, Eq, Show)
+instance ToJSON ElementMetadata where
+    toEncoding = genericToEncoding defaultOptions
+instance HasSPDXID ElementMetadata where
+    getSPDXID = _SPDXID
+class HasMetadata a where
+    getMetadata :: a -> ElementMetadata
 
-{- ############################################################################
-#####  defining fields  #######################################################
-############################################################################ -}
-data Fields
-    = SPDXID
-    | CreationInformation
-    | ElementProperties
-    | OriginatedBy
-    | PackagePurpose
-    | Elements
-    | RelationshipType
-    | From
-    | To
-    | BundleContext -- Context
-    deriving Show
+mkElementMetadata :: SPDXID -> Maybe String -> ElementMetadata
+mkElementMetadata id name = let
+    creationInfo = CreationInfo "3.0.0" ["core"] "$UTC" CC0 []
+    in ElementMetadata id creationInfo name Nothing
 
-{- ############################################################################
-#####  defining sets of fields  ###############################################
-############################################################################ -}
-type Element = [SPDXID, ElementProperties]
-type Actor = Element
-type Artifact = [OriginatedBy, SPDXID, ElementProperties]
-type Package = [PackagePurpose, OriginatedBy, SPDXID, ElementProperties]
-type Relationship = [RelationshipType, From, To, SPDXID, ElementProperties]
-type Collection = [Elements, SPDXID, ElementProperties]
-type Bundle = [BundleContext, Elements, SPDXID, ElementProperties]
-type SpdxDocument = Bundle
-type BOM = Bundle
-type SBOM = BOM
+{- ######################################################################### -}
+newtype Actor = MkActor ElementMetadata
+    deriving (Generic, Eq, Show)
+instance ToJSON Actor where
+    toEncoding = genericToEncoding defaultOptions
+instance HasMetadata Actor where
+    getMetadata (MkActor em) = em
+instance HasSPDXID Actor where
+    getSPDXID = getSPDXID . getMetadata
 
-{- ############################################################################
-#####  defining SPDX3 data type  ##############################################
-############################################################################ -}
-data SPDX3
-    = Actor !(Rec Attr Actor)
-    | Package !(Rec Attr Package)
-    | Relationship !(Rec Attr Relationship)
-    | Bundle !(Rec Attr Bundle)
-    | SpdxDocument !(Rec Attr SpdxDocument)
-    | BOM !(Rec Attr BOM)
-    | SBOM !(Rec Attr SBOM)
-    | SPDX3Ref IRI
+{- ######################################################################### -}
+data Artifact = MkArtifact
+  { _artifactMetadata :: ElementMetadata
+  , _originatedBy :: [Actor]
+  } 
+    deriving (Generic, Eq, Show)
+instance ToJSON Artifact where
+    toEncoding = genericToEncoding defaultOptions
+instance HasMetadata Artifact where
+    getMetadata (MkArtifact em _) = em
+instance HasSPDXID Artifact where
+    getSPDXID = getSPDXID . getMetadata
 
-{- ############################################################################
-#####  defining content of fields  ############################################
-############################################################################ -}
-type family ElF (f :: Fields) :: * where
-  ElF SPDXID = IRI
-  ElF CreationInformation = CreationInformation'
-  ElF ElementProperties = ElementProperties'
-  ElF OriginatedBy = [Rec Attr Actor]
-  ElF PackagePurpose = Text -- TODO
-  ElF Elements = [SPDX3]
-  ElF RelationshipType = String -- TODO
-  ElF From = SPDX3
-  ElF To = [SPDX3]
-  ElF BundleContext = Text
+{- ######################################################################### -}
+data CollectionType = SpdxDocument | BOM
+    deriving (Generic, Eq, Show)
+instance ToJSON CollectionType where
+    toEncoding = genericToEncoding defaultOptions
+data Collection = MkCollection
+  { _collectionMetadata :: ElementMetadata
+  , _collectionType :: Maybe CollectionType
+--   , _imports ::
+  , _collectionElements :: [Element]
+  , _collectionRootElements :: [SPDXID]
+  , _collectionContext :: Maybe String
+  }
+    deriving (Generic, Eq, Show)
+instance ToJSON Collection where
+    toEncoding = genericToEncoding defaultOptions
+instance HasMetadata Collection where
+    getMetadata (MkCollection em _ _ _ _) = em
+instance HasSPDXID Collection where
+    getSPDXID = getSPDXID . getMetadata
 
-newtype Attr f = Attr { _unAttr :: ElF f }
-makeLenses ''Attr
+{- ######################################################################### -}
+data RelationshipCompleteness = RelationshipComplete | RelationshipIncomplete
+    deriving (Generic, Eq, Show)
+instance ToJSON RelationshipCompleteness where
+    toEncoding = genericToEncoding defaultOptions
+data Relationship = MkRelationship
+  { _relationshipMetadata :: ElementMetadata
+  , _relationshipType :: RelationshipType
+  , _relationshipCompleteness :: Maybe RelationshipCompleteness
+  , _relationshipFrom :: Element
+  , _relationshipTo :: [Element]
+  }
+    deriving (Generic, Eq, Show)
+instance ToJSON Relationship where
+    toEncoding = genericToEncoding defaultOptions
+instance HasMetadata Relationship where
+    getMetadata (MkRelationship em _ _ _ _) = em
+instance HasSPDXID Relationship where
+    getSPDXID = getSPDXID . getMetadata
 
-instance Show (Attr SPDXID) where show (Attr x) = "SPDXID: " ++ show x
-instance Show (Attr CreationInformation) where show (Attr x) = "creationInformation: " ++ show x
-instance Show (Attr ElementProperties) where show (Attr x) = "elementProperties: " ++ show x
-instance Show (Attr OriginatedBy) where show (Attr x) = "originatedBy: " ++ show x
-instance Show (Attr PackagePurpose) where show (Attr x) = "packagePurpose: " ++ show x
-instance Show (Attr Elements) where show (Attr x) = "elements: " ++ show x
-instance Show (Attr RelationshipType) where show (Attr x) = "relationshipType: " ++ show x
-instance Show (Attr From) where show (Attr x) = "from: " ++ show x
-instance Show (Attr To) where show (Attr x) = "to: " ++ show x
-instance Show (Attr BundleContext) where show (Attr x) = "context: " ++ show x
+{- ######################################################################### -}
+data IdentityType = IdentityTypePerson | IdentityTypeOrganization | IdentityTypeTool
+    deriving (Generic, Eq, Show)
+instance ToJSON IdentityType where
+    toEncoding = genericToEncoding defaultOptions
+data Identity = MkIdentity
+  { _identityMetadata :: ElementMetadata
+  , _identityType :: IdentityType
+  }
+    deriving (Generic, Eq, Show)
+instance ToJSON Identity where
+    toEncoding = genericToEncoding defaultOptions
+instance HasMetadata Identity where
+    getMetadata (MkIdentity em _) = em
+instance HasSPDXID Identity where
+    getSPDXID = getSPDXID . getMetadata
 
-{- ############################################################################
-#####  Show for SPDX3  ########################################################
-############################################################################ -}
-deriving instance Show SPDX3
+{- ######################################################################### -}
 
-{- ############################################################################
-#####  defining construtors  ##################################################
-############################################################################ -}
-(=::) :: sing f -> ElF f -> Attr f
-_ =:: x = Attr x
+data Element
+    = ElementRef SPDXID
+    | Artifact !Artifact
+    | Collection !Collection
+    | Relationship !Relationship
+    | Identity !Identity
+    | Actor !Actor
+    deriving (Generic, Eq, Show)
+instance ToJSON Element where
+    toEncoding = genericToEncoding defaultOptions
+instance HasSPDXID Element where
+    getSPDXID (ElementRef id) = id
+    getSPDXID (Artifact o) = getSPDXID o
+    getSPDXID (Collection o) = getSPDXID o
+    getSPDXID (Relationship o) = getSPDXID o
+    getSPDXID (Identity o) = getSPDXID o
+    getSPDXID (Actor o) = getSPDXID o
+elements :: Element -> [Element]
+elements e@(Collection MkCollection{_collectionElements = es}) = e:concatMap elements es
+elements e@(Relationship MkRelationship{_relationshipFrom = e', _relationshipTo = es}) = e:e':concatMap elements es
+elements e = [e]
 
-genSingletons [ ''Fields ]
-
-{- ############################################################################
-#####  defining getters  ######################################################
-############################################################################ -}
-getSPDXID :: (SPDXID ∈ fields) => Rec Attr fields -> IRI
-getSPDXID = _unAttr <$> (^. rlens @SPDXID)
-getElementProperties :: (ElementProperties ∈ fields) => Rec Attr fields -> ElementProperties'
-getElementProperties = _unAttr <$> (^. rlens @ElementProperties)
-getName :: (ElementProperties ∈ fields) => Rec Attr fields -> Maybe Text
-getName = _name . getElementProperties
-getSummary :: (ElementProperties ∈ fields) => Rec Attr fields -> Maybe Text
-getSummary = _summary . getElementProperties
-getElements :: (Elements ∈ fields) => Rec Attr fields -> [SPDX3]
-getElements = _unAttr <$> (^. rlens @Elements)
-
-{- ############################################################################
-#####  defining helpers  ######################################################
-############################################################################ -}
--- unpack :: SPDX3 -> Rec Attr fields
-unpack (Actor attrs) = rcast attrs
-unpack (Package attrs) = rcast attrs
-unpack (Relationship attrs) = rcast attrs
-unpack (Bundle attrs) = rcast attrs
-unpack (SpdxDocument attrs) = rcast attrs
-unpack (BOM attrs) = rcast attrs
-unpack (SBOM attrs) = rcast attrs
-unpack (SPDX3Ref iri) = rcast $ (SSPDXID =:: iri) :& RNil
-
-addElements :: (Elements ∈ fields) => [SPDX3] -> Rec Attr fields -> Rec Attr fields
-addElements es attrs = let
-      oldEs = getElements attrs
-    in (rput $ SElements =:: (es ++ oldEs)) attrs
-
-toRef :: SPDX3 -> SPDX3
-toRef r@(SPDX3Ref _) = r
-toRef (Actor attrs) = (SPDX3Ref . getSPDXID) attrs
-toRef (Package attrs) = (SPDX3Ref . getSPDXID) attrs
-toRef (Relationship attrs) = (SPDX3Ref . getSPDXID) attrs
-toRef (Bundle attrs) = (SPDX3Ref . getSPDXID) attrs
-toRef (SpdxDocument attrs) = (SPDX3Ref . getSPDXID) attrs
-toRef (BOM attrs) = (SPDX3Ref . getSPDXID) attrs
-toRef (SBOM attrs) = (SPDX3Ref . getSPDXID) attrs
-
-{- ############################################################################
-#####  defining builders  #####################################################
-############################################################################ -}
-mkElement :: String -> Rec Attr Element
-mkElement spdxid = (SSPDXID =:: spdxid)
-                 :& (SElementProperties =:: emptyElementProperties)
-                 :& RNil
-
-mkArtifact :: Rec Attr Element -> [Rec Attr Actor] -> Rec Attr Artifact
-mkArtifact element originatedBy = (SOriginatedBy =:: originatedBy)
-                                :& element
-
-mkPackage :: Rec Attr Artifact -> Text -> Rec Attr Package
-mkPackage artifact packagePurpose = (SPackagePurpose =:: packagePurpose)
-                                  :& artifact
-
-mkRelationship :: Rec Attr Element -> String -> SPDX3 -> [SPDX3] -> Rec Attr Relationship
-mkRelationship element relationshipType from to = (SRelationshipType =:: relationshipType)
-                                                :& (SFrom =:: from)
-                                                :& (STo =:: to)
-                                                :& element
-
-mkCollection :: Rec Attr Element -> [SPDX3] -> Rec Attr Collection
-mkCollection element elements = (SElements =:: elements) :& element
-mkBundle :: Rec Attr Collection -> Text -> Rec Attr Bundle
-mkBundle collection context = (SBundleContext =:: context) :& collection 
-mkBOM :: Rec Attr Bundle -> Rec Attr BOM
-mkBOM = id
-mkSBOM :: Rec Attr Bundle -> Rec Attr SBOM
-mkSBOM = id
+mkExample :: Element
+mkExample = let
+    actor = MkActor (mkElementMetadata "urn:spdx:Actor" (Just "Some Actor"))
+    artifact1 = MkArtifact (mkElementMetadata "urn:spdx:Artifact1" (Just "Artifact 1")) [actor]
+    artifact2 = MkArtifact (mkElementMetadata "urn:spdx:Artifact2" (Just "Artifact 2")) [actor]
+    artifact3 = MkArtifact (mkElementMetadata "urn:spdx:Artifact3" (Just "Artifact 3")) [actor]
+    relationship = MkRelationship (mkElementMetadata "urn:spdx:Relationship" (Just "Relationship")) CONTAINS (Just RelationshipComplete) (toRef artifact1) [toRef artifact2, Artifact artifact3]
+    collection = MkCollection (mkElementMetadata "urn:spdx:SBOM" (Just "SBOM")) Nothing [Artifact artifact1, Artifact artifact2, Relationship relationship] [] Nothing
+    in Collection collection

@@ -25,8 +25,9 @@ source-repository head
 
 library
   exposed-modules:
-      SPDX3.Example
       SPDX3.Model
+      SPDX3.ModelVinyl
+      SPDX3.RelationshipType
   other-modules:
       Paths_spdx3model
   hs-source-dirs:
@@ -34,7 +35,9 @@ library
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
       aeson
+    , aeson-pretty
     , base >=4.7 && <5
+    , bytestring
     , lens
     , singletons
     , singletons-th
@@ -51,7 +54,9 @@ executable spdx3model-exe
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aeson
+    , aeson-pretty
     , base >=4.7 && <5
+    , bytestring
     , lens
     , singletons
     , singletons-th
@@ -64,13 +69,16 @@ test-suite spdx3model-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      SpecVinyl
       Paths_spdx3model
   hs-source-dirs:
       test
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aeson
+    , aeson-pretty
     , base >=4.7 && <5
+    , bytestring
     , lens
     , singletons
     , singletons-th

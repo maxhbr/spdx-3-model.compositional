@@ -18,18 +18,11 @@ map ElementMetadata {
     summary => Maybe<String>
     description => Maybe<String>
     comment => Maybe<String>
-    annotations => List<Annotation>
     verifiedUsing => List<IntegrityMethod>
     externalReferences => List<ExternalReference>
     externalIdentifiers => List<ExternalIdentifier>
     extensions *--> Extensions
 }
-map Annotation {
-    statement => Maybe<String>
-    annotationType => REVIEW\nOTHER
-    contentType => Maybe<MediaType>
-}
-ElementMetadata::annotations .. Annotation
 map ExternalReference {
     externalReferenceType => ExternalReferenceType
     locator => IRI
@@ -84,6 +77,13 @@ map Identity {
     IdentityType => Person\nOrganization\nTool
 }
 
+map Annotation {
+    _metadata *--> ElementMetadata
+    statement => String
+    annotationType => AnnotationType
+    contentType => Maybe<MediaType>
+    subject => Element
+}
 
 package software {
     map Package {
@@ -135,6 +135,7 @@ Element <|-- Actor
 Element <|-- Relationship
 Element <|-- Collection
 Element <|-- Artifact
+Element <|-- Annotation
 
 }
 

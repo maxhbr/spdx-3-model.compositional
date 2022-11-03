@@ -1,8 +1,17 @@
 @startuml
 left to right direction
 
+title A compositional variant of the SPDX3 Model\nversion is roughly 0.2
+
 together {
 
+
+map ProfileIdentifier {
+    name => String
+}
+object Actor {
+    ???
+}
 map CreationInfo {
     specVer => SemVer
     profile => [ProfileIdentifier]
@@ -10,7 +19,12 @@ map CreationInfo {
     dataLicense => 'CC0'
     createdBy => [Actor]
 }
-object Extensions
+CreationInfo::profile .. ProfileIdentifier
+CreationInfo::createdBy .. Actor
+
+object Extensions {
+    ???
+}
 map ElementMetadata {
     SPDXID => SPDXID
     creationInfo *--> CreationInfo
@@ -23,6 +37,11 @@ map ElementMetadata {
     externalIdentifiers => List<ExternalIdentifier>
     extensions *--> Extensions
 }
+note right
+this is not just metadata
+and thus needs a better
+name
+end note
 map ExternalReference {
     externalReferenceType => ExternalReferenceType
     locator => IRI
@@ -45,8 +64,6 @@ ElementMetadata::externalIdentifiers .. ExternalIdentifier
 map Artifact {
     _metadata *--> ElementMetadata
     originatedBy => [Actor]
-    software =>
-    licensing =>
 }
 
 map Collection {
@@ -54,7 +71,7 @@ map Collection {
     collectionType => Other\nSpdxDocument\nBOM
     namespaces => List<NamespaceMap>
     imports => List<ExternalMap>
-    elments => List<Element>
+    elements => List<ElementRef>
     rootElements => List<SPDXID>
     context => Maybe<String>
 }
@@ -64,12 +81,8 @@ map Relationship {
     _metadata *--> ElementMetadata
     relationshipType => RelationshipType
     completeness => KNOWN\nINCOMPLETE\nUNKNOWN
-    from => Element
-    to => List<Element>
-}
-
-map Actor {
-    _metadata *--> ElementMetadata
+    from => ElementRef
+    to => List<ElementRef>
 }
 
 map Identity {
@@ -82,7 +95,33 @@ map Annotation {
     statement => String
     annotationType => AnnotationType
     contentType => Maybe<MediaType>
-    subject => Element
+    subject => ElementRef
+}
+
+
+abstract Element {
+  SPDXID: SPDXID
+  _metadata: ElementMetadata
+  ' {method} toElementRef: Element
+}
+Element <|-- Identity
+Element <|-- Relationship
+Element <|-- Collection
+Element <|-- Artifact
+Element <|-- Annotation
+
+
+object ElementRef {
+    Either<SPDXID,Element>
+}
+note right
+either
+ - a reference via SPDXID
+or
+ - an inlined Element
+end note
+Collection::elements .[hidden].. ElementRef
+
 }
 
 package software {
@@ -103,6 +142,7 @@ package software {
     artifact_software.dia --> Package
     artifact_software.dia --> File
     artifact_software.dia --> Snippet
+    Artifact : software *--> artifact_software.dia
     Artifact::software --> artifact_software.dia
 }
 
@@ -112,32 +152,13 @@ package licensing {
         LicenseInfoInFile => LicenseExpression
         CopyrightText => [String]
     }
+    Artifact : licensing *--> licensing.LicensInformation
     Artifact::licensing --> LicensInformation
 }
 
 
 
 
-map ElementRef {
-    SPDXID => SPDXID
-}
-ElementRef::SPDXID .. ElementMetadata::SPDXID
-
-
-
-abstract Element {
-  SPDXID: SPDXID
-  ' {method} toElementRef: Element
-}
-Element <|-- ElementRef
-Element <|-- Identity
-Element <|-- Actor
-Element <|-- Relationship
-Element <|-- Collection
-Element <|-- Artifact
-Element <|-- Annotation
-
-}
 
 ' enum RelationshipType {
 ' DESCRIBES

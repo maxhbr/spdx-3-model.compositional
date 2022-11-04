@@ -28,6 +28,7 @@ dependencies:
 - singletons
 - singletons-th
 - text
+- unordered-containers
 - vinyl
 
 ghc-options:

@@ -4,6 +4,7 @@
 {-# LANGUAGE StandaloneDeriving #-}
 {-# LANGUAGE InstanceSigs #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE RankNTypes #-}
 
 module SPDX3.Model
     where
@@ -16,125 +17,146 @@ import Data.Data
 import Data.Dynamic
 import qualified Data.HashMap.Strict as Map
 
-class (ToJSON a, Typeable a) => Elementic a where
-    getType :: a -> String
+-- ############################################################################
+-- ##  ElementTrait  ##########################################################
+-- ############################################################################
+
+class (ToJSON a, Typeable a, Show a) => ElementTrait a where
+    getTraitName :: a -> String
     getTypeRep :: a -> TypeRep
     getTypeRep = typeOf
 
--- ############################################################################
--- ############################################################################
--- ############################################################################
+data ElementTraitP a where
+    ElementTraitP :: (Generic b, ElementTrait b) => b -> ElementTraitP a
+instance ToJSON (ElementTraitP a) where
+    toJSON (ElementTraitP a) = toJSON a
+deriving instance Show (ElementTraitP a)
+instance Typeable a => ElementTrait (ElementTraitP a) where
+    getTraitName (ElementTraitP a) = getTraitName a
+    getTypeRep (ElementTraitP a) = getTypeRep a
+type ElementTraitsMap a = Map.HashMap TypeRep (ElementTraitP a)
 
-data ElementContent where
-    ElementContent :: (Generic a, Show a, Elementic a) => a -> ElementContent
-instance ToJSON ElementContent where
-    toJSON (ElementContent a) = toJSON a
-instance Elementic ElementContent where
-    getType (ElementContent a) = getType a
-    getTypeRep (ElementContent a) = getTypeRep a
-deriving instance Show ElementContent
-type ElementContentMap = Map.HashMap TypeRep ElementContent
-
--- ############################################################################
--- ############################################################################
--- ############################################################################
-
-class (Show a, ToJSON a) => ElementBody a where
-    getClass :: a -> String
-
-data Artifact
-    = Artifact
-    deriving (Generic, Show)
-instance ToJSON Artifact where
-    toJSON _ = object []
-instance ElementBody Artifact where
-    getClass _ = "Artifact"
-
-data Collection
-    = Collection
-    { _elements :: [Element]
-    , _rootElements :: [SPDXID]
-    }
-    deriving (Generic, Show)
-instance ToJSON Collection where
-    toEncoding = genericToEncoding defaultOptions
-instance ElementBody Collection where
-    getClass _ = "Collection"
-
-data Relationship
-    = Relationship
-    { _relationshipType :: RelationshipType
-    , _from :: Element
-    , _to :: [Element]
-    }
-    deriving (Generic, Show)
-instance ToJSON Relationship where
-    toEncoding = genericToEncoding defaultOptions
-instance ElementBody Relationship where
-    getClass _ = "Relationship"
+addTrait :: (ElementTrait b, Generic b) => b -> ElementTraitsMap a -> ElementTraitsMap a
+addTrait t = Map.insert (getTypeRep t) (ElementTraitP t) 
 
 -- ############################################################################
+-- ##  ElementClass  ##########################################################
 -- ############################################################################
+
+class (Show a, ToJSON a) => ElementClass a where
+    getClassName :: a -> String
+    getClassElements :: a -> [Element ()]
+
 -- ############################################################################
-    
-data Element where
-  Element :: ElementBody a
-          => { _SPDXID :: SPDXID
-             , _creationInfo :: CreationInfo
-             , _name :: Maybe String
-             , _content :: ElementContentMap
-             , _body :: a
-             }
-          -> Element
-  ElementRef :: SPDXID -> Element
-deriving instance Show Element
-instance HasSPDXID Element where
-    getSPDXID :: Element -> SPDXID
-    getSPDXID = _SPDXID
-instance ToJSON Element where
-    toJSON e@Element{_body = body} = let
-        contents = Map.elems (_content e)
+-- ##  Element  ###############################################################
+-- ############################################################################
+
+data Element a where
+    Element :: (ElementClass a, Typeable a) => SPDXID -> CreationInfo -> Maybe String -> a -> ElementTraitsMap a -> Element a
+    Ref :: SPDXID -> Element ()
+    Packed :: ElementClass a => Element a -> Element ()
+deriving instance (Show (Element a))
+deriving instance (Typeable (Element a))
+instance HasSPDXID (Element a) where
+    getSPDXID (Element i _ _ _ _) = i
+    getSPDXID (Ref i) = i
+    getSPDXID (Packed element) = getSPDXID element
+instance ToJSON (Element a) where
+    toJSON e@(Element spdxid creationInfo name a traitsMap) = let
+        traits = Map.elems traitsMap
         mergeObjects :: [Value] -> Value
         mergeObjects list = let
             unObject :: Value -> Object
             unObject (Object o) = o
             unObject _ = undefined -- partial function :see_no_evil:
           in Object (mconcat (map unObject list))
-        baseObject = object [ "SPDXID" .= _SPDXID e
-                            , "creationInfo" .= _creationInfo e
-                            , "name" .= _name e
-                            , "profiles" .= map getType contents
-                            , "class" .= getClass body
+        baseObject = object [ "SPDXID" .= spdxid
+                            , "creationInfo" .= creationInfo
+                            , "name" .= name
+                            , "class" .= getClassName a
+                            , "traits" .= map getTraitName traits
                             ]
-        bodyJSON = toJSON body
-        contentObjects = map toJSON contents
-        in mergeObjects (baseObject : bodyJSON: contentObjects)
-    toJSON e@(ElementRef spdxid) = object ["SPDXID" .= spdxid]
-toRef :: Element -> Element
-toRef e@Element{_SPDXID = spdxid} = ElementRef spdxid
-toRef e = e
+        aJSON = toJSON a
+        traitJSONS = map toJSON traits
+        in mergeObjects (baseObject:aJSON:traitJSONS)
+    toJSON e@(Ref spdxid) = object ["SPDXID" .= spdxid]
+    toJSON (Packed e) = toJSON e
 
-addContent :: Element -> ElementContent -> Element
-addContent e@Element{_content = content} ec = e{_content = Map.insert (getTypeRep ec) ec content}
-addContent _ _ = undefined -- partial function :see_no_evil:
+pack :: ElementClass a => Element a -> Element ()
+pack e@(Ref _) = e
+pack e@(Packed _) = e
+pack e = Packed e
 
-data ElementCore where
-    ElementCore :: { _summary :: Maybe String
-                   , _description :: Maybe String
-                   , _comment :: Maybe String
-                   -- , _verifiedUsing
-                   -- , _externalReferences
-                   -- , _externalIdentifiers
-                   -- , _extensions
-                   } -> ElementCore
-    deriving (Generic, Eq, Show)
-instance ToJSON ElementCore where
-    toEncoding = genericToEncoding defaultOptions
-instance Elementic ElementCore where
-    getType _ = "core"
+toRef :: Element a -> Element ()
+toRef = Ref . getSPDXID
 
-mkExample :: Element
+getName :: Element a -> Maybe String
+getName (Element _ _ n _ _) = n
+getName (Packed e) = getName e
+getName _ = Nothing
+
+getElements :: ElementClass a =>  Element a -> [Element ()]
+getElements e@(Element _ _ _ c _) = pack e:getClassElements c
+getElements e = [pack e]
+
+-- ############################################################################
+-- ##  ElementClasses  ########################################################
+-- ############################################################################
+
+data Artifact = Artifact
+    deriving (Show)
+instance ToJSON Artifact where
+    toJSON _ = object []
+instance ElementClass Artifact where
+    getClassName _ = "Artifact"
+    getClassElements a = []
+
+data Relationship = Relationship RelationshipType (Element ()) [Element ()]
+    deriving (Show)
+instance ToJSON Relationship where
+    toJSON (Relationship t from to) =
+        object [ "relationshipType" .= toJSON t
+               , "from" .= toJSON from
+               , "to" .= toJSON to
+               ]
+instance ElementClass Relationship where
+    getClassName _ = "Relationship"
+    getClassElements a@(Relationship _ from to) = from:to
+
+data Collection = Collection [Element ()] [SPDXID]
+    deriving (Show)
+instance ToJSON Collection where
+    toJSON (Collection elems rootElems) =
+        object [ "elemes" .= toJSON elems
+               , "rootElems" .= toJSON rootElems
+               ]
+instance ElementClass Collection where
+    getClassName _ = "Collection"
+    getClassElements a@(Collection es _) = es
+
+-- ############################################################################
+-- ############################################################################
+-- ############################################################################
+
+data SoftwareArtifact
+    = File
+    | Package
+    | Snippet
+    deriving (Show,Generic)
+instance ToJSON SoftwareArtifact where
+    toJSON sa = object ["softwareArtifactType" .= show sa ]
+instance ElementTrait SoftwareArtifact where
+  getTraitName _ = "SoftwareArtifact"
+
+-- ############################################################################
+-- ##  example  ###############################################################
+-- ############################################################################
+
+mkExample :: Element Collection
 mkExample = let
-        c1 = Element "urn:spdx:Document" mkCreationInfo (Just "Super SPDX Document") mempty (Collection [ElementRef "urn:spdx:someRef"] [])
-        c1' = addContent c1 (ElementContent (ElementCore (Just "Summary") (Just "Description") Nothing))
-    in c1'
+        e0 = Element "urn:spdx:Element0" mkCreationInfo (Just "Element0") (Artifact) (addTrait Package mempty)
+        e1 = Element "urn:spdx:Element1" mkCreationInfo (Just "Element1") (Artifact) mempty
+        e2 = Element "urn:spdx:Element2" mkCreationInfo (Just "Element2") (Artifact) (addTrait File mempty)
+        r0 = Element "urn:spdx:Rel" mkCreationInfo Nothing (Relationship CONTAINS (pack e0) [pack e1, toRef e2]) mempty
+        c = Element "urn:spdx:Document" mkCreationInfo (Just "Super SPDX Document") (Collection [pack e0, pack r0, pack e2] [getSPDXID e0]) mempty
+    in c

@@ -5,6 +5,9 @@
 {-# LANGUAGE InstanceSigs #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE RankNTypes #-}
+{-# LANGUAGE TypeFamilies #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE AllowAmbiguousTypes #-}
 
 module SPDX3.Model
     where
@@ -16,6 +19,8 @@ import SPDX3.RelationshipType
 import Data.Data
 import Data.Dynamic
 import qualified Data.HashMap.Strict as Map
+
+
 
 -- ############################################################################
 -- ##  ElementTrait  ##########################################################
@@ -140,11 +145,22 @@ instance ElementClass Collection where
 
 data SoftwareArtifact
     = File
-    | Package
+    | Package (Maybe String) (Maybe String)
     | Snippet
     deriving (Show,Generic)
 instance ToJSON SoftwareArtifact where
-    toJSON sa = object ["softwareArtifactType" .= show sa ]
+    toJSON sa = let
+          details File = []
+          details (Package homepageUrl downloadUrl) =
+              [ "softwareHomepagedUrl" .= homepageUrl
+              , "softwarePackageDownloadUrl" .= downloadUrl
+              ]
+          details Snippet = []
+          sat :: SoftwareArtifact -> String
+          sat File = "File"
+          sat (Package _ _) = "Package"
+          sat Snippet = "Snippet"
+        in object  (("softwareArtifactType" .= sat sa) : details sa)
 instance ElementTrait SoftwareArtifact where
   getTraitName _ = "SoftwareArtifact"
 
@@ -154,7 +170,7 @@ instance ElementTrait SoftwareArtifact where
 
 mkExample :: Element Collection
 mkExample = let
-        e0 = Element "urn:spdx:Element0" mkCreationInfo (Just "Element0") (Artifact) (addTrait Package mempty)
+        e0 = Element "urn:spdx:Element0" mkCreationInfo (Just "Element0") (Artifact) (addTrait (Package (Just "https://someDomain.invalid/download.tar.gz") Nothing) mempty)
         e1 = Element "urn:spdx:Element1" mkCreationInfo (Just "Element1") (Artifact) mempty
         e2 = Element "urn:spdx:Element2" mkCreationInfo (Just "Element2") (Artifact) (addTrait File mempty)
         r0 = Element "urn:spdx:Rel" mkCreationInfo Nothing (Relationship CONTAINS (pack e0) [pack e1, toRef e2]) mempty

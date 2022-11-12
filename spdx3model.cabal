@@ -26,6 +26,7 @@ source-repository head
 library
   exposed-modules:
       SPDX3.CreationInfo
+      SPDX3.Helper
       SPDX3.Model
       SPDX3.RelationshipType
       SPDX3.SPDXID

@@ -1,7 +1,7 @@
 {-# LANGUAGE DeriveGeneric #-}
 module SPDX3.RelationshipType where
-import GHC.Generics (Generic)
-import Data.Aeson
+import           Data.Aeson
+import           GHC.Generics                   ( Generic )
 
 data RelationshipType
     = DESCRIBES
@@ -49,5 +49,5 @@ data RelationshipType
     | OTHER
     deriving (Generic, Eq, Show)
 instance ToJSON RelationshipType where
-    toEncoding = genericToEncoding defaultOptions
+  toEncoding = genericToEncoding defaultOptions
 instance FromJSON RelationshipType

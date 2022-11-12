@@ -107,12 +107,13 @@ data SPDX a where
     File         :: SPDX Artifact -> SPDX File
     Snippet      :: SPDX Artifact -> SPDX Snippet
     SBOM         :: SPDX BOM -> SPDX SBOM
+deriving instance Show (SPDX a)
 
 pack :: SPDX a -> SPDX ()
 pack e@(Ref _) = e
 pack e@(Pack _) = e
 pack e = Pack e
-deriving instance Show (SPDX a)
+
 instance HasSPDXID (SPDX a) where
     getSPDXID (Ref i) = i
     getSPDXID (Pack e) = getSPDXID e
@@ -143,6 +144,9 @@ getElements e = let
         getImplicitElements :: forall a. SPDX a -> [SPDX ()]
         getImplicitElements e = getImplicitElements' e ++ maybe [] getImplicitElements (getParent e)
     in pack e : getImplicitElements e
+
+getSPDXIDs :: SPDX a -> [SPDXID]
+getSPDXIDs  = map getSPDXID . getElements
 
 getType :: SPDX a -> String
 getType (Ref _) = "Ref"
@@ -180,36 +184,60 @@ getParent (File    b)         = Just $ pack b
 getParent (Snippet b)         = Just $ pack b
 getParent (SBOM b)            = Just $ pack b
 
-getJsonKMs :: KeyValue kv => SPDX a -> [kv]
-getJsonKMs (Ref i) = undefined
-getJsonKMs (Pack e) = getJsonKMs e
+-- getJsonKMs :: KeyValue kv => SPDX a -> [kv]
+-- getJsonKMs (Ref i) = undefined
+-- getJsonKMs (Pack e) = getJsonKMs e
 
-getJsonKMs (Element i ci eps) = [ "SPDXID" .= i
-                                , "creationInfo" .= ci
-                                ]
+-- getJsonKMs (Element i ci eps) = [ "SPDXID" .= i
+--                                 , "creationInfo" .= ci
+--                                 ]
 
-getJsonKMs (Artifact _) =  []
-getJsonKMs (Collection _ cps) = [ "collection" .= cps ]
-getJsonKMs (Bundle _) = []
-getJsonKMs (BOM _) = []
-getJsonKMs (Relationship _ rps) = [ "relationship" .= rps ]
-getJsonKMs (Annotation _ aps) = [ "annotation" .= aps ]
+-- getJsonKMs (Artifact _) =  []
+-- getJsonKMs (Collection _ cps) = [ "collection" .= cps ]
+-- getJsonKMs (Bundle _) = []
+-- getJsonKMs (BOM _) = []
+-- getJsonKMs (Relationship _ rps) = [ "relationship" .= rps ]
+-- getJsonKMs (Annotation _ aps) = [ "annotation" .= aps ]
 
-getJsonKMs (Package _) = []
-getJsonKMs (File _) = []
-getJsonKMs (Snippet _) = []
-getJsonKMs (SBOM _) = []
+-- getJsonKMs (Package _) = []
+-- getJsonKMs (File _) = []
+-- getJsonKMs (Snippet _) = []
+-- getJsonKMs (SBOM _) = []
+
+getJsons :: SPDX a -> [Value]
+getJsons (Ref i) = undefined
+getJsons (Pack e) = getJsons e
+
+getJsons (Element i ci e) = [object [ "SPDXID" .= i , "creationInfo" .= ci ], toJSON  e]
+
+getJsons (Artifact _) =  []
+getJsons (Collection _ cps) = [toJSON cps]
+getJsons (Bundle _) = []
+getJsons (BOM _) = []
+getJsons (Relationship _ rps) = [ toJSON rps ]
+getJsons (Annotation _ aps) = [ toJSON aps ]
+
+getJsons (Package _) = []
+getJsons (File _) = []
+getJsons (Snippet _) = []
+getJsons (SBOM _) = []
 
 instance ToJSON (SPDX a) where
     toJSON (Ref i) = toJSON i
     toJSON e = let
-          t = getType e
-          getAllJsonKMs :: KeyValue kv => SPDX a -> [kv]
-          getAllJsonKMs e = getJsonKMs e ++ (case getParent e of
-              Just parent -> getAllJsonKMs parent
-              _ -> []
-              )
-        in object $ ("@type" .= t) : getAllJsonKMs e
+          t = object ["@type" .= getType e]
+          parent = case getParent e of 
+            Just parent -> [toJSON parent]
+            Nothing -> []
+          mergeObjects :: [Value] -> Value
+          mergeObjects list = let
+              unObject :: Value -> Object
+              unObject (Object o) = o
+              unObject _ = undefined -- partial function :see_no_evil:
+            in Object (mconcat (map unObject list))
+        in mergeObjects $ t : getJsons e ++ parent
+            
+            -- object $ ("@type" .= t) : getAllJsonKMs e
 
 parseElementJSON :: Value -> Parser (SPDX Element)
 parseElementJSON = withObject "Element" $ \o -> do

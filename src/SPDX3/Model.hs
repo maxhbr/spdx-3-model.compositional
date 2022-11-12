@@ -1,29 +1,30 @@
-{-# LANGUAGE DeriveGeneric #-}
-{-# LANGUAGE DeriveDataTypeable, PatternGuards #-}
-{-# LANGUAGE GADTs #-}
-{-# LANGUAGE StandaloneDeriving #-}
-{-# LANGUAGE InstanceSigs #-}
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE RankNTypes #-}
-{-# LANGUAGE TypeFamilies #-}
+{-# LANGUAGE AllowAmbiguousTypes   #-}
+{-# LANGUAGE DataKinds             #-}
+{-# LANGUAGE DeriveDataTypeable    #-}
+{-# LANGUAGE DeriveGeneric         #-}
+{-# LANGUAGE FlexibleInstances     #-}
+{-# LANGUAGE GADTs                 #-}
+{-# LANGUAGE InstanceSigs          #-}
+{-# LANGUAGE LambdaCase            #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
-{-# LANGUAGE AllowAmbiguousTypes #-}
-{-# LANGUAGE DataKinds #-}
-{-# LANGUAGE FlexibleInstances #-}
-{-# LANGUAGE LambdaCase #-}
+{-# LANGUAGE OverloadedStrings     #-}
+{-# LANGUAGE PatternGuards         #-}
+{-# LANGUAGE RankNTypes            #-}
+{-# LANGUAGE StandaloneDeriving    #-}
+{-# LANGUAGE TypeFamilies          #-}
 
 module SPDX3.Model
     where
-import GHC.Generics (Generic)
-import Data.Aeson
-import Data.Aeson.Types
-import SPDX3.SPDXID
-import SPDX3.CreationInfo
-import SPDX3.RelationshipType
-import qualified Data.Text as T
-import qualified Data.HashMap.Strict as Map
-import Control.Monad.Reader
-import GHC.Word (Word8)
+import           Control.Monad.Reader
+import           Data.Aeson
+import           Data.Aeson.Types
+import qualified Data.HashMap.Strict    as Map
+import qualified Data.Text              as T
+import           GHC.Generics           (Generic)
+import           GHC.Word               (Word8)
+import           SPDX3.CreationInfo
+import           SPDX3.RelationshipType
+import           SPDX3.SPDXID
 
 -- TODOs:
 type SoftwarePurpose = String
@@ -92,8 +93,8 @@ elementFromName name = ElementProperties (Just name) Nothing Nothing Nothing mem
 instance ToJSON Element where
     toJSON (ElementProperties name summary description comment verifiedUsing externalReferences externalIdentifiers) =
         object [ "name" .= name
-               , "summary" .= summary 
-               , "description" .= description 
+               , "summary" .= summary
+               , "description" .= description
                , "comment" .= comment
                , "verifiedUsing" .= verifiedUsing
                , "externalReferences" .= externalReferences
@@ -258,45 +259,45 @@ data SPDX a where
 deriving instance Show (SPDX a)
 
 pack :: SPDX a -> SPDX ()
-pack e@(Ref _) = e
+pack e@(Ref _)  = e
 pack e@(Pack _) = e
-pack e = Pack e
+pack e          = Pack e
 
 instance HasSPDXID (SPDX a) where
-    getSPDXID (Ref i) = i
-    getSPDXID (Pack e) = getSPDXID e
+    getSPDXID (Ref i)             = i
+    getSPDXID (Pack e)            = getSPDXID e
 
-    getSPDXID (Element i _ _) = i
+    getSPDXID (Element i _ _)     = i
 
-    getSPDXID (Artifact ie _) = getSPDXID ie
-    getSPDXID (Collection ie _) = getSPDXID ie
-    getSPDXID (Bundle c _) = getSPDXID c
-    getSPDXID (BOM b) = getSPDXID b
+    getSPDXID (Artifact ie _)     = getSPDXID ie
+    getSPDXID (Collection ie _)   = getSPDXID ie
+    getSPDXID (Bundle c _)        = getSPDXID c
+    getSPDXID (BOM b)             = getSPDXID b
     getSPDXID (Relationship ie _) = getSPDXID ie
-    getSPDXID (Annotation ie _) = getSPDXID ie
+    getSPDXID (Annotation ie _)   = getSPDXID ie
 
-    getSPDXID (Package a _) = getSPDXID a
-    getSPDXID (File a _) = getSPDXID a
-    getSPDXID (Snippet a _) = getSPDXID a
-    getSPDXID (SBOM b) = getSPDXID b
+    getSPDXID (Package a _)       = getSPDXID a
+    getSPDXID (File a _)          = getSPDXID a
+    getSPDXID (Snippet a _)       = getSPDXID a
+    getSPDXID (SBOM b)            = getSPDXID b
 
 getType :: SPDX a -> String
-getType (Ref _) = "Ref"
-getType (Pack e) = getType e
+getType (Ref _)           = "Ref"
+getType (Pack e)          = getType e
 
-getType (Element {}) = "Element"
+getType (Element {})      = "Element"
 
-getType (Artifact {}) = "Artifact"
-getType (Collection {}) = "Collection"
-getType (Bundle {}) = "Bundle"
-getType (BOM {}) = "BOM"
+getType (Artifact {})     = "Artifact"
+getType (Collection {})   = "Collection"
+getType (Bundle {})       = "Bundle"
+getType (BOM {})          = "BOM"
 getType (Relationship {}) = "Relationship"
-getType (Annotation {}) = "Annotation"
+getType (Annotation {})   = "Annotation"
 
-getType (Package {}) = "Package"
-getType (File {}) = "File"
-getType (Snippet {}) = "Snippet"
-getType (SBOM {}) = "SBOM"
+getType (Package {})      = "Package"
+getType (File {})         = "File"
+getType (Snippet {})      = "Snippet"
+getType (SBOM {})         = "SBOM"
 
 getParent :: SPDX a -> Maybe (SPDX ())
 getParent (Ref _)             = Nothing
@@ -324,22 +325,22 @@ instance ToJSON (SPDX a) where
           mergeObjects list = let
               unObject :: Value -> Object
               unObject (Object o) = o
-              unObject _ = undefined -- partial function :see_no_evil:
+              unObject _          = undefined -- partial function :see_no_evil:
             in Object (mconcat (map unObject list))
 
           getJsons :: SPDX a -> [Value]
           getJsons (Ref i) = undefined
           getJsons (Pack e) = getJsons e
-        
+
           getJsons (Element i ci e) = [object [ "SPDXID" .= i , "creationInfo" .= ci ], toJSON  e]
-        
+
           getJsons (Artifact _ aps) =  [toJSON aps]
           getJsons (Collection _ cps) = [toJSON cps]
           getJsons (Bundle _ bps) = [toJSON bps]
           getJsons (BOM _) = []
           getJsons (Relationship _ rps) = [ toJSON rps ]
           getJsons (Annotation _ aps) = [ toJSON aps ]
-        
+
           getJsons (Package _ pps) = [toJSON pps]
           getJsons (File _ fps) = [toJSON fps]
           getJsons (Snippet _ sps) = [toJSON sps]
@@ -348,7 +349,7 @@ instance ToJSON (SPDX a) where
           parent :: [Value]
           parent = case getParent e of
             Just parent' -> [toJSON parent']
-            Nothing -> []
+            Nothing      -> []
         in mergeObjects $ t : getJsons e ++ parent
 
 instance FromJSON (SPDX ()) where
@@ -376,13 +377,13 @@ instance FromJSON (SPDX ()) where
                 Annotation <$> parseElementJSON (Object o)
                         <*> parseJSON (Object o)
         in ((v .: "@type") :: Parser String) >>= \case
-            "Ref" -> fail "Ref is not an object"
-            "Element" -> pack <$> parseElementJSON o
-            "Artifact" -> pack <$> parseArtifactJSON o
-            "Collection" -> pack <$> parseCollectionJSON o
+            "Ref"          -> fail "Ref is not an object"
+            "Element"      -> pack <$> parseElementJSON o
+            "Artifact"     -> pack <$> parseArtifactJSON o
+            "Collection"   -> pack <$> parseCollectionJSON o
             "Relationship" -> pack <$> parseRelationshipJSON o
-            "Annotation" -> pack <$> parseAnnotationJSON o
-            t -> fail ("type='" ++ t ++ "' not supported")
+            "Annotation"   -> pack <$> parseAnnotationJSON o
+            t              -> fail ("type='" ++ t ++ "' not supported")
     parseJSON _ = fail "not supported type"
 
 -- ############################################################################

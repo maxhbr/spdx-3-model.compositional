@@ -1,11 +1,11 @@
-{-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE DeriveGeneric     #-}
+{-# LANGUAGE GADTs             #-}
+{-# LANGUAGE InstanceSigs      #-}
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE GADTs #-}
-{-# LANGUAGE InstanceSigs #-}
 module SPDX3.CreationInfo where
 import           Data.Aeson
 import           Data.Time.Clock
-import           GHC.Generics                   ( Generic )
+import           GHC.Generics    (Generic)
 
 data ActorType = PERSON | ORGANIZATION | TOOL
     deriving (Generic, Eq, Show)

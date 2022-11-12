@@ -1,7 +1,7 @@
 {-# LANGUAGE DeriveGeneric #-}
 module SPDX3.RelationshipType where
 import           Data.Aeson
-import           GHC.Generics                   ( Generic )
+import           GHC.Generics (Generic)
 
 data RelationshipType
     = DESCRIBES

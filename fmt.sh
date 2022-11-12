@@ -12,7 +12,7 @@ formatDir() {
     # * hindent
     # * stylish-haskell
     # * brittany <- breaks GADTs
-    find "$(dirname "$0")/$1" -iname '*.hs' -print -exec stylish-haskell {} \;
+    find "$(dirname "$0")/$1" -iname '*.hs' -print -exec stylish-haskell --inplace {} \;
 }
 
 formatDir src

@@ -1,15 +1,15 @@
 {-# LANGUAGE OverloadedStrings #-}
 import           Test.Tasty
 import           Test.Tasty.HUnit
-import           Test.Tasty.QuickCheck         as QC
-import           Test.Tasty.SmallCheck         as SC
+import           Test.Tasty.QuickCheck      as QC
+import           Test.Tasty.SmallCheck      as SC
 
 import           Data.List
 import           Data.Ord
 
-import           Data.Aeson                     ( eitherDecode )
-import           Data.Aeson.Encode.Pretty       ( encodePretty )
-import qualified Data.ByteString.Lazy.Char8    as B
+import           Data.Aeson                 (eitherDecode)
+import           Data.Aeson.Encode.Pretty   (encodePretty)
+import qualified Data.ByteString.Lazy.Char8 as B
 import           SPDX3.Model
 
 main :: IO ()

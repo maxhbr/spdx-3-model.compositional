@@ -3,7 +3,7 @@ module Main
   ) where
 
 import           SPDX3.Model
-import           SPDX3.Model                    ( mkExample )
+import           SPDX3.Model (mkExample)
 
 main :: IO ()
 main = do

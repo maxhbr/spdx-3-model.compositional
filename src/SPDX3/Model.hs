@@ -1,6 +1,5 @@
 {-# LANGUAGE AllowAmbiguousTypes   #-}
 {-# LANGUAGE DataKinds             #-}
-{-# LANGUAGE DeriveDataTypeable    #-}
 {-# LANGUAGE DeriveGeneric         #-}
 {-# LANGUAGE FlexibleInstances     #-}
 {-# LANGUAGE GADTs                 #-}
@@ -8,7 +7,6 @@
 {-# LANGUAGE LambdaCase            #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE OverloadedStrings     #-}
-{-# LANGUAGE PatternGuards         #-}
 {-# LANGUAGE RankNTypes            #-}
 {-# LANGUAGE StandaloneDeriving    #-}
 {-# LANGUAGE TypeFamilies          #-}
@@ -77,7 +75,9 @@ instance ToJSON ExternalIdentifier where
 instance FromJSON ExternalIdentifier
 
 data Element where
-  ElementProperties :: {_elementName :: Maybe String,
+  ElementProperties :: {_elementSPDXID :: SPDXID,
+                        _elementCreationInfo :: CreationInfo,
+                        _elementName :: Maybe String,
                         _elementSummary :: Maybe String,
                         _elementDescription :: Maybe String,
                         _elementComment :: Maybe String,
@@ -86,13 +86,15 @@ data Element where
                         _elementExternalIdentifiers :: [ExternalIdentifier]
                         } -> Element
   deriving Show
-emptyElement :: Element
-emptyElement = ElementProperties Nothing Nothing Nothing Nothing mempty mempty mempty
-elementFromName :: String -> Element
-elementFromName name = ElementProperties (Just name) Nothing Nothing Nothing mempty mempty mempty
+emptyElement :: SPDXID -> CreationInfo -> Element
+emptyElement spdxid creationInfo = ElementProperties spdxid creationInfo Nothing Nothing Nothing Nothing mempty mempty mempty
+elementFromName :: SPDXID -> CreationInfo -> String -> Element
+elementFromName spdxid creationInfo name = ElementProperties spdxid creationInfo (Just name) Nothing Nothing Nothing mempty mempty mempty
 instance ToJSON Element where
-    toJSON (ElementProperties name summary description comment verifiedUsing externalReferences externalIdentifiers) =
-        object [ "name" .= name
+    toJSON (ElementProperties spdxid creationInfo name summary description comment verifiedUsing externalReferences externalIdentifiers) =
+        object [ "SPDXID" .= spdxid
+               , "creationInfo" .= creationInfo
+               , "name" .= name
                , "summary" .= summary
                , "description" .= description
                , "comment" .= comment
@@ -102,7 +104,9 @@ instance ToJSON Element where
                ]
 instance FromJSON Element where
     parseJSON = withObject "ElementProperties" $ \o -> do
-        ElementProperties <$> o .:? "name"
+        ElementProperties <$> o .: "SPDXID"
+                          <*> o .: "creationInfo"
+                          <*> o .:? "name"
                           <*> o .:? "summary"
                           <*> o .:? "description"
                           <*> o .:? "comment"
@@ -242,7 +246,7 @@ data SPDX a where
     Ref          :: SPDXID -> SPDX ()
     Pack         :: SPDX a -> SPDX ()
 
-    Element      :: SPDXID -> CreationInfo -> Element -> SPDX Element
+    Element      :: Element -> SPDX Element
 
     Artifact     :: SPDX Element -> Artifact -> SPDX Artifact
     Collection   :: SPDX Element -> Collection -> SPDX Collection
@@ -267,7 +271,7 @@ instance HasSPDXID (SPDX a) where
     getSPDXID (Ref i)             = i
     getSPDXID (Pack e)            = getSPDXID e
 
-    getSPDXID (Element i _ _)     = i
+    getSPDXID (Element (ElementProperties {_elementSPDXID = i})) = i
 
     getSPDXID (Artifact ie _)     = getSPDXID ie
     getSPDXID (Collection ie _)   = getSPDXID ie
@@ -329,10 +333,10 @@ instance ToJSON (SPDX a) where
             in Object (mconcat (map unObject list))
 
           getJsons :: SPDX a -> [Value]
-          getJsons (Ref i) = undefined
+          getJsons (Ref _) = undefined
           getJsons (Pack e) = getJsons e
 
-          getJsons (Element i ci e) = [object [ "SPDXID" .= i , "creationInfo" .= ci ], toJSON  e]
+          getJsons (Element e) = [toJSON  e]
 
           getJsons (Artifact _ aps) =  [toJSON aps]
           getJsons (Collection _ cps) = [toJSON cps]
@@ -357,9 +361,7 @@ instance FromJSON (SPDX ()) where
     parseJSON o@(Object v) = let
             parseElementJSON :: Value -> Parser (SPDX Element)
             parseElementJSON = withObject "Element" $ \o -> do
-                Element <$> o .: "SPDXID"
-                        <*> o .: "creationInfo"
-                        <*> parseJSON (Object o)
+                Element <$> parseJSON (Object o)
             parseArtifactJSON :: Value -> Parser (SPDX Artifact)
             parseArtifactJSON = withObject "Artifact" $ \o -> do
                 Artifact <$> parseElementJSON (Object o)
@@ -398,7 +400,7 @@ ref = return . Ref
 artifact' :: SPDXID -> String -> SPDX_M (SPDX Artifact)
 artifact' i name = do
     ci <- ask
-    let ie = Element i ci (elementFromName name)
+    let ie = Element $ elementFromName i ci name
     return (Artifact ie (ArtifactProperties []))
 artifact :: SPDXID -> String -> SPDX_M (SPDX ())
 artifact i name = pack <$> artifact' i name
@@ -406,7 +408,7 @@ artifact i name = pack <$> artifact' i name
 collection' :: SPDXID -> SPDX_M [SPDX ()] -> SPDX_M (SPDX Collection)
 collection' i es = do
     ci <- ask
-    let ie = Element i ci emptyElement
+    let ie = Element $ emptyElement i ci
     Collection ie . (\es -> CollectionProperties es [] mempty mempty) <$> es
 collection :: SPDXID -> SPDX_M [SPDX ()] -> SPDX_M (SPDX ())
 collection i es = pack <$> collection' i es
@@ -414,7 +416,7 @@ collection i es = pack <$> collection' i es
 annotation' :: SPDXID -> String -> SPDX_M (SPDX ()) -> SPDX_M (SPDX Annotation)
 annotation' i stmnt subject = do
     ci <- ask
-    let ie = Element i ci emptyElement
+    let ie = Element $ emptyElement i ci
     Annotation ie . AnnotationProperties stmnt <$> subject
 annotation :: SPDXID -> String -> SPDX_M (SPDX ()) -> SPDX_M (SPDX ())
 annotation i stmnt subject = pack <$> annotation' i stmnt subject

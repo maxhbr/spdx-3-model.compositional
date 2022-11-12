@@ -1,1 +1,0 @@
-# spdx3model

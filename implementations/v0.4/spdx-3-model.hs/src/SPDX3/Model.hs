@@ -32,39 +32,56 @@ import Control.Monad.Reader
 -- -- ##  Element  ###############################################################
 -- -- ############################################################################
 
-data ElementProperties
-    = ElementProperties
-    { _epName :: Maybe String
-    , _epSummary :: Maybe String
-    , _epDescription :: Maybe String
-    , _epComment :: Maybe String
-    } deriving (Show)
-emptyEps :: ElementProperties
-emptyEps = ElementProperties Nothing Nothing Nothing Nothing
-epsFromName :: String -> ElementProperties
-epsFromName name = ElementProperties (Just name) Nothing Nothing Nothing
-instance ToJSON ElementProperties where
+data Element where
+  ElementProperties :: {_elementName :: Maybe String,
+                        _elementSummary :: Maybe String,
+                        _elementDescription :: Maybe String,
+                        _elementComment :: Maybe String}
+                       -> Element
+  deriving Show
+emptyElement :: Element
+emptyElement = ElementProperties Nothing Nothing Nothing Nothing
+elementFromName :: String -> Element
+elementFromName name = ElementProperties (Just name) Nothing Nothing Nothing
+instance ToJSON Element where
     toJSON (ElementProperties name summary description comment) =
-        object [ "name" .= name
-               , "summary" .= summary
-               , "description" .= description
-               , "comment" .= comment
-               ]
-instance FromJSON ElementProperties where
+        object [ "name" .= name , "summary" .= summary , "description" .= description , "comment" .= comment ]
+instance FromJSON Element where
     parseJSON = withObject "ElementProperties" $ \o -> do
-        ElementProperties <$> o .:? "name"
-                          <*> o .:? "summary"
-                          <*> o .:? "description"
-                          <*> o .:? "comment"
-
-data Element
+        ElementProperties <$> o .:? "name" <*> o .:? "summary" <*> o .:? "description" <*> o .:? "comment"
 
 data Artifact
-data Collection
+data Collection where
+  CollectionProperties :: {_collectionElements :: [SPDX ()]} -> Collection
+  deriving (Show)
+instance ToJSON Collection where
+    toJSON (CollectionProperties elements) = object [ "elements" .= elements ]
+instance FromJSON Collection where
+    parseJSON = withObject "CollectionProperties" $ \o -> do
+        CollectionProperties <$> o .: "elements"
 data Bundle
 data BOM
-data Relationship
-data Annotation
+data Relationship where
+    RelationshipProperties :: {_relationshipType :: RelationshipType
+                              ,_relationshipFrom :: SPDX ()
+                              , relationshipTo :: [SPDX ()]
+                              } -> Relationship
+  deriving (Show)
+instance ToJSON Relationship where
+    toJSON (RelationshipProperties t from to) = object [ "relationshipType" .= t , "from" .= from , "to" .= to ]
+instance FromJSON Relationship where
+    parseJSON = withObject "RelationshipProperties" $ \o -> do
+        RelationshipProperties <$> o .: "relationshipType" <*> o .: "from" <*> o .: "to"
+data Annotation where
+    AnnotationProperties :: {_annotationStatement :: String
+                            ,_annotationSubject :: SPDX ()
+                            } -> Annotation
+  deriving (Show)
+instance ToJSON Annotation where
+    toJSON (AnnotationProperties statement subject) = object [ "statement" .= statement , "subject" .= subject ]
+instance FromJSON Annotation where
+    parseJSON = withObject "AnnotationProperties" $ \o -> do
+        AnnotationProperties <$> o .: "statement" <*> o .: "subject"
 
 -- Software
 data Package
@@ -76,14 +93,14 @@ data SPDX a where
     Ref          :: SPDXID -> SPDX ()
     Pack         :: SPDX a -> SPDX ()
 
-    Element      :: SPDXID -> CreationInfo -> ElementProperties -> SPDX Element
+    Element      :: SPDXID -> CreationInfo -> Element -> SPDX Element
 
     Artifact     :: SPDX Element -> SPDX Artifact
-    Collection   :: SPDX Element -> [SPDX ()] -> SPDX Collection
+    Collection   :: SPDX Element -> Collection -> SPDX Collection
     Bundle       :: SPDX Collection -> SPDX Bundle
     BOM          :: SPDX Bundle -> SPDX BOM
-    Relationship :: SPDX Element -> RelationshipType -> SPDX () -> [SPDX ()] -> SPDX Relationship
-    Annotation   :: SPDX Element -> String -> SPDX () -> SPDX Annotation
+    Relationship :: SPDX Element -> Relationship -> SPDX Relationship
+    Annotation   :: SPDX Element -> Annotation -> SPDX Annotation
 
     -- Software
     Package      :: SPDX Artifact -> SPDX Package
@@ -106,8 +123,8 @@ instance HasSPDXID (SPDX a) where
     getSPDXID (Collection ie _) = getSPDXID ie
     getSPDXID (Bundle c) = getSPDXID c
     getSPDXID (BOM b) = getSPDXID b
-    getSPDXID (Relationship ie _ _ _) = getSPDXID ie
-    getSPDXID (Annotation ie _ _) = getSPDXID ie
+    getSPDXID (Relationship ie _) = getSPDXID ie
+    getSPDXID (Annotation ie _) = getSPDXID ie
 
     getSPDXID (Package a) = getSPDXID a
     getSPDXID (File a) = getSPDXID a
@@ -119,9 +136,9 @@ getElements :: SPDX a -> [SPDX ()]
 getElements e = let
         getImplicitElements' :: SPDX a -> [SPDX ()]
         getImplicitElements' (Pack e) = getImplicitElements e
-        getImplicitElements' e@(Collection _ es) = concatMap getImplicitElements es
-        getImplicitElements' e@(Relationship _ _ from to) = concatMap getImplicitElements (from:to)
-        getImplicitElements' e@(Annotation _ _ subject) = concatMap getImplicitElements [subject]
+        getImplicitElements' e@(Collection _ (CollectionProperties es)) = concatMap getImplicitElements es
+        getImplicitElements' e@(Relationship _ (RelationshipProperties _ from to)) = concatMap getImplicitElements (from:to)
+        getImplicitElements' e@(Annotation _ (AnnotationProperties _ subject)) = concatMap getImplicitElements [subject]
         getImplicitElements' _ = []
         getImplicitElements :: forall a. SPDX a -> [SPDX ()]
         getImplicitElements e = getImplicitElements' e ++ maybe [] getImplicitElements (getParent e)
@@ -146,22 +163,22 @@ getType (Snippet {}) = "Snippet"
 getType (SBOM {}) = "SBOM"
 
 getParent :: SPDX a -> Maybe (SPDX ())
-getParent (Ref _)                 = Nothing
+getParent (Ref _)             = Nothing
 
-getParent (Pack e)                = getParent e
-getParent (Element {})            = Nothing
+getParent (Pack e)            = getParent e
+getParent (Element {})        = Nothing
 
-getParent (Artifact ie)           = Just $ pack ie
-getParent (Collection ie _)       = Just $ pack ie
-getParent (Bundle c)              = Just $ pack c
-getParent (BOM b)                 = Just $ pack b
-getParent (Relationship ie _ _ _) = Just $ pack ie
-getParent (Annotation ie _ _)     = Just $ pack ie
+getParent (Artifact ie)       = Just $ pack ie
+getParent (Collection ie _)   = Just $ pack ie
+getParent (Bundle c)          = Just $ pack c
+getParent (BOM b)             = Just $ pack b
+getParent (Relationship ie _) = Just $ pack ie
+getParent (Annotation ie _)   = Just $ pack ie
 
-getParent (Package b)            = Just $ pack b
-getParent (File    b)            = Just $ pack b
-getParent (Snippet b)            = Just $ pack b
-getParent (SBOM b)               = Just $ pack b
+getParent (Package b)         = Just $ pack b
+getParent (File    b)         = Just $ pack b
+getParent (Snippet b)         = Just $ pack b
+getParent (SBOM b)            = Just $ pack b
 
 getJsonKMs :: KeyValue kv => SPDX a -> [kv]
 getJsonKMs (Ref i) = undefined
@@ -172,16 +189,11 @@ getJsonKMs (Element i ci eps) = [ "SPDXID" .= i
                                 ]
 
 getJsonKMs (Artifact _) =  []
-getJsonKMs (Collection _ elements) = [ "elements" .= elements]
+getJsonKMs (Collection _ cps) = [ "collection" .= cps ]
 getJsonKMs (Bundle _) = []
 getJsonKMs (BOM _) = []
-getJsonKMs (Relationship _ t from to) = [ "relationshipType" .= t
-                                        , "from" .= from
-                                        , "to" .= to
-                                        ]
-getJsonKMs (Annotation _ statement subject) = [ "statement" .= statement
-                                              , "subject" .= subject
-                                              ]
+getJsonKMs (Relationship _ rps) = [ "relationship" .= rps ]
+getJsonKMs (Annotation _ aps) = [ "annotation" .= aps ]
 
 getJsonKMs (Package _) = []
 getJsonKMs (File _) = []
@@ -210,18 +222,15 @@ parseArtifactJSON = withObject "Artifact" $ \o -> do
 parseCollectionJSON :: Value -> Parser (SPDX Collection)
 parseCollectionJSON = withObject "Collection" $ \o -> do
     Collection <$> parseElementJSON (Object o)
-               <*> o .: "elements"
+               <*> parseJSON (Object o)
 parseRelationshipJSON :: Value -> Parser (SPDX Relationship)
 parseRelationshipJSON = withObject "Relationship" $ \o -> do
     Relationship <$> parseElementJSON (Object o)
-                 <*> o .: "relationshipType"
-                 <*> o .: "from"
-                 <*> o .: "to"
+                 <*> parseJSON (Object o)
 parseAnnotationJSON :: Value -> Parser (SPDX Annotation)
 parseAnnotationJSON = withObject "Annotation" $ \o -> do
     Annotation <$> parseElementJSON (Object o)
-               <*> o .: "statement"
-               <*> o .: "subject"
+               <*> parseJSON (Object o)
 instance FromJSON (SPDX ()) where
     parseJSON (String s) = return $ Ref (T.unpack s)
     parseJSON o@(Object v) = ((v .: "@type") :: Parser String) >>= \case
@@ -246,7 +255,7 @@ ref = return . Ref
 artifact' :: SPDXID -> String -> SPDX_M (SPDX Artifact)
 artifact' i name = do
     ci <- ask
-    let ie = Element i ci (epsFromName name)
+    let ie = Element i ci (elementFromName name)
     return (Artifact ie)
 artifact :: SPDXID -> String -> SPDX_M (SPDX ())
 artifact i name = pack <$> artifact' i name
@@ -254,16 +263,16 @@ artifact i name = pack <$> artifact' i name
 collection' :: SPDXID -> SPDX_M [SPDX ()] -> SPDX_M (SPDX Collection)
 collection' i es = do
     ci <- ask
-    let ie = Element i ci emptyEps
-    Collection ie <$> es
+    let ie = Element i ci emptyElement
+    Collection ie . CollectionProperties <$> es
 collection :: SPDXID -> SPDX_M [SPDX ()] -> SPDX_M (SPDX ())
 collection i es = pack <$> collection' i es
 
 annotation' :: SPDXID -> String -> SPDX_M (SPDX ()) -> SPDX_M (SPDX Annotation)
 annotation' i stmnt subject = do
     ci <- ask
-    let ie = Element i ci emptyEps
-    Annotation ie stmnt <$> subject
+    let ie = Element i ci emptyElement
+    Annotation ie . AnnotationProperties stmnt <$> subject
 annotation :: SPDXID -> String -> SPDX_M (SPDX ()) -> SPDX_M (SPDX ())
 annotation i stmnt subject = pack <$> annotation' i stmnt subject
 

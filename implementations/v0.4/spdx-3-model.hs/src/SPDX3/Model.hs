@@ -27,51 +27,147 @@ import Data.Dynamic
 import qualified Data.HashMap.Strict as Map
 import Control.Monad.State.Lazy
 import Control.Monad.Reader
+import Data.ByteString (ByteString)
+import GHC.Word (Word8)
+
+-- TODOs:
+type SoftwarePurpose = String
+type IRI = String
+type URL = String
+type URI = String
+type MediaType = String
+type RelationshipCompleteness = String
 
 -- -- ############################################################################
 -- -- ##  Element  ###############################################################
 -- -- ############################################################################
 
+type HashAlgorithm  = String
+data IntegrityMethod where
+    Hash :: Maybe String -> HashAlgorithm -> [Word8] -> IntegrityMethod
+  deriving (Generic, Show)
+instance ToJSON IntegrityMethod where
+    toJSON (Hash comment algorithm hashValue) = object ["comment" .= comment
+                                                       ,"algorithm" .= algorithm
+                                                       ,"hashValue" .= hashValue
+                                                       ]
+instance FromJSON IntegrityMethod where
+    parseJSON = withObject "IntegrityMethod" $ \o -> do
+        Hash <$> o .:? "comment"
+             <*> o .: "algorithm"
+             <*> o .: "hashValue"
+
+type ExternalReferenceType = String -- TODO
+data ExternalReference where
+  ExternalReference :: {_externalReferenceType :: ExternalReferenceType
+                       ,_externalReferenceLocator :: IRI
+                       ,_externalReferenceContentType :: Maybe MediaType
+                       ,_externalReferenceComments :: Maybe String
+                       } -> ExternalReference
+  deriving (Generic, Show)
+instance ToJSON ExternalReference where
+    toEncoding = genericToEncoding defaultOptions
+instance FromJSON ExternalReference
+
+type ExternalIdentifierType = String -- TODO
+data ExternalIdentifier where
+  ExternalIdentifier :: {_externalIdentifierType :: ExternalIdentifierType
+                        ,_externalIdentifierIdentifier :: IRI
+                        ,_externalIdentifierComments :: Maybe String
+                        } -> ExternalIdentifier
+  deriving (Generic, Show)
+instance ToJSON ExternalIdentifier where
+    toEncoding = genericToEncoding defaultOptions
+instance FromJSON ExternalIdentifier
+
 data Element where
   ElementProperties :: {_elementName :: Maybe String,
                         _elementSummary :: Maybe String,
                         _elementDescription :: Maybe String,
-                        _elementComment :: Maybe String}
-                       -> Element
+                        _elementComment :: Maybe String,
+                        _elementVerifiedUsing :: [IntegrityMethod],
+                        _elementExternalReferences :: [ExternalReference],
+                        _elementExternalIdentifiers :: [ExternalIdentifier]
+                        } -> Element
   deriving Show
 emptyElement :: Element
-emptyElement = ElementProperties Nothing Nothing Nothing Nothing
+emptyElement = ElementProperties Nothing Nothing Nothing Nothing mempty mempty mempty
 elementFromName :: String -> Element
-elementFromName name = ElementProperties (Just name) Nothing Nothing Nothing
+elementFromName name = ElementProperties (Just name) Nothing Nothing Nothing mempty mempty mempty
 instance ToJSON Element where
-    toJSON (ElementProperties name summary description comment) =
-        object [ "name" .= name , "summary" .= summary , "description" .= description , "comment" .= comment ]
+    toJSON (ElementProperties name summary description comment verifiedUsing externalReferences externalIdentifiers) =
+        object [ "name" .= name
+               , "summary" .= summary 
+               , "description" .= description 
+               , "comment" .= comment
+               , "verifiedUsing" .= verifiedUsing
+               , "externalReferences" .= externalReferences
+               , "externalIdentifiers" .= externalIdentifiers
+               ]
 instance FromJSON Element where
     parseJSON = withObject "ElementProperties" $ \o -> do
-        ElementProperties <$> o .:? "name" <*> o .:? "summary" <*> o .:? "description" <*> o .:? "comment"
+        ElementProperties <$> o .:? "name"
+                          <*> o .:? "summary"
+                          <*> o .:? "description"
+                          <*> o .:? "comment"
+                          <*> o .: "verifiedUsing"
+                          <*> o .: "externalReferences"
+                          <*> o .: "externalIdentifiers"
 
-data Artifact
+data Artifact where
+    ArtifactProperties :: {_artifactOriginatedBy :: [Actor]} -> Artifact
+  deriving (Show)
+instance ToJSON Artifact where
+    toJSON (ArtifactProperties originatedBy) = object [ "originatedBy" .= originatedBy ]
+instance FromJSON Artifact where
+    parseJSON = withObject "ArtifactProperties" $ \o -> do
+        ArtifactProperties <$> o .: "originatedBy"
+type NamespaceMap = Map.HashMap String IRI
+type ExternalMap = Map.HashMap IRI (Maybe URL, IntegrityMethod)
 data Collection where
-  CollectionProperties :: {_collectionElements :: [SPDX ()]} -> Collection
+  CollectionProperties :: {_collectionElements :: [SPDX ()]
+                          ,_collectionRootElements :: [SPDX ()]
+                          ,_collectionNamespaces :: NamespaceMap
+                          ,_collectionImports :: ExternalMap
+                          } -> Collection
   deriving (Show)
 instance ToJSON Collection where
-    toJSON (CollectionProperties elements) = object [ "elements" .= elements ]
+    toJSON (CollectionProperties elements rootElements namespaces imports) =
+         object [ "elements" .= elements
+                , "rootElements" .= rootElements
+                , "namespaces" .= namespaces
+                , "imports" .= imports
+                ]
 instance FromJSON Collection where
     parseJSON = withObject "CollectionProperties" $ \o -> do
         CollectionProperties <$> o .: "elements"
-data Bundle
+                             <*> o .: "rootElements"
+                             <*> o .: "namespaces"
+                             <*> o .: "imports"
+data Bundle where
+    BundleProperties :: {_bundleContext :: Maybe String
+                        } -> Bundle
+  deriving (Show)
+instance ToJSON Bundle where
+    toJSON (BundleProperties context) =
+         object [ "context" .= context]
+instance FromJSON Bundle where
+    parseJSON = withObject "BundleProperties" $ \o -> do
+        BundleProperties <$> o .: "context"
 data BOM
 data Relationship where
     RelationshipProperties :: {_relationshipType :: RelationshipType
                               ,_relationshipFrom :: SPDX ()
-                              , relationshipTo :: [SPDX ()]
+                              ,_relationshipTo :: [SPDX ()]
+                              ,_relationshipCompleteness :: Maybe RelationshipCompleteness
                               } -> Relationship
   deriving (Show)
 instance ToJSON Relationship where
-    toJSON (RelationshipProperties t from to) = object [ "relationshipType" .= t , "from" .= from , "to" .= to ]
+    toJSON (RelationshipProperties t from to relationshipCompleteness) =
+         object [ "relationshipType" .= t , "from" .= from , "to" .= to, "relationshipCompleteness" .= relationshipCompleteness ]
 instance FromJSON Relationship where
     parseJSON = withObject "RelationshipProperties" $ \o -> do
-        RelationshipProperties <$> o .: "relationshipType" <*> o .: "from" <*> o .: "to"
+        RelationshipProperties <$> o .: "relationshipType" <*> o .: "from" <*> o .: "to" <*> o .: "relationshipCompleteness"
 data Annotation where
     AnnotationProperties :: {_annotationStatement :: String
                             ,_annotationSubject :: SPDX ()
@@ -84,9 +180,66 @@ instance FromJSON Annotation where
         AnnotationProperties <$> o .: "statement" <*> o .: "subject"
 
 -- Software
-data Package
-data File
-data Snippet
+data Package where
+    PackageProperties :: {_packageContentIdentifier :: Maybe URI
+                         , _packagePurpose :: [SoftwarePurpose]
+                         , _downloadLocation :: Maybe URL
+                         , _packageUrl :: Maybe URL
+                         , _packageHomePage :: Maybe URL
+                         } -> Package
+  deriving (Show)
+instance ToJSON Package where
+    toJSON (PackageProperties contentIdentifier packagePurpose downloadLocation packageUrl homePage) =
+         object [ "contentIdentifier" .= contentIdentifier
+                , "packagePurpose" .= packagePurpose
+                , "downloadLocation" .= downloadLocation
+                , "packageUrl" .= packageUrl
+                , "homePage" .= homePage
+                ]
+instance FromJSON Package where
+    parseJSON = withObject "PackageProperties" $ \o -> do
+        PackageProperties <$> o .:? "contentIdentifier"
+                          <*> o .: "packagePurpose"
+                          <*> o .:? "downloadLocation"
+                          <*> o .:? "packageUrl"
+                          <*> o .:? "homePage"
+data File where
+    FileProperties :: {_fileContentIdentifier :: Maybe String
+                      ,_filePurpose :: [SoftwarePurpose]
+                      , _fileContentType :: Maybe MediaType
+                      } -> File
+  deriving (Show)
+instance ToJSON File where
+    toJSON (FileProperties contentIdentifier filePurpose contentType) =
+         object [ "contentIdentifier" .= contentIdentifier
+                , "filePurpose" .= filePurpose
+                , "contentType" .= contentType
+                ]
+instance FromJSON File where
+    parseJSON = withObject "FileProperties" $ \o -> do
+        FileProperties <$> o .:? "contentIdentifier"
+                          <*> o .: "filePurpose"
+                          <*> o .:? "contentType"
+data Snippet where
+    SnippetProperties :: {_snippetContentIdentifier :: Maybe String
+                         ,_snippetPurpose :: [SoftwarePurpose]
+                         ,_snippetByteRange :: Maybe (Int,Int)
+                         ,_snippetLineRange :: Maybe (Int,Int)
+                         } -> Snippet
+  deriving (Show)
+instance ToJSON Snippet where
+    toJSON (SnippetProperties contentIdentifier snippetPurpose byteRange lineRange) =
+         object [ "contentIdentifier" .= contentIdentifier
+                , "snippetPurpose" .= snippetPurpose
+                , "byteRange" .= byteRange
+                , "lineRange" .= lineRange
+                ]
+instance FromJSON Snippet where
+    parseJSON = withObject "SnippetProperties" $ \o -> do
+        SnippetProperties <$> o .:? "contentIdentifier"
+                          <*> o .: "snippetPurpose"
+                          <*> o .:? "byteRange"
+                          <*> o .:? "lineRange"
 data SBOM
 
 data SPDX a where
@@ -95,17 +248,17 @@ data SPDX a where
 
     Element      :: SPDXID -> CreationInfo -> Element -> SPDX Element
 
-    Artifact     :: SPDX Element -> SPDX Artifact
+    Artifact     :: SPDX Element -> Artifact -> SPDX Artifact
     Collection   :: SPDX Element -> Collection -> SPDX Collection
-    Bundle       :: SPDX Collection -> SPDX Bundle
+    Bundle       :: SPDX Collection -> Bundle -> SPDX Bundle
     BOM          :: SPDX Bundle -> SPDX BOM
     Relationship :: SPDX Element -> Relationship -> SPDX Relationship
     Annotation   :: SPDX Element -> Annotation -> SPDX Annotation
 
     -- Software
-    Package      :: SPDX Artifact -> SPDX Package
-    File         :: SPDX Artifact -> SPDX File
-    Snippet      :: SPDX Artifact -> SPDX Snippet
+    Package      :: SPDX Artifact -> Package -> SPDX Package
+    File         :: SPDX Artifact -> File    -> SPDX File
+    Snippet      :: SPDX Artifact -> Snippet -> SPDX Snippet
     SBOM         :: SPDX BOM -> SPDX SBOM
 deriving instance Show (SPDX a)
 
@@ -120,16 +273,16 @@ instance HasSPDXID (SPDX a) where
 
     getSPDXID (Element i _ _) = i
 
-    getSPDXID (Artifact ie) = getSPDXID ie
+    getSPDXID (Artifact ie _) = getSPDXID ie
     getSPDXID (Collection ie _) = getSPDXID ie
-    getSPDXID (Bundle c) = getSPDXID c
+    getSPDXID (Bundle c _) = getSPDXID c
     getSPDXID (BOM b) = getSPDXID b
     getSPDXID (Relationship ie _) = getSPDXID ie
     getSPDXID (Annotation ie _) = getSPDXID ie
 
-    getSPDXID (Package a) = getSPDXID a
-    getSPDXID (File a) = getSPDXID a
-    getSPDXID (Snippet a) = getSPDXID a
+    getSPDXID (Package a _) = getSPDXID a
+    getSPDXID (File a _) = getSPDXID a
+    getSPDXID (Snippet a _) = getSPDXID a
     getSPDXID (SBOM b) = getSPDXID b
 
 
@@ -137,8 +290,8 @@ getElements :: SPDX a -> [SPDX ()]
 getElements e = let
         getImplicitElements' :: SPDX a -> [SPDX ()]
         getImplicitElements' (Pack e) = getImplicitElements e
-        getImplicitElements' e@(Collection _ (CollectionProperties es)) = concatMap getImplicitElements es
-        getImplicitElements' e@(Relationship _ (RelationshipProperties _ from to)) = concatMap getImplicitElements (from:to)
+        getImplicitElements' e@(Collection _ (CollectionProperties es res _ _)) = concatMap getImplicitElements es ++ concatMap getImplicitElements res
+        getImplicitElements' e@(Relationship _ (RelationshipProperties _ from to _)) = concatMap getImplicitElements (from:to)
         getImplicitElements' e@(Annotation _ (AnnotationProperties _ subject)) = concatMap getImplicitElements [subject]
         getImplicitElements' _ = []
         getImplicitElements :: forall a. SPDX a -> [SPDX ()]
@@ -172,37 +325,17 @@ getParent (Ref _)             = Nothing
 getParent (Pack e)            = getParent e
 getParent (Element {})        = Nothing
 
-getParent (Artifact ie)       = Just $ pack ie
+getParent (Artifact ie _)     = Just $ pack ie
 getParent (Collection ie _)   = Just $ pack ie
-getParent (Bundle c)          = Just $ pack c
+getParent (Bundle c _)        = Just $ pack c
 getParent (BOM b)             = Just $ pack b
 getParent (Relationship ie _) = Just $ pack ie
 getParent (Annotation ie _)   = Just $ pack ie
 
-getParent (Package b)         = Just $ pack b
-getParent (File    b)         = Just $ pack b
-getParent (Snippet b)         = Just $ pack b
+getParent (Package b _)       = Just $ pack b
+getParent (File    b _)       = Just $ pack b
+getParent (Snippet b _)       = Just $ pack b
 getParent (SBOM b)            = Just $ pack b
-
--- getJsonKMs :: KeyValue kv => SPDX a -> [kv]
--- getJsonKMs (Ref i) = undefined
--- getJsonKMs (Pack e) = getJsonKMs e
-
--- getJsonKMs (Element i ci eps) = [ "SPDXID" .= i
---                                 , "creationInfo" .= ci
---                                 ]
-
--- getJsonKMs (Artifact _) =  []
--- getJsonKMs (Collection _ cps) = [ "collection" .= cps ]
--- getJsonKMs (Bundle _) = []
--- getJsonKMs (BOM _) = []
--- getJsonKMs (Relationship _ rps) = [ "relationship" .= rps ]
--- getJsonKMs (Annotation _ aps) = [ "annotation" .= aps ]
-
--- getJsonKMs (Package _) = []
--- getJsonKMs (File _) = []
--- getJsonKMs (Snippet _) = []
--- getJsonKMs (SBOM _) = []
 
 getJsons :: SPDX a -> [Value]
 getJsons (Ref i) = undefined
@@ -210,23 +343,23 @@ getJsons (Pack e) = getJsons e
 
 getJsons (Element i ci e) = [object [ "SPDXID" .= i , "creationInfo" .= ci ], toJSON  e]
 
-getJsons (Artifact _) =  []
+getJsons (Artifact _ aps) =  [toJSON aps]
 getJsons (Collection _ cps) = [toJSON cps]
-getJsons (Bundle _) = []
+getJsons (Bundle _ bps) = [toJSON bps]
 getJsons (BOM _) = []
 getJsons (Relationship _ rps) = [ toJSON rps ]
 getJsons (Annotation _ aps) = [ toJSON aps ]
 
-getJsons (Package _) = []
-getJsons (File _) = []
-getJsons (Snippet _) = []
+getJsons (Package _ pps) = [toJSON pps]
+getJsons (File _ fps) = [toJSON fps]
+getJsons (Snippet _ sps) = [toJSON sps]
 getJsons (SBOM _) = []
 
 instance ToJSON (SPDX a) where
     toJSON (Ref i) = toJSON i
     toJSON e = let
           t = object ["@type" .= getType e]
-          parent = case getParent e of 
+          parent = case getParent e of
             Just parent -> [toJSON parent]
             Nothing -> []
           mergeObjects :: [Value] -> Value
@@ -236,8 +369,6 @@ instance ToJSON (SPDX a) where
               unObject _ = undefined -- partial function :see_no_evil:
             in Object (mconcat (map unObject list))
         in mergeObjects $ t : getJsons e ++ parent
-            
-            -- object $ ("@type" .= t) : getAllJsonKMs e
 
 parseElementJSON :: Value -> Parser (SPDX Element)
 parseElementJSON = withObject "Element" $ \o -> do
@@ -247,6 +378,7 @@ parseElementJSON = withObject "Element" $ \o -> do
 parseArtifactJSON :: Value -> Parser (SPDX Artifact)
 parseArtifactJSON = withObject "Artifact" $ \o -> do
     Artifact <$> parseElementJSON (Object o)
+             <*> parseJSON (Object o)
 parseCollectionJSON :: Value -> Parser (SPDX Collection)
 parseCollectionJSON = withObject "Collection" $ \o -> do
     Collection <$> parseElementJSON (Object o)
@@ -284,7 +416,7 @@ artifact' :: SPDXID -> String -> SPDX_M (SPDX Artifact)
 artifact' i name = do
     ci <- ask
     let ie = Element i ci (elementFromName name)
-    return (Artifact ie)
+    return (Artifact ie (ArtifactProperties []))
 artifact :: SPDXID -> String -> SPDX_M (SPDX ())
 artifact i name = pack <$> artifact' i name
 
@@ -292,7 +424,7 @@ collection' :: SPDXID -> SPDX_M [SPDX ()] -> SPDX_M (SPDX Collection)
 collection' i es = do
     ci <- ask
     let ie = Element i ci emptyElement
-    Collection ie . CollectionProperties <$> es
+    Collection ie . (\es -> CollectionProperties es [] mempty mempty) <$> es
 collection :: SPDXID -> SPDX_M [SPDX ()] -> SPDX_M (SPDX ())
 collection i es = pack <$> collection' i es
 

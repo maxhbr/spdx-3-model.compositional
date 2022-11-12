@@ -13,7 +13,7 @@ instance ToJSON ActorType where
   toEncoding = genericToEncoding defaultOptions
 instance FromJSON ActorType
 data Actor where
-    Actor :: Maybe String Maybe ActorType Actor
+    Actor :: Maybe String -> Maybe ActorType -> Actor
     deriving (Generic, Eq, Show)
 instance ToJSON Actor where
   toJSON (Actor name actorType) =

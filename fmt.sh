@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#! nix-shell -i bash -p haskellPackages.brittany
+#! nix-shell -i bash -p haskellPackages.stylish-haskell
 
 # SPDX-FileCopyrightText: Maximilian Huber <oss@maximilian-huber.de>
 #
@@ -11,8 +11,8 @@ formatDir() {
     # formatters:
     # * hindent
     # * stylish-haskell
-    # * brittany <- chosen
-    find "$(dirname "$0")/$1" -iname '*.hs' -print -exec brittany --write-mode=inplace {} \;
+    # * brittany <- breaks GADTs
+    find "$(dirname "$0")/$1" -iname '*.hs' -print -exec stylish-haskell {} \;
 }
 
 formatDir src

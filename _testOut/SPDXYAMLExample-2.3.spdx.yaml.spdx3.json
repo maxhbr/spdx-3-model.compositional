@@ -1,7 +1,7 @@
 {
     "@type": "SpdxDocument",
     "SPDXID": "SPDXRef-DOCUMENT",
-    "comment": null,
+    "comment": "This document was created using SPDX 2.0 using licenses from the web site.",
     "context": null,
     "creationInfo": {
         "created": "2010-01-29T18:30:22Z",
@@ -58,7 +58,7 @@
                 ],
                 "specVer": "3.0.0"
             },
-            "description": null,
+            "description": "The GNU C Library defines functions that are specified by the ISO C standard, as well as additional features specific to POSIX and other derivatives of the Unix operating system, and extensions specific to GNU systems.",
             "downloadLocation": "http://ftp.gnu.org/gnu/glibc/glibc-ports-2.15.tar.gz",
             "externalIdentifiers": [],
             "externalReferences": [],
@@ -67,7 +67,7 @@
             "originatedBy": [],
             "packagePurpose": [],
             "packageUrl": null,
-            "summary": null,
+            "summary": "GNU C library.",
             "verifiedUsing": []
         },
         {
@@ -181,7 +181,7 @@
                 ],
                 "specVer": "3.0.0"
             },
-            "description": null,
+            "description": "The Saxon package is a collection of tools for processing XML documents.",
             "downloadLocation": "https://sourceforge.net/projects/saxon/files/Saxon-B/8.8.0.7/saxonb8-8-0-7j.zip/download",
             "externalIdentifiers": [],
             "externalReferences": [],
@@ -306,6 +306,45 @@
             "externalReferences": [],
             "filePurpose": [],
             "name": "./lib-source/jena-2.6.3-sources.jar",
+            "originatedBy": [],
+            "summary": null,
+            "verifiedUsing": []
+        },
+        {
+            "@type": "File",
+            "SPDXID": "SPDXRef-Specification",
+            "comment": "Specification Documentation",
+            "contentIdentifier": null,
+            "contentType": "media-type-DOCUMENTATION",
+            "creationInfo": {
+                "created": "2010-01-29T18:30:22Z",
+                "createdBy": [
+                    {
+                        "actorType": "TOOL",
+                        "name": "LicenseFind-1.0"
+                    },
+                    {
+                        "actorType": "ORGANIZATION",
+                        "name": "ExampleCodeInspect ()"
+                    },
+                    {
+                        "actorType": "PERSON",
+                        "name": "Jane Doe ()"
+                    }
+                ],
+                "dataLicense": "CC0",
+                "profile": [
+                    "core",
+                    "software",
+                    "licensing"
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "filePurpose": [],
+            "name": "./docs/myspec.pdf",
             "originatedBy": [],
             "summary": null,
             "verifiedUsing": []
@@ -515,47 +554,6 @@
         },
         {
             "@type": "Relationship",
-            "SPDXID": "urn:Relationship:a71e1073b528addbe52874e67c115f67",
-            "comment": null,
-            "creationInfo": {
-                "created": "2010-01-29T18:30:22Z",
-                "createdBy": [
-                    {
-                        "actorType": "TOOL",
-                        "name": "LicenseFind-1.0"
-                    },
-                    {
-                        "actorType": "ORGANIZATION",
-                        "name": "ExampleCodeInspect ()"
-                    },
-                    {
-                        "actorType": "PERSON",
-                        "name": "Jane Doe ()"
-                    }
-                ],
-                "dataLicense": "CC0",
-                "profile": [
-                    "core",
-                    "software",
-                    "licensing"
-                ],
-                "specVer": "3.0.0"
-            },
-            "description": null,
-            "externalIdentifiers": [],
-            "externalReferences": [],
-            "from": "SPDXRef-JenaLib",
-            "name": null,
-            "relationshipCompleteness": null,
-            "relationshipType": "CONTAINS",
-            "summary": null,
-            "to": [
-                "SPDXRef-Package"
-            ],
-            "verifiedUsing": []
-        },
-        {
-            "@type": "Relationship",
             "SPDXID": "urn:Relationship:5c29a356ddc43c36a67072b2b11ec407",
             "comment": null,
             "creationInfo": {
@@ -679,6 +677,47 @@
         },
         {
             "@type": "Relationship",
+            "SPDXID": "urn:Relationship:337d80241dbd29707b4a83d880522655",
+            "comment": null,
+            "creationInfo": {
+                "created": "2010-01-29T18:30:22Z",
+                "createdBy": [
+                    {
+                        "actorType": "TOOL",
+                        "name": "LicenseFind-1.0"
+                    },
+                    {
+                        "actorType": "ORGANIZATION",
+                        "name": "ExampleCodeInspect ()"
+                    },
+                    {
+                        "actorType": "PERSON",
+                        "name": "Jane Doe ()"
+                    }
+                ],
+                "dataLicense": "CC0",
+                "profile": [
+                    "core",
+                    "software",
+                    "licensing"
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "from": "SPDXRef-fromDoap-0",
+            "name": null,
+            "relationshipCompleteness": null,
+            "relationshipType": "OTHER",
+            "summary": null,
+            "to": [
+                "SPDXRef-Specification"
+            ],
+            "verifiedUsing": []
+        },
+        {
+            "@type": "Relationship",
             "SPDXID": "urn:Relationship:541efd02ec0987fd28a142092115b6b3",
             "comment": null,
             "creationInfo": {
@@ -722,7 +761,7 @@
     "externalIdentifiers": [],
     "externalReferences": [],
     "imports": {},
-    "name": null,
+    "name": "SPDX-Tools-v2.0",
     "namespaces": {},
     "rootElements": [],
     "summary": null,

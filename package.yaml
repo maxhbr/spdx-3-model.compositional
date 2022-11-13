@@ -24,16 +24,17 @@ dependencies:
 - aeson
 - aeson-pretty
 - bytestring
+- data-default
 - lens
+- mtl
+- pureMD5
 - singletons
 - singletons-th
+- spdx-tools
 - text
+- time
 - unordered-containers
 - vinyl
-- mtl
-- time
-- spdx-tools
-- pureMD5
 
 ghc-options:
 - -Wall

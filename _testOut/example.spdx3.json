@@ -55,15 +55,16 @@
             "description": null,
             "externalIdentifiers": [],
             "externalReferences": [],
-            "name": "Artifact0",
+            "name": null,
             "originatedBy": [],
             "summary": null,
             "verifiedUsing": []
         },
         {
-            "@type": "Collection",
-            "SPDXID": "urn:spdx:Collection1",
+            "@type": "Bundle",
+            "SPDXID": "urn:Bundle:33ef32efdebea7d1c2305e9cf88dff98",
             "comment": null,
+            "context": null,
             "creationInfo": {
                 "created": "2022-11-13T13:14:36.324980945Z",
                 "createdBy": [
@@ -114,8 +115,8 @@
                     "externalIdentifiers": [],
                     "externalReferences": [],
                     "name": null,
-                    "statement": "Some Annotation",
-                    "subject": "urn:spdx:Artifact0",
+                    "statement": "some Annotation",
+                    "subject": "urn:spdx:Ref2",
                     "summary": null,
                     "verifiedUsing": []
                 }
@@ -133,7 +134,7 @@
     "externalIdentifiers": [],
     "externalReferences": [],
     "imports": {},
-    "name": null,
+    "name": "The Document",
     "namespaces": {},
     "rootElements": [],
     "summary": null,

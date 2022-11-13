@@ -12,32 +12,47 @@
 {-# LANGUAGE TypeFamilies          #-}
 
 module SPDX3.Model
+    ( module X
+    , Element (..)
+    , Artifact (..)
+    , Collection (..)
+    , Bundle (..)
+    , BOM (..)
+    , SpdxDocument (..)
+    , Relationship (..)
+    , Annotation (..)
+    , Package (..)
+    , File (..)
+    , Snippet (..)
+    , SBOM (..)
+    , SPDX (..)
+    , pack
+    , getType
+    , getParent
+    , setSPDXIDFromContent
+    )
     where
-import           Control.Monad.Reader
 import           Data.Aeson
+import Data.Default as X ( Default(..) )
 import           Data.Aeson.Types
 import           Data.Digest.Pure.MD5           (md5)
 import qualified Data.HashMap.Strict            as Map
 import qualified Data.Text                      as T
-import           GHC.Generics                   (Generic)
-import           GHC.Word                       (Word8)
-import           SPDX.Document                  (SPDXDocument)
-import           SPDX3.Model.Common
-import           SPDX3.Model.CreationInfo
-import           SPDX3.Model.ExternalIdentifier
-import           SPDX3.Model.ExternalReference
-import           SPDX3.Model.IntegrityMethod
-import           SPDX3.Model.RelationshipType
-import           SPDX3.Model.SPDXID
+import           SPDX3.Model.Common as X
+import           SPDX3.Model.CreationInfo as X
+import           SPDX3.Model.ExternalIdentifier as X
+import           SPDX3.Model.ExternalReference as X
+import           SPDX3.Model.IntegrityMethod as X
+import           SPDX3.Model.RelationshipType as X
+import           SPDX3.Model.SPDXID as X
+import Control.Lens (sets)
 
 -- -- ############################################################################
 -- -- ##  Element  ###############################################################
 -- -- ############################################################################
 
 data Element where
-  ElementProperties :: {_elementSPDXID :: SPDXID,
-                        _elementCreationInfo :: CreationInfo,
-                        _elementName :: Maybe String,
+  ElementProperties :: {_elementName :: Maybe String,
                         _elementSummary :: Maybe String,
                         _elementDescription :: Maybe String,
                         _elementComment :: Maybe String,
@@ -46,15 +61,11 @@ data Element where
                         _elementExternalIdentifiers :: [ExternalIdentifier]
                         } -> Element
   deriving Show
-emptyElement :: SPDXID -> CreationInfo -> Element
-emptyElement spdxid creationInfo = ElementProperties spdxid creationInfo Nothing Nothing Nothing Nothing mempty mempty mempty
-elementFromName :: SPDXID -> CreationInfo -> String -> Element
-elementFromName spdxid creationInfo name = ElementProperties spdxid creationInfo (Just name) Nothing Nothing Nothing mempty mempty mempty
+instance Default Element where
+    def = ElementProperties Nothing Nothing Nothing Nothing mempty mempty mempty
 instance ToJSON Element where
-    toJSON (ElementProperties spdxid creationInfo name summary description comment verifiedUsing externalReferences externalIdentifiers) =
-        object [ "SPDXID" .= spdxid
-               , "creationInfo" .= creationInfo
-               , "name" .= name
+    toJSON (ElementProperties name summary description comment verifiedUsing externalReferences externalIdentifiers) =
+        object [ "name" .= name
                , "summary" .= summary
                , "description" .= description
                , "comment" .= comment
@@ -64,9 +75,7 @@ instance ToJSON Element where
                ]
 instance FromJSON Element where
     parseJSON = withObject "ElementProperties" $ \o -> do
-        ElementProperties <$> o .: "SPDXID"
-                          <*> o .: "creationInfo"
-                          <*> o .:? "name"
+        ElementProperties <$> o .:? "name"
                           <*> o .:? "summary"
                           <*> o .:? "description"
                           <*> o .:? "comment"
@@ -77,6 +86,8 @@ instance FromJSON Element where
 data Artifact where
     ArtifactProperties :: {_artifactOriginatedBy :: [Actor]} -> Artifact
   deriving (Show)
+instance Default Artifact where
+    def = ArtifactProperties []
 instance ToJSON Artifact where
     toJSON (ArtifactProperties originatedBy) = object [ "originatedBy" .= originatedBy ]
 instance FromJSON Artifact where
@@ -91,6 +102,8 @@ data Collection where
                           ,_collectionImports :: ExternalMap
                           } -> Collection
   deriving (Show)
+instance Default Collection where
+    def = CollectionProperties mempty mempty mempty mempty
 instance ToJSON Collection where
     toJSON (CollectionProperties elements rootElements namespaces imports) =
          object [ "elements" .= elements
@@ -108,6 +121,8 @@ data Bundle where
     BundleProperties :: {_bundleContext :: Maybe String
                         } -> Bundle
   deriving (Show)
+instance Default Bundle where
+    def = BundleProperties Nothing
 instance ToJSON Bundle where
     toJSON (BundleProperties context) =
          object [ "context" .= context]
@@ -149,6 +164,8 @@ data Package where
                          , _packageHomePage :: Maybe URL
                          } -> Package
   deriving (Show)
+instance Default Package where
+    def = PackageProperties Nothing [] Nothing Nothing Nothing
 instance ToJSON Package where
     toJSON (PackageProperties contentIdentifier packagePurpose downloadLocation packageUrl homePage) =
          object [ "contentIdentifier" .= contentIdentifier
@@ -170,6 +187,8 @@ data File where
                       , _fileContentType :: Maybe MediaType
                       } -> File
   deriving (Show)
+instance Default File where
+    def = FileProperties Nothing [] Nothing
 instance ToJSON File where
     toJSON (FileProperties contentIdentifier filePurpose contentType) =
          object [ "contentIdentifier" .= contentIdentifier
@@ -188,6 +207,8 @@ data Snippet where
                          ,_snippetLineRange :: Maybe (Int,Int)
                          } -> Snippet
   deriving (Show)
+instance Default Snippet where
+    def = SnippetProperties Nothing [] Nothing Nothing
 instance ToJSON Snippet where
     toJSON (SnippetProperties contentIdentifier snippetPurpose byteRange lineRange) =
          object [ "contentIdentifier" .= contentIdentifier
@@ -207,7 +228,7 @@ data SPDX a where
     Ref          :: SPDXID -> SPDX ()
     Pack         :: SPDX a -> SPDX ()
 
-    Element      :: Element -> SPDX Element
+    Element      :: SPDXID -> CreationInfo -> Element -> SPDX Element
 
     Artifact     :: SPDX Element -> Artifact -> SPDX Artifact
     Collection   :: SPDX Element -> Collection -> SPDX Collection
@@ -233,7 +254,7 @@ instance HasSPDXID (SPDX a) where
     getSPDXID (Ref i)                                            = i
     getSPDXID (Pack e)                                           = getSPDXID e
 
-    getSPDXID (Element (ElementProperties {_elementSPDXID = i})) = i
+    getSPDXID (Element i _ _) = i
 
     getSPDXID (Artifact ie _)                                    = getSPDXID ie
     getSPDXID (Collection ie _)                                  = getSPDXID ie
@@ -301,7 +322,8 @@ instance ToJSON (SPDX a) where
           getJsons (Ref _)              = undefined
           getJsons (Pack e)             = getJsons e
 
-          getJsons (Element e)          = [toJSON  e]
+          getJsons (Element spdxid creationInfo e) = [ object ["SPDXID" .= spdxid , "creationInfo" .= creationInfo]
+                                          , toJSON  e]
 
           getJsons (Artifact _ aps)     =  [toJSON aps]
           getJsons (Collection _ cps)   = [toJSON cps]
@@ -327,7 +349,9 @@ instance FromJSON (SPDX ()) where
     parseJSON o@(Object v) = let
             parseElementJSON :: Object -> Parser (SPDX Element)
             parseElementJSON o = do
-                Element <$> parseJSON (Object o)
+                Element <$> o .: "SPDXID"
+                          <*> o .: "creationInfo"
+                          <*> parseJSON (Object o)
             parseArtifactJSON :: Object -> Parser (SPDX Artifact)
             parseArtifactJSON o = do
                 Artifact <$> parseElementJSON o
@@ -385,7 +409,6 @@ instance FromJSON (SPDX ()) where
             "SBOM"         -> pack <$> parseSBOMJSON v
             t              -> fail ("type='" ++ t ++ "' not supported")
     parseJSON _ = fail "not supported type"
-
 
 setSPDXIDFromContent :: (SPDXID -> SPDX a) -> SPDX a
 setSPDXIDFromContent fun = let

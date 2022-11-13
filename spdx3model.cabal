@@ -46,6 +46,7 @@ library
     , aeson-pretty
     , base >=4.7 && <5
     , bytestring
+    , data-default
     , lens
     , mtl
     , pureMD5
@@ -70,6 +71,7 @@ executable spdx3model-exe
     , aeson-pretty
     , base >=4.7 && <5
     , bytestring
+    , data-default
     , lens
     , mtl
     , pureMD5
@@ -96,6 +98,7 @@ test-suite spdx3model-test
     , aeson-pretty
     , base >=4.7 && <5
     , bytestring
+    , data-default
     , directory
     , file-embed
     , filepath

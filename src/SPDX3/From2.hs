@@ -13,36 +13,21 @@
 
 module SPDX3.From2
     where
-import           Control.Monad.Reader
-import           Data.Aeson
-import           Data.Aeson.Types
 import qualified Data.ByteString.Lazy            as BSL
-import qualified Data.HashMap.Strict             as Map
 import           Data.Maybe                      (fromMaybe)
-import qualified Data.Text                       as T
-import           Data.Time.Clock
 import           Data.Time.Format.ISO8601
-import           GHC.Generics                    (Generic)
-import           GHC.Word                        (Word8)
 import           SPDX3.Model
-import           SPDX3.Model.Common
-import           SPDX3.Model.CreationInfo
-import           SPDX3.Model.ExternalIdentifier
-import           SPDX3.Model.ExternalReference
-import           SPDX3.Model.IntegrityMethod
-import           SPDX3.Model.RelationshipType
-import           SPDX3.Model.SPDXID
 import           SPDX3.Monad
 
 import qualified SPDX.Document                   as SPDX2
 import qualified SPDX.Document.RelationshipTypes as SPDX2R
 
 convertCreationInfo :: SPDX2.SPDXCreationInfo -> String -> (CreationInfo, Maybe String)
-convertCreationInfo ci spdx2DataLicense = let
-      spdx2CreationInfoComment = SPDX2._SPDXCreationInfo_comment ci
-      spdx2CreationInfoCreated = SPDX2._SPDXCreationInfo_created ci
-      spdx2CreationInfoCreators = SPDX2._SPDXCreationInfo_creators ci
-      spdx2CreationInfoLicenseListVersion = SPDX2._SPDXCreationInfo_licenseListVersion ci
+convertCreationInfo spdx2CreationInformation spdx2DataLicense = let
+      spdx2CreationInfoComment = SPDX2._SPDXCreationInfo_comment spdx2CreationInformation
+      spdx2CreationInfoCreated = SPDX2._SPDXCreationInfo_created spdx2CreationInformation
+      spdx2CreationInfoCreators = SPDX2._SPDXCreationInfo_creators spdx2CreationInformation
+      spdx2CreationInfoLicenseListVersion = SPDX2._SPDXCreationInfo_licenseListVersion spdx2CreationInformation
 
       parseSpdx2Creator :: String -> Actor
       parseSpdx2Creator ('P':'e':'r':'s':'o':'n':':':' ':name) = Actor (Just name) (Just PERSON)
@@ -64,7 +49,7 @@ convertCreationInfo ci spdx2DataLicense = let
             }), spdx2CreationInfoLicenseListVersion)
 
 convertFile :: CreationInfo -> SPDX2.SPDXFile -> SPDX File
-convertFile ci file = let
+convertFile creationInformation file = let
         spdx2FileSPDXID = SPDX2._SPDXFile_SPDXID file
         spdx2FileFileName = SPDX2._SPDXFile_fileName file
         spdx2FileFileTypes = SPDX2._SPDXFile_fileTypes file
@@ -87,16 +72,15 @@ convertFile ci file = let
             Just [ft] -> Just ("media-type-"++ show ft) -- TODO
             _         -> undefined
 
-        spdx3ElementProperties = (emptyElement spdx2FileSPDXID ci)
-                                         { _elementName = Just spdx2FileFileName
-                                         , _elementComment = spdx2FileComment
-                                         }
+        spdx3ElementProperties = def { _elementName = Just spdx2FileFileName
+                                     , _elementComment = spdx2FileComment
+                                     }
         spdx3ArtifactProperties = ArtifactProperties []
         spdx3FileProperties = FileProperties Nothing [] spdx3FileType
-    in File (Artifact (Element spdx3ElementProperties) spdx3ArtifactProperties) spdx3FileProperties
+    in File (Artifact (Element spdx2FileSPDXID creationInformation spdx3ElementProperties) spdx3ArtifactProperties) spdx3FileProperties
 
 convertPackage :: CreationInfo -> SPDX2.SPDXPackage -> SPDX Package
-convertPackage ci package = let
+convertPackage creationInformation package = let
         spdx2PackageSPDXID = SPDX2._SPDXPackage_SPDXID package
         spdx2PackageName = SPDX2._SPDXPackage_name package
         spdx2PackageVersionInfo = SPDX2._SPDXPackage_versionInfo package
@@ -117,19 +101,20 @@ convertPackage ci package = let
         spdx2PackageSummary = SPDX2._SPDXPackage_summary package
         spdx2PackageDescription = SPDX2._SPDXPackage_description package
         spdx2PackageComment = SPDX2._SPDXPackage_comment package
-        spdx2PackageAttributionTexts = SPDX2._SPDXPackage_attributionTexts package
+        -- spdx2PackageAttributionTexts = SPDX2._SPDXPackage_attributionTexts package
         spdx2PackageHasFiles = SPDX2._SPDXPackage_hasFiles package
 
-        spdx3ElementProperties = (emptyElement spdx2PackageSPDXID ci)
-                                         { _elementName = Just spdx2PackageName
-                                         , _elementComment = spdx2PackageComment
-                                         }
+        spdx3ElementProperties = def { _elementName = Just spdx2PackageName
+                                     , _elementComment = spdx2PackageComment
+                                     , _elementSummary = spdx2PackageSummary
+                                     , _elementDescription = spdx2PackageDescription
+                                     }
         spdx3ArtifactProperties = ArtifactProperties []
         spdx3PackageProperties = PackageProperties Nothing [] (SPDX2.spdxMaybeToMaybe spdx2PackageDownloadLocation) Nothing spdx2PackageHomepage
-    in Package (Artifact (Element spdx3ElementProperties) spdx3ArtifactProperties) spdx3PackageProperties
+    in Package (Artifact (Element spdx2PackageSPDXID creationInformation spdx3ElementProperties) spdx3ArtifactProperties) spdx3PackageProperties
 
 convertRelationship :: CreationInfo -> SPDX2.SPDXRelationship -> SPDX Relationship
-convertRelationship ci rel = let
+convertRelationship creationInformation rel = let
         spdx2RelationshipComment = SPDX2._SPDXRelationship_comment rel
         spdx2RelationshipRelationsihpType = SPDX2._SPDXRelationship_relationshipType rel
         spdx2RelationshipRelatedSpdxElement = SPDX2._SPDXRelationship_relatedSpdxElement rel
@@ -179,13 +164,14 @@ convertRelationship ci rel = let
             -- SPDX2R.PREREQUISITE_FOR -> OTHER
             -- SPDX2R.HAS_PREREQUISITE -> OTHER
             -- SPDX2R.OTHER -> OTHER
+            SPDX2R.SPECIFICATION_FOR -> Right OTHER -- TODO!
             t -> error ("failed to translate RelationsihpType=" ++ show t)
 
-        spdx3ElementProperties spdxid = (emptyElement spdxid ci) {  _elementComment = spdx2RelationshipComment }
+        spdx3ElementProperties = def {  _elementComment = spdx2RelationshipComment }
         spdx3RelationshipProperties = case spdx3RelationshipRelationshipType of
             Right rt -> RelationshipProperties rt (Ref spdx2RelationshipRelatedSpdxElement) [Ref spdx2RelationshipSpdxElementId] Nothing
             Left rt -> RelationshipProperties rt (Ref spdx2RelationshipSpdxElementId) [Ref spdx2RelationshipRelatedSpdxElement] Nothing
-    in setSPDXIDFromContent (\spdxid -> Relationship (Element (spdx3ElementProperties spdxid)) spdx3RelationshipProperties)
+    in setSPDXIDFromContent (\spdxid -> Relationship (Element spdxid creationInformation spdx3ElementProperties) spdx3RelationshipProperties)
 
 convertDocument :: SPDX2.SPDXDocument -> Either String (SPDX ())
 convertDocument doc = let
@@ -200,13 +186,12 @@ convertDocument doc = let
         spdx2relationships = SPDX2._SPDX_relationships doc
 
         (spdx3CreationInfo, _) = convertCreationInfo spdx2CreationInfo spdx2DataLicense
-    in runSPDX spdx3CreationInfo $
-        spdxDocument spdx2Name $
-            collection' spdx2DocumentId $ do
-            let packages = map (pack . convertPackage spdx3CreationInfo) spdx2packages
-            let files = map (pack . convertFile spdx3CreationInfo) spdx2files
-            let relationships = map (pack . convertRelationship spdx3CreationInfo) spdx2relationships
-            return (packages ++ files ++ relationships)
+    in runSPDX spdx3CreationInfo $ do
+        let packages = map (pack . convertPackage spdx3CreationInfo) spdx2packages
+        let files = map (pack . convertFile spdx3CreationInfo) spdx2files
+        let relationships = map (pack . convertRelationship spdx3CreationInfo) spdx2relationships
+        let elements = packages ++ files ++ relationships
+        spdxDocument (Just spdx2DocumentId) def def{_collectionElements = elements} def{_elementName = Just spdx2Name, _elementComment = spdx2Comment}
 
 convertBsDocument :: BSL.ByteString -> Either String (SPDX ())
 convertBsDocument = (\case

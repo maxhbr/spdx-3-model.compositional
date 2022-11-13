@@ -58,18 +58,24 @@ testsOnExample :: TestTree
 testsOnExample = testGroup "tests on example" []
 testsFrom2 :: TestTree
 testsFrom2 = let
-     bss = [ ("SPDXJSONExample-v2.2.spdx.json",spdxFileBS)
-           , ("SPDXYAMLExample-2.2.spdx.yaml", spdxYamlFileBS)
+     bss = [ ("SPDXJSONExample-v2.3.spdx.json",spdxFileBS)
+           , ("SPDXYAMLExample-2.3.spdx.yaml", spdxYamlFileBS)
            , ("document.spdx.yml", otherSpdxYamlFileBS)
            ]
   in testGroup "test conversation from 2" $ map (\(fn, bs) -> testCase ("parse BS for " ++ fn) $ do
         let result = convertBsDocument bs
-        assertBool ("should succeed conversion " ++ fn) (isRight result)
+        let potentialConvertError = case result of 
+                                Right _ -> ""
+                                Left err -> err
+        assertEqual ("should succeed conversion " ++ fn) "" potentialConvertError
         case result of
           Right success -> do
             let encoded = encodePretty success
             B.writeFile (testOutputFolder </> fn <.> ".spdx3.json") encoded
             let parsed = eitherDecode encoded :: Either String (SPDX ())
-            assertBool ("should succeed parsing " ++ fn) (isRight parsed)
+            let potentialParseError = case result of 
+                                        Right _ -> ""
+                                        Left err -> err
+            assertEqual ("should succeed parsing " ++ fn) "" potentialParseError
           Left _ -> pure ()
       ) bss

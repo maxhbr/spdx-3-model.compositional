@@ -11,6 +11,7 @@ import           Data.Aeson                 (eitherDecode)
 import           Data.Aeson.Encode.Pretty   (encodePretty)
 import qualified Data.ByteString.Lazy.Char8 as B
 import           SPDX3.Model
+import           SPDX3.Monad (mkExample)
 
 main :: IO ()
 main = do

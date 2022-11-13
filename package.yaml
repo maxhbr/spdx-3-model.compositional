@@ -32,6 +32,7 @@ dependencies:
 - vinyl
 - mtl
 - time
+- spdx-tools
 
 ghc-options:
 - -Wall

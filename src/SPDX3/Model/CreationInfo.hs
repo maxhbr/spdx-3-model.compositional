@@ -1,7 +1,7 @@
 {-# LANGUAGE DeriveGeneric     #-}
 {-# LANGUAGE GADTs             #-}
 {-# LANGUAGE OverloadedStrings #-}
-module SPDX3.CreationInfo where
+module SPDX3.Model.CreationInfo where
 import           Data.Aeson
 import           Data.Time.Clock
 import           GHC.Generics    (Generic)

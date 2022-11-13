@@ -3,7 +3,29 @@
 # For more information, please see the documentation at:
 #   https://docs.haskellstack.org/en/stable/lock_files
 
-packages: []
+packages:
+- completed:
+    commit: 81d3701a1a630e529862d3c639a69e09848f7cf6
+    git: https://github.com/maxhbr/packageurl-hs
+    name: packageurl
+    pantry-tree:
+      sha256: 8b6fd73871ec59b03fbe2878db98dac0769ffd37e7f8d75de142cdcfc4181257
+      size: 519
+    version: 0.1.0.0
+  original:
+    commit: 81d3701a1a630e529862d3c639a69e09848f7cf6
+    git: https://github.com/maxhbr/packageurl-hs
+- completed:
+    commit: ef1807e08299150e4b42dfb33e87e2982be8d49c
+    git: https://github.com/phadej/spdx
+    name: spdx
+    pantry-tree:
+      sha256: 00df55038fd4b10d8a86e3edd4c9cc4f9eb9622136db8cc9252b480a220d5fe1
+      size: 1462
+    version: 1.0.0.3
+  original:
+    commit: ef1807e08299150e4b42dfb33e87e2982be8d49c
+    git: https://github.com/phadej/spdx
 snapshots:
 - completed:
     sha256: 9a74d76d250a455d9cd11e74f157e087787fa9aa3c4264e69c94703d1e71aede

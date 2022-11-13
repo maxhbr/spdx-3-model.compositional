@@ -1,5 +1,5 @@
 {-# LANGUAGE DeriveGeneric #-}
-module SPDX3.RelationshipType where
+module SPDX3.Model.RelationshipType where
 import           Data.Aeson
 import           GHC.Generics (Generic)
 

@@ -25,11 +25,12 @@ source-repository head
 
 library
   exposed-modules:
-      SPDX3.CreationInfo
       SPDX3.Helper
       SPDX3.Model
-      SPDX3.RelationshipType
-      SPDX3.SPDXID
+      SPDX3.Model.CreationInfo
+      SPDX3.Model.RelationshipType
+      SPDX3.Model.SPDXID
+      SPDX3.Monad
   other-modules:
       Paths_spdx3model
   hs-source-dirs:
@@ -44,6 +45,7 @@ library
     , mtl
     , singletons
     , singletons-th
+    , spdx-tools
     , text
     , time
     , unordered-containers
@@ -66,6 +68,7 @@ executable spdx3model-exe
     , mtl
     , singletons
     , singletons-th
+    , spdx-tools
     , spdx3model
     , text
     , time
@@ -90,6 +93,7 @@ test-suite spdx3model-test
     , mtl
     , singletons
     , singletons-th
+    , spdx-tools
     , spdx3model
     , tasty
     , tasty-hunit

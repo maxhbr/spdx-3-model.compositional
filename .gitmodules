@@ -1,3 +1,6 @@
 [submodule "spdx-3-model"]
 	path = spdx-3-model
 	url = https://github.com/spdx/spdx-3-model/
+[submodule "spdx-tools-hs"]
+	path = spdx-tools-hs
+	url = https://github.com/maxhbr/spdx-tools-hs

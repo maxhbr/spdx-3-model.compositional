@@ -20,59 +20,17 @@ import qualified Data.HashMap.Strict    as Map
 import qualified Data.Text              as T
 import           GHC.Generics           (Generic)
 import           GHC.Word               (Word8)
+import SPDX3.Model.Common
 import           SPDX3.Model.CreationInfo
+import           SPDX3.Model.ExternalIdentifier
+import           SPDX3.Model.ExternalReference
+import           SPDX3.Model.IntegrityMethod
 import           SPDX3.Model.RelationshipType
 import           SPDX3.Model.SPDXID
-
--- TODOs:
-type SoftwarePurpose = String
-type IRI = String
-type URL = String
-type URI = String
-type MediaType = String
-type RelationshipCompleteness = String
 
 -- -- ############################################################################
 -- -- ##  Element  ###############################################################
 -- -- ############################################################################
-
-type HashAlgorithm  = String
-data IntegrityMethod where
-    Hash :: Maybe String -> HashAlgorithm -> [Word8] -> IntegrityMethod
-  deriving (Generic, Show)
-instance ToJSON IntegrityMethod where
-    toJSON (Hash comment algorithm hashValue) = object ["comment" .= comment
-                                                       ,"algorithm" .= algorithm
-                                                       ,"hashValue" .= hashValue
-                                                       ]
-instance FromJSON IntegrityMethod where
-    parseJSON = withObject "IntegrityMethod" $ \o -> do
-        Hash <$> o .:? "comment"
-             <*> o .: "algorithm"
-             <*> o .: "hashValue"
-
-type ExternalReferenceType = String -- TODO
-data ExternalReference where
-  ExternalReference :: {_externalReferenceType :: ExternalReferenceType
-                       ,_externalReferenceLocator :: IRI
-                       ,_externalReferenceContentType :: Maybe MediaType
-                       ,_externalReferenceComments :: Maybe String
-                       } -> ExternalReference
-  deriving (Generic, Show)
-instance ToJSON ExternalReference where
-    toEncoding = genericToEncoding defaultOptions
-instance FromJSON ExternalReference
-
-type ExternalIdentifierType = String -- TODO
-data ExternalIdentifier where
-  ExternalIdentifier :: {_externalIdentifierType :: ExternalIdentifierType
-                        ,_externalIdentifierIdentifier :: IRI
-                        ,_externalIdentifierComments :: Maybe String
-                        } -> ExternalIdentifier
-  deriving (Generic, Show)
-instance ToJSON ExternalIdentifier where
-    toEncoding = genericToEncoding defaultOptions
-instance FromJSON ExternalIdentifier
 
 data Element where
   ElementProperties :: {_elementSPDXID :: SPDXID,

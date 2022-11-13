@@ -27,7 +27,11 @@ library
   exposed-modules:
       SPDX3.Helper
       SPDX3.Model
+      SPDX3.Model.Common
       SPDX3.Model.CreationInfo
+      SPDX3.Model.ExternalIdentifier
+      SPDX3.Model.ExternalReference
+      SPDX3.Model.IntegrityMethod
       SPDX3.Model.RelationshipType
       SPDX3.Model.SPDXID
       SPDX3.Monad

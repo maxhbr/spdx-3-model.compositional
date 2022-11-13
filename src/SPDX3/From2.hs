@@ -15,26 +15,26 @@ module SPDX3.From2
     where
 import           Control.Monad.Reader
 import           Data.Aeson
-import Data.Maybe (fromMaybe)
 import           Data.Aeson.Types
-import qualified Data.HashMap.Strict    as Map
-import qualified Data.Text              as T
-import           GHC.Generics           (Generic)
-import           GHC.Word               (Word8)
-import SPDX3.Model.Common
+import qualified Data.ByteString.Lazy            as BSL
+import qualified Data.HashMap.Strict             as Map
+import           Data.Maybe                      (fromMaybe)
+import qualified Data.Text                       as T
+import           Data.Time.Clock
+import           Data.Time.Format.ISO8601
+import           GHC.Generics                    (Generic)
+import           GHC.Word                        (Word8)
+import           SPDX3.Model
+import           SPDX3.Model.Common
 import           SPDX3.Model.CreationInfo
 import           SPDX3.Model.ExternalIdentifier
 import           SPDX3.Model.ExternalReference
 import           SPDX3.Model.IntegrityMethod
 import           SPDX3.Model.RelationshipType
 import           SPDX3.Model.SPDXID
-import           SPDX3.Model
 import           SPDX3.Monad
-import           Data.Time.Clock
-import qualified Data.ByteString.Lazy as BSL
-import           Data.Time.Format.ISO8601
 
-import qualified SPDX.Document as SPDX2
+import qualified SPDX.Document                   as SPDX2
 import qualified SPDX.Document.RelationshipTypes as SPDX2R
 
 convertCreationInfo :: SPDX2.SPDXCreationInfo -> String -> (CreationInfo, Maybe String)
@@ -59,7 +59,7 @@ convertCreationInfo ci spdx2DataLicense = let
             , _created = spdx3CreationInfoCreated
             , _dataLicense = case spdx2DataLicense of
                 "CC0-1.0" -> CC0
-                _ -> undefined
+                _         -> undefined
             , _createdBy = map parseSpdx2Creator spdx2CreationInfoCreators
             }), spdx2CreationInfoLicenseListVersion)
 
@@ -82,12 +82,12 @@ convertFile ci file = let
         -- spdx2FileName = SPDX2._SPDXFile_name file
 
         spdx3FileType = case spdx2FileFileTypes of
-            Nothing -> Nothing
-            Just [] -> Nothing
+            Nothing   -> Nothing
+            Just []   -> Nothing
             Just [ft] -> Just ("media-type-"++ show ft) -- TODO
-            _ -> undefined
+            _         -> undefined
 
-        spdx3ElementProperties = (emptyElement spdx2FileSPDXID ci) 
+        spdx3ElementProperties = (emptyElement spdx2FileSPDXID ci)
                                          { _elementName = Just spdx2FileFileName
                                          , _elementComment = spdx2FileComment
                                          }
@@ -120,7 +120,7 @@ convertPackage ci package = let
         spdx2PackageAttributionTexts = SPDX2._SPDXPackage_attributionTexts package
         spdx2PackageHasFiles = SPDX2._SPDXPackage_hasFiles package
 
-        spdx3ElementProperties = (emptyElement spdx2PackageSPDXID ci) 
+        spdx3ElementProperties = (emptyElement spdx2PackageSPDXID ci)
                                          { _elementName = Just spdx2PackageName
                                          , _elementComment = spdx2PackageComment
                                          }
@@ -210,6 +210,6 @@ convertDocument doc = let
 
 convertBsDocument :: BSL.ByteString -> Either String (SPDX ())
 convertBsDocument = (\case
-        Left err -> Left err
+        Left err  -> Left err
         Right doc -> convertDocument doc
     ) . SPDX2.parseSPDXDocumentBS

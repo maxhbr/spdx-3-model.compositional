@@ -1,0 +1,730 @@
+{
+    "@type": "SpdxDocument",
+    "SPDXID": "SPDXRef-DOCUMENT",
+    "comment": null,
+    "context": null,
+    "creationInfo": {
+        "created": "2010-01-29T18:30:22Z",
+        "createdBy": [
+            {
+                "actorType": "TOOL",
+                "name": "LicenseFind-1.0"
+            },
+            {
+                "actorType": "ORGANIZATION",
+                "name": "ExampleCodeInspect ()"
+            },
+            {
+                "actorType": "PERSON",
+                "name": "Jane Doe ()"
+            }
+        ],
+        "dataLicense": "CC0",
+        "profile": [
+            "core",
+            "software",
+            "licensing"
+        ],
+        "specVer": "3.0.0"
+    },
+    "description": null,
+    "elements": [
+        {
+            "@type": "Package",
+            "SPDXID": "SPDXRef-Package",
+            "comment": null,
+            "contentIdentifier": null,
+            "creationInfo": {
+                "created": "2010-01-29T18:30:22Z",
+                "createdBy": [
+                    {
+                        "actorType": "TOOL",
+                        "name": "LicenseFind-1.0"
+                    },
+                    {
+                        "actorType": "ORGANIZATION",
+                        "name": "ExampleCodeInspect ()"
+                    },
+                    {
+                        "actorType": "PERSON",
+                        "name": "Jane Doe ()"
+                    }
+                ],
+                "dataLicense": "CC0",
+                "profile": [
+                    "core",
+                    "software",
+                    "licensing"
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "downloadLocation": "http://ftp.gnu.org/gnu/glibc/glibc-ports-2.15.tar.gz",
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "homePage": "http://ftp.gnu.org/gnu/glibc",
+            "name": "glibc",
+            "originatedBy": [],
+            "packagePurpose": [],
+            "packageUrl": null,
+            "summary": null,
+            "verifiedUsing": []
+        },
+        {
+            "@type": "Package",
+            "SPDXID": "SPDXRef-fromDoap-1",
+            "comment": null,
+            "contentIdentifier": null,
+            "creationInfo": {
+                "created": "2010-01-29T18:30:22Z",
+                "createdBy": [
+                    {
+                        "actorType": "TOOL",
+                        "name": "LicenseFind-1.0"
+                    },
+                    {
+                        "actorType": "ORGANIZATION",
+                        "name": "ExampleCodeInspect ()"
+                    },
+                    {
+                        "actorType": "PERSON",
+                        "name": "Jane Doe ()"
+                    }
+                ],
+                "dataLicense": "CC0",
+                "profile": [
+                    "core",
+                    "software",
+                    "licensing"
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "downloadLocation": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "homePage": "http://commons.apache.org/proper/commons-lang/",
+            "name": "Apache Commons Lang",
+            "originatedBy": [],
+            "packagePurpose": [],
+            "packageUrl": null,
+            "summary": null,
+            "verifiedUsing": []
+        },
+        {
+            "@type": "Package",
+            "SPDXID": "SPDXRef-fromDoap-0",
+            "comment": null,
+            "contentIdentifier": null,
+            "creationInfo": {
+                "created": "2010-01-29T18:30:22Z",
+                "createdBy": [
+                    {
+                        "actorType": "TOOL",
+                        "name": "LicenseFind-1.0"
+                    },
+                    {
+                        "actorType": "ORGANIZATION",
+                        "name": "ExampleCodeInspect ()"
+                    },
+                    {
+                        "actorType": "PERSON",
+                        "name": "Jane Doe ()"
+                    }
+                ],
+                "dataLicense": "CC0",
+                "profile": [
+                    "core",
+                    "software",
+                    "licensing"
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "downloadLocation": "https://search.maven.org/remotecontent?filepath=org/apache/jena/apache-jena/3.12.0/apache-jena-3.12.0.tar.gz",
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "homePage": "http://www.openjena.org/",
+            "name": "Jena",
+            "originatedBy": [],
+            "packagePurpose": [],
+            "packageUrl": null,
+            "summary": null,
+            "verifiedUsing": []
+        },
+        {
+            "@type": "Package",
+            "SPDXID": "SPDXRef-Saxon",
+            "comment": null,
+            "contentIdentifier": null,
+            "creationInfo": {
+                "created": "2010-01-29T18:30:22Z",
+                "createdBy": [
+                    {
+                        "actorType": "TOOL",
+                        "name": "LicenseFind-1.0"
+                    },
+                    {
+                        "actorType": "ORGANIZATION",
+                        "name": "ExampleCodeInspect ()"
+                    },
+                    {
+                        "actorType": "PERSON",
+                        "name": "Jane Doe ()"
+                    }
+                ],
+                "dataLicense": "CC0",
+                "profile": [
+                    "core",
+                    "software",
+                    "licensing"
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "downloadLocation": "https://sourceforge.net/projects/saxon/files/Saxon-B/8.8.0.7/saxonb8-8-0-7j.zip/download",
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "homePage": "http://saxon.sourceforge.net/",
+            "name": "Saxon",
+            "originatedBy": [],
+            "packagePurpose": [],
+            "packageUrl": null,
+            "summary": null,
+            "verifiedUsing": []
+        },
+        {
+            "@type": "File",
+            "SPDXID": "SPDXRef-DoapSource",
+            "comment": null,
+            "contentIdentifier": null,
+            "contentType": "media-type-SOURCE",
+            "creationInfo": {
+                "created": "2010-01-29T18:30:22Z",
+                "createdBy": [
+                    {
+                        "actorType": "TOOL",
+                        "name": "LicenseFind-1.0"
+                    },
+                    {
+                        "actorType": "ORGANIZATION",
+                        "name": "ExampleCodeInspect ()"
+                    },
+                    {
+                        "actorType": "PERSON",
+                        "name": "Jane Doe ()"
+                    }
+                ],
+                "dataLicense": "CC0",
+                "profile": [
+                    "core",
+                    "software",
+                    "licensing"
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "filePurpose": [],
+            "name": "./src/org/spdx/parser/DOAPProject.java",
+            "originatedBy": [],
+            "summary": null,
+            "verifiedUsing": []
+        },
+        {
+            "@type": "File",
+            "SPDXID": "SPDXRef-CommonsLangSrc",
+            "comment": "This file is used by Jena",
+            "contentIdentifier": null,
+            "contentType": "media-type-ARCHIVE",
+            "creationInfo": {
+                "created": "2010-01-29T18:30:22Z",
+                "createdBy": [
+                    {
+                        "actorType": "TOOL",
+                        "name": "LicenseFind-1.0"
+                    },
+                    {
+                        "actorType": "ORGANIZATION",
+                        "name": "ExampleCodeInspect ()"
+                    },
+                    {
+                        "actorType": "PERSON",
+                        "name": "Jane Doe ()"
+                    }
+                ],
+                "dataLicense": "CC0",
+                "profile": [
+                    "core",
+                    "software",
+                    "licensing"
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "filePurpose": [],
+            "name": "./lib-source/commons-lang3-3.1-sources.jar",
+            "originatedBy": [],
+            "summary": null,
+            "verifiedUsing": []
+        },
+        {
+            "@type": "File",
+            "SPDXID": "SPDXRef-JenaLib",
+            "comment": "This file belongs to Jena",
+            "contentIdentifier": null,
+            "contentType": "media-type-ARCHIVE",
+            "creationInfo": {
+                "created": "2010-01-29T18:30:22Z",
+                "createdBy": [
+                    {
+                        "actorType": "TOOL",
+                        "name": "LicenseFind-1.0"
+                    },
+                    {
+                        "actorType": "ORGANIZATION",
+                        "name": "ExampleCodeInspect ()"
+                    },
+                    {
+                        "actorType": "PERSON",
+                        "name": "Jane Doe ()"
+                    }
+                ],
+                "dataLicense": "CC0",
+                "profile": [
+                    "core",
+                    "software",
+                    "licensing"
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "filePurpose": [],
+            "name": "./lib-source/jena-2.6.3-sources.jar",
+            "originatedBy": [],
+            "summary": null,
+            "verifiedUsing": []
+        },
+        {
+            "@type": "File",
+            "SPDXID": "SPDXRef-File",
+            "comment": "The concluded license was taken from the package level that the file was included in.\nThis information was found in the COPYING.txt file in the xyz directory.",
+            "contentIdentifier": null,
+            "contentType": "media-type-SOURCE",
+            "creationInfo": {
+                "created": "2010-01-29T18:30:22Z",
+                "createdBy": [
+                    {
+                        "actorType": "TOOL",
+                        "name": "LicenseFind-1.0"
+                    },
+                    {
+                        "actorType": "ORGANIZATION",
+                        "name": "ExampleCodeInspect ()"
+                    },
+                    {
+                        "actorType": "PERSON",
+                        "name": "Jane Doe ()"
+                    }
+                ],
+                "dataLicense": "CC0",
+                "profile": [
+                    "core",
+                    "software",
+                    "licensing"
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "filePurpose": [],
+            "name": "./package/foo.c",
+            "originatedBy": [],
+            "summary": null,
+            "verifiedUsing": []
+        },
+        {
+            "@type": "Relationship",
+            "SPDXID": "urn:Relationship:2ec27847af41fb637eb925d98f1ea565",
+            "comment": null,
+            "creationInfo": {
+                "created": "2010-01-29T18:30:22Z",
+                "createdBy": [
+                    {
+                        "actorType": "TOOL",
+                        "name": "LicenseFind-1.0"
+                    },
+                    {
+                        "actorType": "ORGANIZATION",
+                        "name": "ExampleCodeInspect ()"
+                    },
+                    {
+                        "actorType": "PERSON",
+                        "name": "Jane Doe ()"
+                    }
+                ],
+                "dataLicense": "CC0",
+                "profile": [
+                    "core",
+                    "software",
+                    "licensing"
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "from": "SPDXRef-File",
+            "name": null,
+            "relationshipCompleteness": null,
+            "relationshipType": "DESCRIBES",
+            "summary": null,
+            "to": [
+                "SPDXRef-DOCUMENT"
+            ],
+            "verifiedUsing": []
+        },
+        {
+            "@type": "Relationship",
+            "SPDXID": "urn:Relationship:3cc950d181b594ed93838c75a4a14b26",
+            "comment": null,
+            "creationInfo": {
+                "created": "2010-01-29T18:30:22Z",
+                "createdBy": [
+                    {
+                        "actorType": "TOOL",
+                        "name": "LicenseFind-1.0"
+                    },
+                    {
+                        "actorType": "ORGANIZATION",
+                        "name": "ExampleCodeInspect ()"
+                    },
+                    {
+                        "actorType": "PERSON",
+                        "name": "Jane Doe ()"
+                    }
+                ],
+                "dataLicense": "CC0",
+                "profile": [
+                    "core",
+                    "software",
+                    "licensing"
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "from": "SPDXRef-Package",
+            "name": null,
+            "relationshipCompleteness": null,
+            "relationshipType": "DESCRIBES",
+            "summary": null,
+            "to": [
+                "SPDXRef-DOCUMENT"
+            ],
+            "verifiedUsing": []
+        },
+        {
+            "@type": "Relationship",
+            "SPDXID": "urn:Relationship:fda95af77ebdaca267d1a3c62aa5555b",
+            "comment": null,
+            "creationInfo": {
+                "created": "2010-01-29T18:30:22Z",
+                "createdBy": [
+                    {
+                        "actorType": "TOOL",
+                        "name": "LicenseFind-1.0"
+                    },
+                    {
+                        "actorType": "ORGANIZATION",
+                        "name": "ExampleCodeInspect ()"
+                    },
+                    {
+                        "actorType": "PERSON",
+                        "name": "Jane Doe ()"
+                    }
+                ],
+                "dataLicense": "CC0",
+                "profile": [
+                    "core",
+                    "software",
+                    "licensing"
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "from": "SPDXRef-Package",
+            "name": null,
+            "relationshipCompleteness": null,
+            "relationshipType": "CONTAINS",
+            "summary": null,
+            "to": [
+                "SPDXRef-DOCUMENT"
+            ],
+            "verifiedUsing": []
+        },
+        {
+            "@type": "Relationship",
+            "SPDXID": "urn:Relationship:8151c11fc401c270f0fa82fe707936e7",
+            "comment": null,
+            "creationInfo": {
+                "created": "2010-01-29T18:30:22Z",
+                "createdBy": [
+                    {
+                        "actorType": "TOOL",
+                        "name": "LicenseFind-1.0"
+                    },
+                    {
+                        "actorType": "ORGANIZATION",
+                        "name": "ExampleCodeInspect ()"
+                    },
+                    {
+                        "actorType": "PERSON",
+                        "name": "Jane Doe ()"
+                    }
+                ],
+                "dataLicense": "CC0",
+                "profile": [
+                    "core",
+                    "software",
+                    "licensing"
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "from": "DocumentRef-spdx-tool-1.2:SPDXRef-ToolsElement",
+            "name": null,
+            "relationshipCompleteness": null,
+            "relationshipType": "COPY",
+            "summary": null,
+            "to": [
+                "SPDXRef-DOCUMENT"
+            ],
+            "verifiedUsing": []
+        },
+        {
+            "@type": "Relationship",
+            "SPDXID": "urn:Relationship:a71e1073b528addbe52874e67c115f67",
+            "comment": null,
+            "creationInfo": {
+                "created": "2010-01-29T18:30:22Z",
+                "createdBy": [
+                    {
+                        "actorType": "TOOL",
+                        "name": "LicenseFind-1.0"
+                    },
+                    {
+                        "actorType": "ORGANIZATION",
+                        "name": "ExampleCodeInspect ()"
+                    },
+                    {
+                        "actorType": "PERSON",
+                        "name": "Jane Doe ()"
+                    }
+                ],
+                "dataLicense": "CC0",
+                "profile": [
+                    "core",
+                    "software",
+                    "licensing"
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "from": "SPDXRef-JenaLib",
+            "name": null,
+            "relationshipCompleteness": null,
+            "relationshipType": "CONTAINS",
+            "summary": null,
+            "to": [
+                "SPDXRef-Package"
+            ],
+            "verifiedUsing": []
+        },
+        {
+            "@type": "Relationship",
+            "SPDXID": "urn:Relationship:5c29a356ddc43c36a67072b2b11ec407",
+            "comment": null,
+            "creationInfo": {
+                "created": "2010-01-29T18:30:22Z",
+                "createdBy": [
+                    {
+                        "actorType": "TOOL",
+                        "name": "LicenseFind-1.0"
+                    },
+                    {
+                        "actorType": "ORGANIZATION",
+                        "name": "ExampleCodeInspect ()"
+                    },
+                    {
+                        "actorType": "PERSON",
+                        "name": "Jane Doe ()"
+                    }
+                ],
+                "dataLicense": "CC0",
+                "profile": [
+                    "core",
+                    "software",
+                    "licensing"
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "from": "SPDXRef-Saxon",
+            "name": null,
+            "relationshipCompleteness": null,
+            "relationshipType": "DYNAMIC_LINK",
+            "summary": null,
+            "to": [
+                "SPDXRef-Package"
+            ],
+            "verifiedUsing": []
+        },
+        {
+            "@type": "Relationship",
+            "SPDXID": "urn:Relationship:e7078986162d7a81b3e586d4bbcb2683",
+            "comment": null,
+            "creationInfo": {
+                "created": "2010-01-29T18:30:22Z",
+                "createdBy": [
+                    {
+                        "actorType": "TOOL",
+                        "name": "LicenseFind-1.0"
+                    },
+                    {
+                        "actorType": "ORGANIZATION",
+                        "name": "ExampleCodeInspect ()"
+                    },
+                    {
+                        "actorType": "PERSON",
+                        "name": "Jane Doe ()"
+                    }
+                ],
+                "dataLicense": "CC0",
+                "profile": [
+                    "core",
+                    "software",
+                    "licensing"
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "from": "SPDXRef-CommonsLangSrc",
+            "name": null,
+            "relationshipCompleteness": null,
+            "relationshipType": "GENERATES",
+            "summary": null,
+            "to": [
+                "NOASSERTION"
+            ],
+            "verifiedUsing": []
+        },
+        {
+            "@type": "Relationship",
+            "SPDXID": "urn:Relationship:acd0e6f2ae8982f63250ec0aadec3506",
+            "comment": null,
+            "creationInfo": {
+                "created": "2010-01-29T18:30:22Z",
+                "createdBy": [
+                    {
+                        "actorType": "TOOL",
+                        "name": "LicenseFind-1.0"
+                    },
+                    {
+                        "actorType": "ORGANIZATION",
+                        "name": "ExampleCodeInspect ()"
+                    },
+                    {
+                        "actorType": "PERSON",
+                        "name": "Jane Doe ()"
+                    }
+                ],
+                "dataLicense": "CC0",
+                "profile": [
+                    "core",
+                    "software",
+                    "licensing"
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "from": "SPDXRef-Package",
+            "name": null,
+            "relationshipCompleteness": null,
+            "relationshipType": "CONTAINS",
+            "summary": null,
+            "to": [
+                "SPDXRef-JenaLib"
+            ],
+            "verifiedUsing": []
+        },
+        {
+            "@type": "Relationship",
+            "SPDXID": "urn:Relationship:541efd02ec0987fd28a142092115b6b3",
+            "comment": null,
+            "creationInfo": {
+                "created": "2010-01-29T18:30:22Z",
+                "createdBy": [
+                    {
+                        "actorType": "TOOL",
+                        "name": "LicenseFind-1.0"
+                    },
+                    {
+                        "actorType": "ORGANIZATION",
+                        "name": "ExampleCodeInspect ()"
+                    },
+                    {
+                        "actorType": "PERSON",
+                        "name": "Jane Doe ()"
+                    }
+                ],
+                "dataLicense": "CC0",
+                "profile": [
+                    "core",
+                    "software",
+                    "licensing"
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "from": "SPDXRef-File",
+            "name": null,
+            "relationshipCompleteness": null,
+            "relationshipType": "GENERATES",
+            "summary": null,
+            "to": [
+                "SPDXRef-fromDoap-0"
+            ],
+            "verifiedUsing": []
+        }
+    ],
+    "externalIdentifiers": [],
+    "externalReferences": [],
+    "imports": {},
+    "name": null,
+    "namespaces": {},
+    "rootElements": [],
+    "summary": null,
+    "verifiedUsing": []
+}

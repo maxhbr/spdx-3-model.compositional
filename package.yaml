@@ -75,4 +75,6 @@ tests:
     - tasty-smallcheck
     - tasty-quickcheck
     - file-embed
+    - directory
+    - filepath
   

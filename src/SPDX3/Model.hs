@@ -16,19 +16,19 @@ module SPDX3.Model
 import           Control.Monad.Reader
 import           Data.Aeson
 import           Data.Aeson.Types
-import qualified Data.HashMap.Strict    as Map
-import qualified Data.Text              as T
-import           GHC.Generics           (Generic)
-import           GHC.Word               (Word8)
-import SPDX3.Model.Common
+import           Data.Digest.Pure.MD5           (md5)
+import qualified Data.HashMap.Strict            as Map
+import qualified Data.Text                      as T
+import           GHC.Generics                   (Generic)
+import           GHC.Word                       (Word8)
+import           SPDX.Document                  (SPDXDocument)
+import           SPDX3.Model.Common
 import           SPDX3.Model.CreationInfo
 import           SPDX3.Model.ExternalIdentifier
 import           SPDX3.Model.ExternalReference
 import           SPDX3.Model.IntegrityMethod
 import           SPDX3.Model.RelationshipType
 import           SPDX3.Model.SPDXID
-import SPDX.Document (SPDXDocument)
-import Data.Digest.Pure.MD5 (md5)
 
 -- -- ############################################################################
 -- -- ##  Element  ###############################################################
@@ -230,23 +230,23 @@ pack e@(Pack _) = e
 pack e          = Pack e
 
 instance HasSPDXID (SPDX a) where
-    getSPDXID (Ref i)             = i
-    getSPDXID (Pack e)            = getSPDXID e
+    getSPDXID (Ref i)                                            = i
+    getSPDXID (Pack e)                                           = getSPDXID e
 
     getSPDXID (Element (ElementProperties {_elementSPDXID = i})) = i
 
-    getSPDXID (Artifact ie _)     = getSPDXID ie
-    getSPDXID (Collection ie _)   = getSPDXID ie
-    getSPDXID (Bundle c _)        = getSPDXID c
-    getSPDXID (BOM b)             = getSPDXID b
-    getSPDXID (SpdxDocument b)    = getSPDXID b
-    getSPDXID (Relationship ie _) = getSPDXID ie
-    getSPDXID (Annotation ie _)   = getSPDXID ie
+    getSPDXID (Artifact ie _)                                    = getSPDXID ie
+    getSPDXID (Collection ie _)                                  = getSPDXID ie
+    getSPDXID (Bundle c _)                                       = getSPDXID c
+    getSPDXID (BOM b)                                            = getSPDXID b
+    getSPDXID (SpdxDocument b)                                   = getSPDXID b
+    getSPDXID (Relationship ie _)                                = getSPDXID ie
+    getSPDXID (Annotation ie _)                                  = getSPDXID ie
 
-    getSPDXID (Package a _)       = getSPDXID a
-    getSPDXID (File a _)          = getSPDXID a
-    getSPDXID (Snippet a _)       = getSPDXID a
-    getSPDXID (SBOM b)            = getSPDXID b
+    getSPDXID (Package a _)                                      = getSPDXID a
+    getSPDXID (File a _)                                         = getSPDXID a
+    getSPDXID (Snippet a _)                                      = getSPDXID a
+    getSPDXID (SBOM b)                                           = getSPDXID b
 
 getType :: SPDX a -> String
 getType (Ref _)           = "Ref"
@@ -298,23 +298,23 @@ instance ToJSON (SPDX a) where
             in Object (mconcat (map unObject list))
 
           getJsons :: SPDX a -> [Value]
-          getJsons (Ref _) = undefined
-          getJsons (Pack e) = getJsons e
+          getJsons (Ref _)              = undefined
+          getJsons (Pack e)             = getJsons e
 
-          getJsons (Element e) = [toJSON  e]
+          getJsons (Element e)          = [toJSON  e]
 
-          getJsons (Artifact _ aps) =  [toJSON aps]
-          getJsons (Collection _ cps) = [toJSON cps]
-          getJsons (Bundle _ bps) = [toJSON bps]
-          getJsons (BOM _) = []
-          getJsons (SpdxDocument _) = []
+          getJsons (Artifact _ aps)     =  [toJSON aps]
+          getJsons (Collection _ cps)   = [toJSON cps]
+          getJsons (Bundle _ bps)       = [toJSON bps]
+          getJsons (BOM _)              = []
+          getJsons (SpdxDocument _)     = []
           getJsons (Relationship _ rps) = [ toJSON rps ]
-          getJsons (Annotation _ aps) = [ toJSON aps ]
+          getJsons (Annotation _ aps)   = [ toJSON aps ]
 
-          getJsons (Package _ pps) = [toJSON pps]
-          getJsons (File _ fps) = [toJSON fps]
-          getJsons (Snippet _ sps) = [toJSON sps]
-          getJsons (SBOM _) = []
+          getJsons (Package _ pps)      = [toJSON pps]
+          getJsons (File _ fps)         = [toJSON fps]
+          getJsons (Snippet _ sps)      = [toJSON sps]
+          getJsons (SBOM _)             = []
 
           parent :: [Value]
           parent = case getParent e of

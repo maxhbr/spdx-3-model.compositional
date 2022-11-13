@@ -1,20 +1,21 @@
 module SPDX3.Monad
     where
+import           Control.Monad.Except         (Except, ExceptT, runExceptT)
+import           Control.Monad.Identity       (Identity)
 import           Control.Monad.Reader
 import           Data.Aeson
+import           Data.Functor
 import           Data.Aeson.Types
-import qualified Data.HashMap.Strict    as Map
-import qualified Data.Text              as T
-import           GHC.Generics           (Generic)
-import           GHC.Word               (Word8)
+import qualified Data.HashMap.Strict          as Map
+import qualified Data.Text                    as T
 import           Data.Time.Format.ISO8601
+import           GHC.Generics                 (Generic)
+import           GHC.Word                     (Word8)
+import           SPDX3.Model
+import           SPDX3.Model                  (Bundle (BundleProperties))
 import           SPDX3.Model.CreationInfo
 import           SPDX3.Model.RelationshipType
 import           SPDX3.Model.SPDXID
-import           SPDX3.Model
-import SPDX3.Model (Bundle(BundleProperties))
-import Control.Monad.Except (Except, ExceptT, runExceptT)
-import Control.Monad.Identity (Identity)
 
 
 -- ############################################################################
@@ -30,34 +31,43 @@ runSPDX ci = (`runReader` ci) . runExceptT
 ref :: SPDXID -> SPDX_M (SPDX ())
 ref = return . Ref
 
-artifact' :: SPDXID -> String -> SPDX_M (SPDX Artifact)
-artifact' i name = do
-    ci <- ask
-    let ie = Element $ elementFromName i ci name
-    return (Artifact ie (ArtifactProperties []))
-artifact :: SPDXID -> String -> SPDX_M (SPDX ())
-artifact i name = pack <$> artifact' i name
+packM :: Maybe SPDXID ->  SPDX_M (SPDXID -> SPDX a) -> SPDX_M (SPDX ())
+packM (Just id) = fmap (pack . (\f -> f id))
+packM Nothing = fmap (pack . setSPDXIDFromContent)
 
-collection' :: SPDXID -> SPDX_M [SPDX ()] -> SPDX_M (SPDX Collection)
-collection' i es = do
-    ci <- ask
-    let ie = Element $ emptyElement i ci
-    Collection ie . (\es -> CollectionProperties es [] mempty mempty) <$> es
-collection :: SPDXID -> SPDX_M [SPDX ()] -> SPDX_M (SPDX ())
-collection i es = pack <$> collection' i es
+element' :: (Element -> Element) -> SPDX_M (SPDXID -> SPDX Element)
+element' epfun = do
+    creationInformation <- ask
+    return (\spdxid -> Element . epfun $ emptyElement spdxid creationInformation)
+element :: Maybe SPDXID -> (Element -> Element) -> SPDX_M (SPDX ())
+element spdxid epfun = packM spdxid $ element' epfun
 
-spdxDocument' :: String -> SPDX_M (SPDX Collection) -> SPDX_M (SPDX SpdxDocument)
-spdxDocument' name collection = SpdxDocument . (`Bundle` BundleProperties Nothing) <$> collection
-spdxDocument :: String -> SPDX_M (SPDX Collection) -> SPDX_M (SPDX ())
-spdxDocument name collection = pack <$> spdxDocument' name collection
+artifact' :: (Artifact -> Artifact) -> (Element -> Element) -> SPDX_M (SPDXID -> SPDX Artifact)
+artifact' apfun epfun = do
+    efun <- element' epfun
+    return ((`Artifact` apfun (ArtifactProperties [])) . efun )
+artifact :: Maybe SPDXID -> (Artifact -> Artifact) -> (Element -> Element) -> SPDX_M (SPDX ())
+artifact spdxid apfun epfun = packM spdxid $ artifact' apfun epfun
 
-annotation' :: SPDXID -> String -> SPDX_M (SPDX ()) -> SPDX_M (SPDX Annotation)
-annotation' i stmnt subject = do
-    ci <- ask
-    let ie = Element $ emptyElement i ci
-    Annotation ie . AnnotationProperties stmnt <$> subject
-annotation :: SPDXID -> String -> SPDX_M (SPDX ()) -> SPDX_M (SPDX ())
-annotation i stmnt subject = pack <$> annotation' i stmnt subject
+collection' :: (Collection -> Collection) -> (Element -> Element) -> SPDX_M (SPDXID -> SPDX Collection)
+collection' cpfun epfun = do
+    efun <- element' epfun
+    return ((`Collection` cpfun (CollectionProperties [] [] mempty mempty)) . efun )
+collection :: Maybe SPDXID -> (Collection -> Collection) -> (Element -> Element) -> SPDX_M (SPDX ())
+collection spdxid cpfun epfun = packM spdxid $ collection' cpfun epfun
+
+-- spdxDocument' :: String -> SPDX_M (SPDX Collection) -> SPDX_M (SPDX SpdxDocument)
+-- spdxDocument' name collection = SpdxDocument . (`Bundle` BundleProperties Nothing) <$> collection
+-- spdxDocument :: String -> SPDX_M (SPDX Collection) -> SPDX_M (SPDX ())
+-- spdxDocument name collection = pack <$> spdxDocument' name collection
+
+-- annotation' :: SPDXID -> String -> SPDX_M (SPDX ()) -> SPDX_M (SPDX Annotation)
+-- annotation' i stmnt subject = do
+--     ci <- ask
+--     let ie = Element $ emptyElement i ci
+--     Annotation ie . AnnotationProperties stmnt <$> subject
+-- annotation :: SPDXID -> String -> SPDX_M (SPDX ()) -> SPDX_M (SPDX ())
+-- annotation i stmnt subject = pack <$> annotation' i stmnt subject
 
 -- ############################################################################
 -- ##  example  ###############################################################

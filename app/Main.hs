@@ -6,11 +6,11 @@ import           Data.Aeson                 (eitherDecode)
 import           Data.Aeson.Encode.Pretty   (encodePretty)
 import qualified Data.ByteString.Lazy.Char8 as B
 
-import qualified SPDX.Document as SPDX2
-import           SPDX3.Model
+import qualified SPDX.Document              as SPDX2
+import           SPDX.Document              (SPDXFileType (SPDX))
 import           SPDX3.From2
-import System.Environment (getArgs)
-import SPDX.Document (SPDXFileType(SPDX))
+import           SPDX3.Model
+import           System.Environment         (getArgs)
 
 main :: IO ()
 main = getArgs >>= mapM_ (\fp -> do

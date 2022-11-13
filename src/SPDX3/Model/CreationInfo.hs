@@ -3,10 +3,10 @@
 {-# LANGUAGE OverloadedStrings #-}
 module SPDX3.Model.CreationInfo where
 import           Data.Aeson
+import           Data.Aeson.Encoding      (string)
 import           Data.Time.Clock
 import           Data.Time.Format.ISO8601
-import           GHC.Generics    (Generic)
-import Data.Aeson.Encoding (string)
+import           GHC.Generics             (Generic)
 
 data ActorType = PERSON | ORGANIZATION | TOOL
     deriving (Generic, Eq, Show)
@@ -43,7 +43,7 @@ instance ToJSON CreationInfo where
   toJSON c = object
     [ "specVer" .= _specVer c
     , "profile" .= _profile c
-    , "created" .= iso8601Show (_created c) 
+    , "created" .= iso8601Show (_created c)
     , "dataLicense" .= _dataLicense c
     , "createdBy" .= _createdBy c
     ]

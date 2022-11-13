@@ -1,0 +1,141 @@
+{
+    "@type": "SpdxDocument",
+    "SPDXID": "urn:spdx:Collection0",
+    "comment": null,
+    "context": null,
+    "creationInfo": {
+        "created": "2022-11-13T13:14:36.324980945Z",
+        "createdBy": [
+            {
+                "actorType": "PERSON",
+                "name": "Some Actor"
+            },
+            {
+                "actorType": "TOOL",
+                "name": "This Tool"
+            }
+        ],
+        "dataLicense": "CC0",
+        "profile": [
+            "core",
+            "software",
+            "licensing"
+        ],
+        "specVer": "3.0.0"
+    },
+    "description": null,
+    "elements": [
+        "urn:spdx:Ref0",
+        "urn:spdx:Ref1",
+        "urn:spdx:Ref2",
+        {
+            "@type": "Artifact",
+            "SPDXID": "urn:spdx:Artifact0",
+            "comment": null,
+            "creationInfo": {
+                "created": "2022-11-13T13:14:36.324980945Z",
+                "createdBy": [
+                    {
+                        "actorType": "PERSON",
+                        "name": "Some Actor"
+                    },
+                    {
+                        "actorType": "TOOL",
+                        "name": "This Tool"
+                    }
+                ],
+                "dataLicense": "CC0",
+                "profile": [
+                    "core",
+                    "software",
+                    "licensing"
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "name": "Artifact0",
+            "originatedBy": [],
+            "summary": null,
+            "verifiedUsing": []
+        },
+        {
+            "@type": "Collection",
+            "SPDXID": "urn:spdx:Collection1",
+            "comment": null,
+            "creationInfo": {
+                "created": "2022-11-13T13:14:36.324980945Z",
+                "createdBy": [
+                    {
+                        "actorType": "PERSON",
+                        "name": "Some Actor"
+                    },
+                    {
+                        "actorType": "TOOL",
+                        "name": "This Tool"
+                    }
+                ],
+                "dataLicense": "CC0",
+                "profile": [
+                    "core",
+                    "software",
+                    "licensing"
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "elements": [
+                {
+                    "@type": "Annotation",
+                    "SPDXID": "urn:spdx:Annotation0",
+                    "comment": null,
+                    "creationInfo": {
+                        "created": "2022-11-13T13:14:36.324980945Z",
+                        "createdBy": [
+                            {
+                                "actorType": "PERSON",
+                                "name": "Some Actor"
+                            },
+                            {
+                                "actorType": "TOOL",
+                                "name": "This Tool"
+                            }
+                        ],
+                        "dataLicense": "CC0",
+                        "profile": [
+                            "core",
+                            "software",
+                            "licensing"
+                        ],
+                        "specVer": "3.0.0"
+                    },
+                    "description": null,
+                    "externalIdentifiers": [],
+                    "externalReferences": [],
+                    "name": null,
+                    "statement": "Some Annotation",
+                    "subject": "urn:spdx:Artifact0",
+                    "summary": null,
+                    "verifiedUsing": []
+                }
+            ],
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "imports": {},
+            "name": null,
+            "namespaces": {},
+            "rootElements": [],
+            "summary": null,
+            "verifiedUsing": []
+        }
+    ],
+    "externalIdentifiers": [],
+    "externalReferences": [],
+    "imports": {},
+    "name": null,
+    "namespaces": {},
+    "rootElements": [],
+    "summary": null,
+    "verifiedUsing": []
+}

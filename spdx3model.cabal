@@ -96,7 +96,9 @@ test-suite spdx3model-test
     , aeson-pretty
     , base >=4.7 && <5
     , bytestring
+    , directory
     , file-embed
+    , filepath
     , lens
     , mtl
     , pureMD5

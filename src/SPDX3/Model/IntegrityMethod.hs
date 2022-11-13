@@ -16,10 +16,10 @@ module SPDX3.Model.IntegrityMethod
 import           Control.Monad.Reader
 import           Data.Aeson
 import           Data.Aeson.Types
-import qualified Data.HashMap.Strict    as Map
-import qualified Data.Text              as T
-import           GHC.Generics           (Generic)
-import           GHC.Word               (Word8)
+import qualified Data.HashMap.Strict  as Map
+import qualified Data.Text            as T
+import           GHC.Generics         (Generic)
+import           GHC.Word             (Word8)
 
 type HashAlgorithm  = String
 data IntegrityMethod where

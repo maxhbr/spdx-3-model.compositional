@@ -4,7 +4,9 @@
 module SPDX3.Model.CreationInfo where
 import           Data.Aeson
 import           Data.Time.Clock
+import           Data.Time.Format.ISO8601
 import           GHC.Generics    (Generic)
+import Data.Aeson.Encoding (string)
 
 data ActorType = PERSON | ORGANIZATION | TOOL
     deriving (Generic, Eq, Show)
@@ -41,32 +43,31 @@ instance ToJSON CreationInfo where
   toJSON c = object
     [ "specVer" .= _specVer c
     , "profile" .= _profile c
-    , "created" .= _created c
+    , "created" .= iso8601Show (_created c) 
     , "dataLicense" .= _dataLicense c
     , "createdBy" .= _createdBy c
     ]
 instance FromJSON  CreationInfo where
-  parseJSON = withObject "CreationInfo" $ \o ->
+  parseJSON = withObject "CreationInfo" $ \o -> do
+    created <- iso8601ParseM <$> o .:  "created"
     CreationInfo
-      <$> o
-      .:  "specVer"
-      <*> o
-      .:  "profile"
-      <*> o
-      .:  "created"
-      <*> o
-      .:  "dataLicense"
-      <*> o
-      .:  "createdBy"
+        <$> o
+        .:  "specVer"
+        <*> o
+        .:  "profile"
+        <*> created
+        <*> o
+        .:  "dataLicense"
+        <*> o
+        .:  "createdBy"
 
-
-mkCreationInfo' :: [Actor] -> UTCTime -> CreationInfo
-mkCreationInfo' actors created =
+mkCreationInfo :: [Actor] -> UTCTime -> CreationInfo
+mkCreationInfo actors created =
   CreationInfo "3.0.0" ["core", "software", "licensing"] created CC0 actors
 
-mkCreationInfo :: [Actor] -> IO CreationInfo
-mkCreationInfo []     = fail "Actors are required"
-mkCreationInfo actors = mkCreationInfo' actors <$> getCurrentTime
+mkCreationInfoIO :: [Actor] -> IO CreationInfo
+mkCreationInfoIO []     = fail "Actors are required"
+mkCreationInfoIO actors = mkCreationInfo actors <$> getCurrentTime
 
 class HasCreationInfo a where
     getCreationInfo :: a -> CreationInfo

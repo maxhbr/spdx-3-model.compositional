@@ -25,6 +25,7 @@ source-repository head
 
 library
   exposed-modules:
+      SPDX3.From2
       SPDX3.Helper
       SPDX3.Model
       SPDX3.Model.Common
@@ -47,6 +48,7 @@ library
     , bytestring
     , lens
     , mtl
+    , pureMD5
     , singletons
     , singletons-th
     , spdx-tools
@@ -70,6 +72,7 @@ executable spdx3model-exe
     , bytestring
     , lens
     , mtl
+    , pureMD5
     , singletons
     , singletons-th
     , spdx-tools
@@ -93,8 +96,10 @@ test-suite spdx3model-test
     , aeson-pretty
     , base >=4.7 && <5
     , bytestring
+    , file-embed
     , lens
     , mtl
+    , pureMD5
     , singletons
     , singletons-th
     , spdx-tools

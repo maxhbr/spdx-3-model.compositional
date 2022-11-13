@@ -27,6 +27,8 @@ import           SPDX3.Model.ExternalReference
 import           SPDX3.Model.IntegrityMethod
 import           SPDX3.Model.RelationshipType
 import           SPDX3.Model.SPDXID
+import SPDX.Document (SPDXDocument)
+import Data.Digest.Pure.MD5 (md5)
 
 -- -- ############################################################################
 -- -- ##  Element  ###############################################################
@@ -112,6 +114,7 @@ instance ToJSON Bundle where
 instance FromJSON Bundle where
     parseJSON = withObject "BundleProperties" $ \o -> do
         BundleProperties <$> o .: "context"
+data SpdxDocument
 data BOM
 data Relationship where
     RelationshipProperties :: {_relationshipType :: RelationshipType
@@ -210,6 +213,7 @@ data SPDX a where
     Collection   :: SPDX Element -> Collection -> SPDX Collection
     Bundle       :: SPDX Collection -> Bundle -> SPDX Bundle
     BOM          :: SPDX Bundle -> SPDX BOM
+    SpdxDocument :: SPDX Bundle -> SPDX SpdxDocument
     Relationship :: SPDX Element -> Relationship -> SPDX Relationship
     Annotation   :: SPDX Element -> Annotation -> SPDX Annotation
 
@@ -235,6 +239,7 @@ instance HasSPDXID (SPDX a) where
     getSPDXID (Collection ie _)   = getSPDXID ie
     getSPDXID (Bundle c _)        = getSPDXID c
     getSPDXID (BOM b)             = getSPDXID b
+    getSPDXID (SpdxDocument b)    = getSPDXID b
     getSPDXID (Relationship ie _) = getSPDXID ie
     getSPDXID (Annotation ie _)   = getSPDXID ie
 
@@ -253,6 +258,7 @@ getType (Artifact {})     = "Artifact"
 getType (Collection {})   = "Collection"
 getType (Bundle {})       = "Bundle"
 getType (BOM {})          = "BOM"
+getType (SpdxDocument {}) = "SpdxDocument"
 getType (Relationship {}) = "Relationship"
 getType (Annotation {})   = "Annotation"
 
@@ -271,6 +277,7 @@ getParent (Artifact ie _)     = Just $ pack ie
 getParent (Collection ie _)   = Just $ pack ie
 getParent (Bundle c _)        = Just $ pack c
 getParent (BOM b)             = Just $ pack b
+getParent (SpdxDocument b)    = Just $ pack b
 getParent (Relationship ie _) = Just $ pack ie
 getParent (Annotation ie _)   = Just $ pack ie
 
@@ -300,6 +307,7 @@ instance ToJSON (SPDX a) where
           getJsons (Collection _ cps) = [toJSON cps]
           getJsons (Bundle _ bps) = [toJSON bps]
           getJsons (BOM _) = []
+          getJsons (SpdxDocument _) = []
           getJsons (Relationship _ rps) = [ toJSON rps ]
           getJsons (Annotation _ aps) = [ toJSON aps ]
 
@@ -317,31 +325,72 @@ instance ToJSON (SPDX a) where
 instance FromJSON (SPDX ()) where
     parseJSON (String s) = return $ Ref (T.unpack s)
     parseJSON o@(Object v) = let
-            parseElementJSON :: Value -> Parser (SPDX Element)
-            parseElementJSON = withObject "Element" $ \o -> do
+            parseElementJSON :: Object -> Parser (SPDX Element)
+            parseElementJSON o = do
                 Element <$> parseJSON (Object o)
-            parseArtifactJSON :: Value -> Parser (SPDX Artifact)
-            parseArtifactJSON = withObject "Artifact" $ \o -> do
-                Artifact <$> parseElementJSON (Object o)
+            parseArtifactJSON :: Object -> Parser (SPDX Artifact)
+            parseArtifactJSON o = do
+                Artifact <$> parseElementJSON o
                         <*> parseJSON (Object o)
-            parseCollectionJSON :: Value -> Parser (SPDX Collection)
-            parseCollectionJSON = withObject "Collection" $ \o -> do
-                Collection <$> parseElementJSON (Object o)
+            parseCollectionJSON :: Object -> Parser (SPDX Collection)
+            parseCollectionJSON o = do
+                Collection <$> parseElementJSON o
                         <*> parseJSON (Object o)
-            parseRelationshipJSON :: Value -> Parser (SPDX Relationship)
-            parseRelationshipJSON = withObject "Relationship" $ \o -> do
-                Relationship <$> parseElementJSON (Object o)
+            parseBundleJSON :: Object -> Parser (SPDX Bundle)
+            parseBundleJSON o = do
+                Bundle <$> parseCollectionJSON o
+                       <*> parseJSON (Object o)
+            parseBOMJSON :: Object -> Parser (SPDX BOM)
+            parseBOMJSON o = do
+                BOM <$> parseBundleJSON o
+            parseSpdxDocumentJSON :: Object -> Parser (SPDX SpdxDocument)
+            parseSpdxDocumentJSON o = do
+                SpdxDocument <$> parseBundleJSON o
+            parseRelationshipJSON :: Object -> Parser (SPDX Relationship)
+            parseRelationshipJSON o = do
+                Relationship <$> parseElementJSON o
                             <*> parseJSON (Object o)
-            parseAnnotationJSON :: Value -> Parser (SPDX Annotation)
-            parseAnnotationJSON = withObject "Annotation" $ \o -> do
-                Annotation <$> parseElementJSON (Object o)
+            parseAnnotationJSON :: Object -> Parser (SPDX Annotation)
+            parseAnnotationJSON o = do
+                Annotation <$> parseElementJSON o
+                           <*> parseJSON (Object o)
+            parsePackageJSON :: Object -> Parser (SPDX Package)
+            parsePackageJSON o = do
+                Package <$> parseArtifactJSON o
                         <*> parseJSON (Object o)
+            parseFileJSON :: Object -> Parser (SPDX File)
+            parseFileJSON o = do
+                File <$> parseArtifactJSON o
+                        <*> parseJSON (Object o)
+            parseSnippetJSON :: Object -> Parser (SPDX Snippet)
+            parseSnippetJSON o = do
+                Snippet <$> parseArtifactJSON o
+                        <*> parseJSON (Object o)
+            parseSBOMJSON :: Object -> Parser (SPDX SBOM)
+            parseSBOMJSON o = do
+                SBOM <$> parseBOMJSON o
         in ((v .: "@type") :: Parser String) >>= \case
             "Ref"          -> fail "Ref is not an object"
-            "Element"      -> pack <$> parseElementJSON o
-            "Artifact"     -> pack <$> parseArtifactJSON o
-            "Collection"   -> pack <$> parseCollectionJSON o
-            "Relationship" -> pack <$> parseRelationshipJSON o
-            "Annotation"   -> pack <$> parseAnnotationJSON o
+            "Element"      -> pack <$> parseElementJSON v
+            "Artifact"     -> pack <$> parseArtifactJSON v
+            "Collection"   -> pack <$> parseCollectionJSON v
+            "Bundle"       -> pack <$> parseBundleJSON v
+            "BOM"          -> pack <$> parseBOMJSON v
+            "SpdxDocument" -> pack <$> parseSpdxDocumentJSON v
+            "Relationship" -> pack <$> parseRelationshipJSON v
+            "Annotation"   -> pack <$> parseAnnotationJSON v
+            "Package"      -> pack <$> parsePackageJSON v
+            "File"         -> pack <$> parseFileJSON v
+            "Snippet"      -> pack <$> parseSnippetJSON v
+            "SBOM"         -> pack <$> parseSBOMJSON v
             t              -> fail ("type='" ++ t ++ "' not supported")
     parseJSON _ = fail "not supported type"
+
+
+setSPDXIDFromContent :: (SPDXID -> SPDX a) -> SPDX a
+setSPDXIDFromContent fun = let
+      withHole = fun "{}"
+      t = getType withHole
+      encoded = encode withHole
+      hash = md5 encoded
+    in fun ("urn:" ++ t ++ ":" ++ show hash)

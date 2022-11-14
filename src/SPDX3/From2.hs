@@ -48,23 +48,23 @@ convertCreationInfo spdx2CreationInformation spdx2DataLicense = let
             , _createdBy = map parseSpdx2Creator spdx2CreationInfoCreators
             }), spdx2CreationInfoLicenseListVersion)
 
-convertFile :: CreationInfo -> SPDX2.SPDXFile -> SPDX File
-convertFile creationInformation file = let
-        spdx2FileSPDXID = SPDX2._SPDXFile_SPDXID file
-        spdx2FileFileName = SPDX2._SPDXFile_fileName file
-        spdx2FileFileTypes = SPDX2._SPDXFile_fileTypes file
-        spdx2FileChecksums = SPDX2._SPDXFile_checksums file
-        -- spdx2FileLicenseConcluded = SPDX2._SPDXFile_LicenseConcluded file
-        -- spdx2FileLicenseInfoInFiles = SPDX2._SPDXFile_licenseInfoInFiles file
-        -- spdx2FileLicenseInfoFromFiles = SPDX2._SPDXFile_licenseInfoFromFiles file
-        -- spdx2FileLicenseComments = SPDX2._SPDXFile_licenseComments file
-        -- spdx2FileCopyrightText = SPDX2._SPDXFile_copyrightText file
-        spdx2FileComment = SPDX2._SPDXFile_comment file
-        -- spdx2FileNoticeText = SPDX2._SPDXFile_noticeText file
-        -- spdx2FileFileContributors = SPDX2._SPDXFile_fileContributors file
-        -- spdx2FileAttributionTexts = SPDX2._SPDXFile_attributionTexts file
-        -- spdx2FileFileDependencies = SPDX2._SPDXFile_fileDependencies file
-        -- spdx2FileName = SPDX2._SPDXFile_name file
+convertFile :: SPDX2.SPDXFile -> SPDX_M (SPDX ())
+convertFile spdx2File = let
+        spdx2FileSPDXID = SPDX2._SPDXFile_SPDXID spdx2File
+        spdx2FileFileName = SPDX2._SPDXFile_fileName spdx2File
+        spdx2FileFileTypes = SPDX2._SPDXFile_fileTypes spdx2File
+        spdx2FileChecksums = SPDX2._SPDXFile_checksums spdx2File
+        -- spdx2FileLicenseConcluded = SPDX2._SPDXFile_LicenseConcluded spdx2File
+        -- spdx2FileLicenseInfoInFiles = SPDX2._SPDXFile_licenseInfoInFiles spdx2File
+        -- spdx2FileLicenseInfoFromFiles = SPDX2._SPDXFile_licenseInfoFromFiles spdx2File
+        -- spdx2FileLicenseComments = SPDX2._SPDXFile_licenseComments spdx2File
+        -- spdx2FileCopyrightText = SPDX2._SPDXFile_copyrightText spdx2File
+        spdx2FileComment = SPDX2._SPDXFile_comment spdx2File
+        -- spdx2FileNoticeText = SPDX2._SPDXFile_noticeText spdx2File
+        -- spdx2FileFileContributors = SPDX2._SPDXFile_fileContributors spdx2File
+        -- spdx2FileAttributionTexts = SPDX2._SPDXFile_attributionTexts spdx2File
+        -- spdx2FileFileDependencies = SPDX2._SPDXFile_fileDependencies spdx2File
+        -- spdx2FileName = SPDX2._SPDXFile_name spdx2File
 
         spdx3FileType = case spdx2FileFileTypes of
             Nothing   -> Nothing
@@ -77,48 +77,61 @@ convertFile creationInformation file = let
                                      }
         spdx3ArtifactProperties = ArtifactProperties []
         spdx3FileProperties = FileProperties Nothing [] spdx3FileType
-    in File (Artifact (Element spdx2FileSPDXID creationInformation spdx3ElementProperties) spdx3ArtifactProperties) spdx3FileProperties
+    in file (Just spdx2FileSPDXID) spdx3FileProperties spdx3ArtifactProperties spdx3ElementProperties
 
-convertPackage :: CreationInfo -> SPDX2.SPDXPackage -> SPDX Package
-convertPackage creationInformation package = let
-        spdx2PackageSPDXID = SPDX2._SPDXPackage_SPDXID package
-        spdx2PackageName = SPDX2._SPDXPackage_name package
-        spdx2PackageVersionInfo = SPDX2._SPDXPackage_versionInfo package
-        spdx2PackagePackageFileName = SPDX2._SPDXPackage_packageFileName package
-        spdx2PackageSupplier = SPDX2._SPDXPackage_supplier package
-        spdx2PackageOriginator = SPDX2._SPDXPackage_originator package
-        spdx2PackageDownloadLocation = SPDX2._SPDXPackage_downloadLocation package
-        spdx2PackageFilesAnalyzed = SPDX2._SPDXPackage_filesAnalyzed package
-        spdx2PackagePackageVerificationCode = SPDX2._SPDXPackage_packageVerificationCode package
-        spdx2PackageChecksums = SPDX2._SPDXPackage_checksums package
-        spdx2PackageHomepage = SPDX2._SPDXPackage_homepage package
-        spdx2PackageSourceInfo = SPDX2._SPDXPackage_sourceInfo package
-        -- spdx2PackageLicenseConcluded = SPDX2._SPDXPackage_licenseConcluded package
-        -- spdx2PackageLicenseInfoFromFiles = SPDX2._SPDXPackage_licenseInfoFromFiles package
-        -- spdx2PackageLicenseDeclared = SPDX2._SPDXPackage_licenseDeclared package
-        -- spdx2PackageLicenseComments = SPDX2._SPDXPackage_licenseComments package
-        -- spdx2PackageCopyrightText = SPDX2._SPDXPackage_copyrightText package
-        spdx2PackageSummary = SPDX2._SPDXPackage_summary package
-        spdx2PackageDescription = SPDX2._SPDXPackage_description package
-        spdx2PackageComment = SPDX2._SPDXPackage_comment package
-        -- spdx2PackageAttributionTexts = SPDX2._SPDXPackage_attributionTexts package
-        spdx2PackageHasFiles = SPDX2._SPDXPackage_hasFiles package
+
+convertPackage :: SPDX2.SPDXPackage -> SPDX_M (SPDX (), [SPDX ()])
+convertPackage spdx2Package = let
+        spdx2PackageSPDXID = SPDX2._SPDXPackage_SPDXID spdx2Package
+        spdx2PackageName = SPDX2._SPDXPackage_name spdx2Package
+        spdx2PackageVersionInfo = SPDX2._SPDXPackage_versionInfo spdx2Package
+        spdx2PackagePackageFileName = SPDX2._SPDXPackage_packageFileName spdx2Package
+        spdx2PackageSupplier = SPDX2._SPDXPackage_supplier spdx2Package
+        spdx2PackageOriginator = SPDX2._SPDXPackage_originator spdx2Package
+        spdx2PackageDownloadLocation = SPDX2._SPDXPackage_downloadLocation spdx2Package
+        spdx2PackageFilesAnalyzed = SPDX2._SPDXPackage_filesAnalyzed spdx2Package
+        spdx2PackagePackageVerificationCode = SPDX2._SPDXPackage_packageVerificationCode spdx2Package
+        spdx2PackageChecksums = SPDX2._SPDXPackage_checksums spdx2Package
+        spdx2PackageHomepage = SPDX2._SPDXPackage_homepage spdx2Package
+        spdx2PackageSourceInfo = SPDX2._SPDXPackage_sourceInfo spdx2Package
+        -- spdx2PackageLicenseConcluded = SPDX2._SPDXPackage_licenseConcluded spdx2Package
+        -- spdx2PackageLicenseInfoFromFiles = SPDX2._SPDXPackage_licenseInfoFromFiles spdx2Package
+        -- spdx2PackageLicenseDeclared = SPDX2._SPDXPackage_licenseDeclared spdx2Package
+        -- spdx2PackageLicenseComments = SPDX2._SPDXPackage_licenseComments spdx2Package
+        -- spdx2PackageCopyrightText = SPDX2._SPDXPackage_copyrightText spdx2Package
+        spdx2PackageSummary = SPDX2._SPDXPackage_summary spdx2Package
+        spdx2PackageDescription = SPDX2._SPDXPackage_description spdx2Package
+        spdx2PackageComment = SPDX2._SPDXPackage_comment spdx2Package
+        -- spdx2PackageAttributionTexts = SPDX2._SPDXPackage_attributionTexts spdx2Package
+        spdx2PackageHasFiles = SPDX2._SPDXPackage_hasFiles spdx2Package
 
         spdx3ElementProperties = def { _elementName = Just spdx2PackageName
                                      , _elementComment = spdx2PackageComment
                                      , _elementSummary = spdx2PackageSummary
                                      , _elementDescription = spdx2PackageDescription
                                      }
-        spdx3ArtifactProperties = ArtifactProperties []
-        spdx3PackageProperties = PackageProperties Nothing [] (SPDX2.spdxMaybeToMaybe spdx2PackageDownloadLocation) Nothing spdx2PackageHomepage
-    in Package (Artifact (Element spdx2PackageSPDXID creationInformation spdx3ElementProperties) spdx3ArtifactProperties) spdx3PackageProperties
+        spdx3ArtifactProperties = def
+        spdx3PackageProperties = def { _downloadLocation = SPDX2.spdxMaybeToMaybe spdx2PackageDownloadLocation
+                                     , _packageHomePage = spdx2PackageHomepage
+                                     }
 
-convertRelationship :: CreationInfo -> SPDX2.SPDXRelationship -> SPDX Relationship
-convertRelationship creationInformation rel = let
-        spdx2RelationshipComment = SPDX2._SPDXRelationship_comment rel
-        spdx2RelationshipRelationsihpType = SPDX2._SPDXRelationship_relationshipType rel
-        spdx2RelationshipRelatedSpdxElement = SPDX2._SPDXRelationship_relatedSpdxElement rel
-        spdx2RelationshipSpdxElementId = SPDX2._SPDXRelationship_spdxElementId rel
+    in do
+        p <- package (Just spdx2PackageSPDXID) spdx3PackageProperties spdx3ArtifactProperties spdx3ElementProperties
+        additionalElements <- case spdx2PackageHasFiles of
+            Just spdx2PackageHasFiles' -> do
+                let fileRefs = map Ref spdx2PackageHasFiles'
+                fileRefsRel <- relationship Nothing (RelationshipProperties CONTAINS (Ref spdx2PackageSPDXID) fileRefs Nothing) def
+                return (fileRefsRel :fileRefs)
+            Nothing -> return []
+
+        return (p, additionalElements)
+
+convertRelationship :: SPDX2.SPDXRelationship -> SPDX_M (SPDX ())
+convertRelationship spdx2Relationship = let
+        spdx2RelationshipComment = SPDX2._SPDXRelationship_comment spdx2Relationship
+        spdx2RelationshipRelationsihpType = SPDX2._SPDXRelationship_relationshipType spdx2Relationship
+        spdx2RelationshipRelatedSpdxElement = SPDX2._SPDXRelationship_relatedSpdxElement spdx2Relationship
+        spdx2RelationshipSpdxElementId = SPDX2._SPDXRelationship_spdxElementId spdx2Relationship
 
         spdx3RelationshipRelationshipType = case spdx2RelationshipRelationsihpType of
             SPDX2R.DESCRIBES -> Right DESCRIBES
@@ -171,7 +184,7 @@ convertRelationship creationInformation rel = let
         spdx3RelationshipProperties = case spdx3RelationshipRelationshipType of
             Right rt -> RelationshipProperties rt (Ref spdx2RelationshipRelatedSpdxElement) [Ref spdx2RelationshipSpdxElementId] Nothing
             Left rt -> RelationshipProperties rt (Ref spdx2RelationshipSpdxElementId) [Ref spdx2RelationshipRelatedSpdxElement] Nothing
-    in setSPDXIDFromContent (\spdxid -> Relationship (Element spdxid creationInformation spdx3ElementProperties) spdx3RelationshipProperties)
+    in relationship Nothing spdx3RelationshipProperties spdx3ElementProperties
 
 convertDocument :: SPDX2.SPDXDocument -> Either String (SPDX ())
 convertDocument doc = let
@@ -187,9 +200,9 @@ convertDocument doc = let
 
         (spdx3CreationInfo, _) = convertCreationInfo spdx2CreationInfo spdx2DataLicense
     in runSPDX spdx3CreationInfo $ do
-        let packages = map (pack . convertPackage spdx3CreationInfo) spdx2packages
-        let files = map (pack . convertFile spdx3CreationInfo) spdx2files
-        let relationships = map (pack . convertRelationship spdx3CreationInfo) spdx2relationships
+        packages <- concatMap (\(p, fs) -> pack p : fs) <$> mapM convertPackage spdx2packages
+        files <- map pack <$> mapM convertFile spdx2files
+        relationships <- map pack <$> mapM convertRelationship spdx2relationships
         let elements = packages ++ files ++ relationships
         spdxDocument (Just spdx2DocumentId) def def{_collectionElements = elements} def{_elementName = Just spdx2Name, _elementComment = spdx2Comment}
 

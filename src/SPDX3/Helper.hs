@@ -8,7 +8,6 @@
 
 module SPDX3.Helper where
 import           SPDX3.Model
-import           SPDX3.Model.SPDXID
 
 getElements :: SPDX a -> [SPDX ()]
 getElements =

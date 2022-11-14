@@ -3,8 +3,8 @@ module SPDX3.Monad
 import           Control.Monad.Except         (ExceptT, runExceptT)
 import           Control.Monad.Identity       (Identity)
 import           Control.Monad.Reader
-import           Data.Time.Format.ISO8601
 import           SPDX3.Model
+import GHC.Generics (Datatype(packageName))
 
 
 -- ############################################################################
@@ -38,6 +38,13 @@ artifact' ap ep = do
 artifact :: Maybe SPDXID -> Artifact -> Element -> SPDX_M (SPDX ())
 artifact spdxid ap ep = packM spdxid $ artifact' ap ep
 
+relationship' :: Relationship -> Element -> SPDX_M (SPDXID -> SPDX Relationship)
+relationship' rp ep = do
+    efun <- element' ep
+    return ((`Relationship` rp) . efun )
+relationship :: Maybe SPDXID -> Relationship -> Element -> SPDX_M (SPDX ())
+relationship spdxid cp ep = packM spdxid $ relationship' cp ep
+
 collection' :: Collection -> Element -> SPDX_M (SPDXID -> SPDX Collection)
 collection' cp ep = do
     efun <- element' ep
@@ -67,32 +74,23 @@ annotation' ap ep = do
 annotation :: Maybe SPDXID -> Annotation -> Element -> SPDX_M (SPDX ())
 annotation spdxid ap ep = packM spdxid $ annotation' ap ep
 
--- ############################################################################
--- ##  example  ###############################################################
--- ############################################################################
+package' :: Package -> Artifact -> Element -> SPDX_M (SPDXID -> SPDX Package)
+package' pp ap ep = do
+    afun <- artifact' ap ep
+    return ((`Package` pp) . afun )
+package :: Maybe SPDXID -> Package -> Artifact -> Element -> SPDX_M (SPDX ())
+package spdxid pp ap ep = packM spdxid $ package' pp ap ep
 
-mkExample' :: IO (Either String (SPDX ()))
-mkExample' = do
-    let actors = [Actor (Just "Some Actor") (Just PERSON), Actor (Just "This Tool") (Just TOOL)]
-    created <- iso8601ParseM "2022-11-13T13:14:36.324980945Z"
-    let creationInfo = mkCreationInfo actors created
-    return . runSPDX creationInfo $ do
+file' :: File -> Artifact -> Element -> SPDX_M (SPDXID -> SPDX File)
+file' fp ap ep = do
+    afun <- artifact' ap ep
+    return ((`File` fp) . afun )
+file :: Maybe SPDXID -> File -> Artifact -> Element -> SPDX_M (SPDX ())
+file spdxid fp ap ep = packM spdxid $ file' fp ap ep
 
-        r0 <- ref "urn:spdx:Ref0"
-        r1 <- ref "urn:spdx:Ref1"
-        r2 <- ref "urn:spdx:Ref2"
-
-        a0 <- artifact (Just "urn:spdx:Artifact0") def def
-
-        an0 <- annotation (Just "urn:spdx:Annotation0") (AnnotationProperties "some Annotation" r2) def
-        c1 <- bundle Nothing def def{_collectionElements = [an0]} def
-
-        let elements = [r0, r1, r2, a0, c1]
-
-        spdxDocument (Just "urn:spdx:Collection0" ) def def{_collectionElements = elements} def{_elementName = Just "The Document"}
-
-mkExample :: IO (SPDX ())
-mkExample = do
-    (Right result) <- mkExample'
-    return result
-
+snippet' :: Snippet -> Artifact -> Element -> SPDX_M (SPDXID -> SPDX Snippet)
+snippet' sp ap ep = do
+    afun <- artifact' ap ep
+    return ((`Snippet` sp) . afun )
+snippet :: Maybe SPDXID -> Snippet -> Artifact -> Element -> SPDX_M (SPDX ())
+snippet spdxid sp ap ep = packM spdxid $ snippet' sp ap ep

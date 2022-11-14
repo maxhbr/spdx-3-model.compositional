@@ -71,6 +71,74 @@
             "verifiedUsing": []
         },
         {
+            "@type": "Relationship",
+            "SPDXID": "urn:Relationship:298848e0ab3711612e7eab83f38e699b",
+            "comment": null,
+            "creationInfo": {
+                "created": "2010-01-29T18:30:22Z",
+                "createdBy": [
+                    {
+                        "actorType": "TOOL",
+                        "name": "LicenseFind-1.0"
+                    },
+                    {
+                        "actorType": "ORGANIZATION",
+                        "name": "ExampleCodeInspect ()"
+                    },
+                    {
+                        "actorType": "PERSON",
+                        "name": "Jane Doe ()"
+                    }
+                ],
+                "dataLicense": "CC0",
+                "profile": [
+                    "core",
+                    "software",
+                    "licensing"
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "from": "SPDXRef-Package",
+            "name": null,
+            "relationshipCompleteness": null,
+            "relationshipType": "CONTAINS",
+            "summary": null,
+            "to": [
+                "SPDXRef-Specification",
+                "SPDXRef-Specification",
+                "SPDXRef-CommonsLangSrc",
+                "SPDXRef-Specification",
+                "SPDXRef-CommonsLangSrc",
+                "SPDXRef-JenaLib",
+                "SPDXRef-Specification",
+                "SPDXRef-CommonsLangSrc",
+                "SPDXRef-JenaLib",
+                "SPDXRef-DoapSource",
+                "SPDXRef-Specification",
+                "SPDXRef-CommonsLangSrc",
+                "SPDXRef-JenaLib",
+                "SPDXRef-DoapSource"
+            ],
+            "verifiedUsing": []
+        },
+        "SPDXRef-Specification",
+        "SPDXRef-Specification",
+        "SPDXRef-CommonsLangSrc",
+        "SPDXRef-Specification",
+        "SPDXRef-CommonsLangSrc",
+        "SPDXRef-JenaLib",
+        "SPDXRef-Specification",
+        "SPDXRef-CommonsLangSrc",
+        "SPDXRef-JenaLib",
+        "SPDXRef-DoapSource",
+        "SPDXRef-Specification",
+        "SPDXRef-CommonsLangSrc",
+        "SPDXRef-JenaLib",
+        "SPDXRef-DoapSource",
+        {
             "@type": "Package",
             "SPDXID": "SPDXRef-fromDoap-1",
             "comment": null,

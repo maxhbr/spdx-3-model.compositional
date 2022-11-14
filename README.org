@@ -1,0 +1,12 @@
+* An implementation of spdx-3-model
+
+This repository implements the datamodel defined in [[https://github.com/spdx/spdx-3-model][spdx-3-model]].
+
+** Just a POC
+This is just a proof of concept and probably roughtly 80% complete, but it has the following features
+- *a datamodel*, using GADTs
+  - implementing "core" and "software" profile
+- *complete serialization* to JSON
+- *complete deserialization* from JSON
+- *conversion* from SPDX 2.2 or 2.3 to 3.0
+  - this uses [[https://github.com/maxhbr/spdx-tools-hs/][spdx-tools-hs]]

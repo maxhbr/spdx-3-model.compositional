@@ -10,6 +10,7 @@ import           Test.Tasty
 import           Test.Tasty.HUnit
 import           Test.Tasty.QuickCheck      as QC
 import           Test.Tasty.SmallCheck      as SC
+import           Data.Time.Format.ISO8601
 
 import           Data.List
 import           Data.Ord
@@ -19,10 +20,32 @@ import           Data.Aeson.Encode.Pretty   (encodePretty)
 import           Data.Either                (isRight)
 import           SPDX3.From2
 import           SPDX3.Model
-import           SPDX3.Monad                (mkExample)
+import           SPDX3.Monad
 
-testOutputFolder :: FilePath
-testOutputFolder = "_testOut"
+mkExample' :: IO (Either String (SPDX ()))
+mkExample' = do
+    let actors = [Actor (Just "Some Actor") (Just PERSON), Actor (Just "This Tool") (Just TOOL)]
+    created <- iso8601ParseM "2022-11-13T13:14:36.324980945Z"
+    let creationInfo = mkCreationInfo actors created
+    return . runSPDX creationInfo $ do
+
+        r0 <- ref "urn:spdx:Ref0"
+        r1 <- ref "urn:spdx:Ref1"
+        r2 <- ref "urn:spdx:Ref2"
+
+        a0 <- artifact (Just "urn:spdx:Artifact0") def def
+
+        an0 <- annotation (Just "urn:spdx:Annotation0") (AnnotationProperties "some Annotation" r2) def
+        c1 <- bundle Nothing def def{_collectionElements = [an0]} def
+
+        let elements = [r0, r1, r2, a0, c1]
+
+        spdxDocument (Just "urn:spdx:Collection0" ) def def{_collectionElements = elements} def{_elementName = Just "The Document"}
+
+mkExample :: IO (SPDX ())
+mkExample = do
+    (Right result) <- mkExample'
+    return result
 
 spdxFileBS :: BSL.ByteString
 spdxFileBS = BSL.fromStrict $(embedFile "spdx-tools-hs/spdx-spec/examples/SPDXJSONExample-v2.3.spdx.json")
@@ -32,6 +55,9 @@ spdxYamlFileBS = BSL.fromStrict $(embedFile "spdx-tools-hs/spdx-spec/examples/SP
 
 otherSpdxYamlFileBS :: BSL.ByteString
 otherSpdxYamlFileBS = BSL.fromStrict $(embedFile "spdx-tools-hs/test/data/document.spdx.yml")
+
+testOutputFolder :: FilePath
+testOutputFolder = "_testOut"
 
 main :: IO ()
 main = do

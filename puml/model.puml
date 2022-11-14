@@ -3,196 +3,11 @@ left to right direction
 
 title A compositional variant of the SPDX3 Model\nmy internal version is roughly 0.5
 
-
-map ProfileIdentifier {
-    name => String
-}
-object Actor {
-    ???
-}
-map CreationInfo {
-    specVer => SemVer
-    profile => [ProfileIdentifier]
-    created => DateTime
-    dataLicense => 'CC0'
-    createdBy => [Actor]
-}
-CreationInfo::profile .. ProfileIdentifier
-CreationInfo::createdBy .. Actor
-
-object Extensions {
-    ???
-}
-map ElementProperties {
-    name => Maybe<String>
-    summary => Maybe<String>
-    description => Maybe<String>
-    comment => Maybe<String>
-    verifiedUsing => List<IntegrityMethod>
-    externalReferences => List<ExternalReference>
-    externalIdentifiers => List<ExternalIdentifier>
-}
-map ExternalReference {
-    externalReferenceType => ExternalReferenceType
-    locator => IRI
-    contentType => Maybe<MediaType>
-    comments => Maybe<String>
-}
-ElementProperties::externalReferences .. ExternalReference
-Map Hash {
-    algorithm => HashAlgorithm
-    hashValue => String
-}
-ElementProperties::verifiedUsing .. Hash
-Map ExternalIdentifier {
-    externalIdentifierType => ExternalIdentifierType
-    identifier => IRI
-    comments => Maybe<String>
-}
-ElementProperties::externalIdentifiers .. ExternalIdentifier
-
-
-map Element {
-    SPDXID => SPDXID
-    creationInfo *--> CreationInfo
-    properties *--> ElementProperties
-    extensions *--> Extensions
-}
-map ElementRef {
-    SPDXID => SPDXID
-}
-diamond element.dia
-element.dia -r-> Element
-element.dia -l-> ElementRef
-
-map ArtifactProperties {
-    originatedBy => [Actor]
-}
-map Artifact {
-    _parent *---> Element
-    properties *--> ArtifactProperties
-}
-
-map CollectionProperties {
-    namespaces => List<NamespaceMap>
-    imports => List<ExternalMap>
-    elements => List<ElementRef>
-    rootElements => List<SPDXID>
-}
-CollectionProperties::elements .. element.dia
-CollectionProperties::rootElements .. element.dia
-CollectionProperties::namespaces .. NamespaceMap
-CollectionProperties::imports .. ExternalMap
-map Collection {
-    _parent *---> Element
-    properties *--> CollectionProperties
-}
-
-map BundleProperties {
-    context => Maybe<String>
-}
-map Bundle {
-    _parent *---> Collection
-    properties *--> BundleProperties
-}
-
-map SpdxDocument {
-    _parent *---> Bundle
-}
-
-map BOM {
-    _parent *---> Bundle
-}
-
-map RelationshipProperties {
-    relationshipType => RelationshipType
-    completeness => KNOWN\nINCOMPLETE\nUNKNOWN
-    from => ElementRef
-    to => List<ElementRef>
-}
-RelationshipProperties::to .. element.dia
-RelationshipProperties::from .. element.dia
-map Relationship {
-    _parent *---> Element
-    properties *--> RelationshipProperties
-}
-
-map AnnotationProperties {
-    statement => String
-    annotationType => AnnotationType
-    contentType => Maybe<MediaType>
-    subject => ElementRef
-}
-AnnotationProperties::subject .. element.dia
-map Annotation {
-    _parent *---> Element
-    properties *--> AnnotationProperties
-}
-
-map Identity {
-    _parent *---> Element
-    IdentityType => Person\nOrganization\nTool
-}
-
-
-package software {
-    map PackageProperties {
-        packagePurpose => [SoftwarePurpose]
-        downloadLocation => Maybe<URL>
-        homePage => Maybe<URL>
-    }
-    map Package {
-        _parent *-----> Artifact
-        properties *--> PackageProperties
-    }
-    map FileProperties {
-        filePurpose => [SoftwarePurpose]
-        contentType => Maybe<MediaType>
-    }
-    map File {
-        _parent *-----> Artifact
-        properties *--> FileProperties
-    }
-    map SnippetProperties {
-        snippetPurpose => [SnippetPurpose]
-        location => SnippetLocation
-    }
-    map Snippet {
-        _parent *-----> Artifact
-        properties *--> SnippetProperties
-    }
-    map SBOM {
-        _parent *-> BOM
-    }
-    map SoftwareDependencyRelationshipProperties {
-        linkType => NOASSERTION [default] | STATIC | DYNAMIC | OTHER
-        scope => NOASSERTION [default] | BUILD | DEV | TEST | RUNTIME | OTHER
-        requirement => NOASSERTION [default] | OPTIONAL | REQUIRED | PROVIDED | PREREQUISITE
-    }
-    map SoftwareDependencyRelationship {
-        _parent *-----> Relationship
-        properties *--> SoftwareDependencyRelationshipProperties
-    }
-}
-
-' package licensing {
-'     map LicensInformation {
-'         licenseConcluded => LicenseExpression
-'         LicenseInfoInFile => LicenseExpression
-'         CopyrightText => [String]
-'     }
-'     Artifact : licensing *--> licensing.LicensInformation
-'     Artifact::licensing --> LicensInformation
-' }
-
-
-
-
-
-' enum RelationshipType {
-' DESCRIBES
-' AMENDS
-' CONTAINS
+enum RelationshipType {
+DESCRIBES
+AMENDS
+CONTAINS
+...
 ' ANCESTOR [do we need both?]
 ' DESCENDANT [do we need both?]
 ' VARIANT
@@ -207,13 +22,13 @@ package software {
 ' DYNAMIC_LINK
 ' STATIC_LINK
 ' PREREQUISITE
-
+'
 ' BUILD_TOOL
 ' DEV_TOOL
 ' TEST_TOOL
-
+'
 ' GENERATES
-
+'
 ' DISTRIBUTION_ARTIFACT
 ' EXAMPLE
 ' DATA_FILE
@@ -223,20 +38,21 @@ package software {
 ' TEST
 ' OPTIONAL_COMPONENT
 ' PACKAGES
-
+'
 ' PATCH
 ' COPY
 ' EXPANDED_FROM_ARCHIVE
 ' FILE_ADDED
 ' FILE_DELETED
 ' FILE_MODIFIED
-
+'
 ' SUPPLIED_BY *new*
-' OTHER
-' }
-' enum HashAlgorithm {
-' SHA1
-' SHA224
+OTHER
+}
+enum HashAlgorithm {
+SHA1
+SHA224
+...
 ' SHA256 [default]
 ' SHA384
 ' SHA512
@@ -253,9 +69,173 @@ package software {
 ' BLAKE2b-256
 ' BLAKE2b-384
 ' BLAKE2b-512
-' BLAKE3
-' }
+BLAKE3
+}
 
 ' RelationshipType -[hidden]-> HashAlgorithm
+
+
+map ProfileIdentifier {
+    name => String
+}
+map Actor {
+    name => String
+    actorType => Maybe<ActorType>
+    externalIdentifiers => List<ExternalIdentifier>
+    nexternalReferences => List<ExternalReference>
+}
+map CreationInfo {
+    specVer => SemVer
+    profile => [ProfileIdentifier]
+    created => DateTime
+    dataLicense => 'CC0'
+    createdBy => [Actor]
+}
+CreationInfo::profile .[#CCCCCC,dashed,thickness=3]. ProfileIdentifier
+CreationInfo::createdBy .[#CCCCCC,dashed,thickness=3]. Actor
+
+map Element {
+    SPDXID => SPDXID
+    creationInfo *--> CreationInfo
+
+    name => Maybe<String>
+    summary => Maybe<String>
+    description => Maybe<String>
+    comment => Maybe<String>
+    verifiedUsing => List<IntegrityMethod>
+    externalReferences => List<ExternalReference>
+    externalIdentifiers => List<ExternalIdentifier>
+}
+map ExternalReference {
+    externalReferenceType => ExternalReferenceType
+    locator => IRI
+    contentType => Maybe<MediaType>
+    comments => Maybe<String>
+}
+Element::externalReferences .[#CCCCCC,dashed,thickness=3]. ExternalReference
+Map Hash {
+    algorithm => HashAlgorithm
+    hashValue => String
+}
+Hash::algorithm .[#CCCCCC,dashed,thickness=3]. HashAlgorithm
+Element::verifiedUsing .[#CCCCCC,dashed,thickness=3]. Hash
+Map ExternalIdentifier {
+    externalIdentifierType => ExternalIdentifierType
+    identifier => IRI
+    comments => Maybe<String>
+}
+Element::externalIdentifiers .[#CCCCCC,dashed,thickness=3]. ExternalIdentifier
+map ElementRef {
+    SPDXID => SPDXID
+}
+diamond element.dia
+element.dia -r-> Element
+element.dia -l-> ElementRef
+' ElementRef::SPDXID -r---> Element
+
+map Artifact {
+    _parent *---> Element
+    originatedBy => [Actor]
+}
+
+map Collection {
+    _parent *---> Element
+    namespaces => List<NamespaceMap>
+    imports => List<ExternalMap>
+    elements => List<ElementRef>
+    rootElements => List<SPDXID>
+}
+Collection::elements .[#CCCCCC,dashed,thickness=3].. element.dia
+Collection::rootElements .[#CCCCCC,dashed,thickness=3].. element.dia
+object NamespaceMap
+Collection::namespaces .[#CCCCCC,dashed,thickness=3]. NamespaceMap
+object ExternalMap
+Collection::imports .[#CCCCCC,dashed,thickness=3]. ExternalMap
+
+map Bundle {
+    _parent *--> Collection
+    context => Maybe<String>
+}
+
+map SpdxDocument {
+    _parent *--> Bundle
+}
+
+map BOM {
+    _parent *--> Bundle
+}
+
+map Relationship {
+    _parent *--> Element
+    relationshipType => RelationshipType
+    completeness => KNOWN\nINCOMPLETE\nUNKNOWN
+    from => ElementRef
+    to => List<ElementRef>
+}
+Relationship::to .[#CCCCCC,dashed,thickness=3].. element.dia
+Relationship::from .[#CCCCCC,dashed,thickness=3].. element.dia
+Relationship::relationshipType .[#CCCCCC,dashed,thickness=3]. RelationshipType
+
+map Annotation {
+    _parent *---> Element
+    statement => String
+    annotationType => AnnotationType
+    contentType => Maybe<MediaType>
+    subject => ElementRef
+}
+Annotation::subject .[#CCCCCC,dashed,thickness=3].. element.dia
+
+map Identity {
+    _parent *---> Element
+}
+map Person {
+    _parent *--> Identity
+}
+map Organization {
+    _parent *--> Identity
+}
+map Tool {
+    _parent *--> Identity
+}
+
+
+package software {
+    map Package {
+        _parent *---> Artifact
+        packagePurpose => [SoftwarePurpose]
+        downloadLocation => Maybe<URL>
+        homePage => Maybe<URL>
+    }
+    map File {
+        _parent *---> Artifact
+        filePurpose => [SoftwarePurpose]
+        contentType => Maybe<MediaType>
+    }
+    map Snippet {
+        _parent *---> Artifact
+        snippetPurpose => [SnippetPurpose]
+        location => SnippetLocation
+    }
+    map SBOM {
+        _parent *-> BOM
+    }
+    map SoftwareDependencyRelationship {
+        _parent *---> Relationship
+        linkType => NOASSERTION [default] \n| STATIC \n| DYNAMIC \n| OTHER
+        scope => NOASSERTION [default] \n| BUILD \n| DEV \n| TEST \n| RUNTIME \n| OTHER
+        requirement => NOASSERTION [default] \n| OPTIONAL \n| REQUIRED \n| PROVIDED \n| PREREQUISITE
+    }
+}
+
+package extensions {
+    object ExtensionContent
+    map Extension {
+        _parent *-----> Element
+        extensionIRI => IRI
+        documentationURL => URL
+        content *--> ExtensionContent
+    }
+}
+
 
 @enduml

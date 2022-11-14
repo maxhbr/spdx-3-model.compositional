@@ -7,6 +7,7 @@ This is just a proof of concept and probably roughtly 80% complete, but it has t
 - *a datamodel*, using GADTs
   - implementing "core" and "software" profile
 - *complete serialization* to JSON
+  - example outputs are written to =./_testOut/=
 - *complete deserialization* from JSON
 - *conversion* from SPDX 2.2 or 2.3 to 3.0
   - this uses [[https://github.com/maxhbr/spdx-tools-hs/][spdx-tools-hs]]

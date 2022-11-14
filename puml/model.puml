@@ -1,9 +1,7 @@
 @startuml
 left to right direction
 
-title A compositional variant of the SPDX3 Model\nversion is roughly 0.2
-
-together {
+title A compositional variant of the SPDX3 Model\nmy internal version is roughly 0.5
 
 
 map ProfileIdentifier {
@@ -25,9 +23,7 @@ CreationInfo::createdBy .. Actor
 object Extensions {
     ???
 }
-map ElementMetadata {
-    SPDXID => SPDXID
-    creationInfo *--> CreationInfo
+map ElementProperties {
     name => Maybe<String>
     summary => Maybe<String>
     description => Maybe<String>
@@ -35,126 +31,159 @@ map ElementMetadata {
     verifiedUsing => List<IntegrityMethod>
     externalReferences => List<ExternalReference>
     externalIdentifiers => List<ExternalIdentifier>
-    extensions *--> Extensions
 }
-note right
-this is not just metadata
-and thus needs a better
-name
-end note
 map ExternalReference {
     externalReferenceType => ExternalReferenceType
     locator => IRI
     contentType => Maybe<MediaType>
     comments => Maybe<String>
 }
-ElementMetadata::externalReferences .. ExternalReference
+ElementProperties::externalReferences .. ExternalReference
 Map Hash {
     algorithm => HashAlgorithm
     hashValue => String
 }
-ElementMetadata::verifiedUsing .. Hash
+ElementProperties::verifiedUsing .. Hash
 Map ExternalIdentifier {
     externalIdentifierType => ExternalIdentifierType
     identifier => IRI
     comments => Maybe<String>
 }
-ElementMetadata::externalIdentifiers .. ExternalIdentifier
+ElementProperties::externalIdentifiers .. ExternalIdentifier
 
-map Artifact {
-    _metadata *--> ElementMetadata
+
+map Element {
+    SPDXID => SPDXID
+    creationInfo *--> CreationInfo
+    properties *--> ElementProperties
+    extensions *--> Extensions
+}
+map ElementRef {
+    SPDXID => SPDXID
+}
+diamond element.dia
+element.dia -r-> Element
+element.dia -l-> ElementRef
+
+map ArtifactProperties {
     originatedBy => [Actor]
 }
+map Artifact {
+    _parent *---> Element
+    properties *--> ArtifactProperties
+}
 
-map Collection {
-    _metadata *--> ElementMetadata
-    collectionType => Other\nSpdxDocument\nBOM
+map CollectionProperties {
     namespaces => List<NamespaceMap>
     imports => List<ExternalMap>
     elements => List<ElementRef>
     rootElements => List<SPDXID>
-    context => Maybe<String>
+}
+CollectionProperties::elements .. element.dia
+CollectionProperties::rootElements .. element.dia
+CollectionProperties::namespaces .. NamespaceMap
+CollectionProperties::imports .. ExternalMap
+map Collection {
+    _parent *---> Element
+    properties *--> CollectionProperties
 }
 
+map BundleProperties {
+    context => Maybe<String>
+}
+map Bundle {
+    _parent *---> Collection
+    properties *--> BundleProperties
+}
 
-map Relationship {
-    _metadata *--> ElementMetadata
+map SpdxDocument {
+    _parent *---> Bundle
+}
+
+map BOM {
+    _parent *---> Bundle
+}
+
+map RelationshipProperties {
     relationshipType => RelationshipType
     completeness => KNOWN\nINCOMPLETE\nUNKNOWN
     from => ElementRef
     to => List<ElementRef>
 }
-
-map Identity {
-    _metadata *--> ElementMetadata
-    IdentityType => Person\nOrganization\nTool
+RelationshipProperties::to .. element.dia
+RelationshipProperties::from .. element.dia
+map Relationship {
+    _parent *---> Element
+    properties *--> RelationshipProperties
 }
 
-map Annotation {
-    _metadata *--> ElementMetadata
+map AnnotationProperties {
     statement => String
     annotationType => AnnotationType
     contentType => Maybe<MediaType>
     subject => ElementRef
 }
-
-
-abstract Element {
-  SPDXID: SPDXID
-  _metadata: ElementMetadata
-  ' {method} toElementRef: Element
+AnnotationProperties::subject .. element.dia
+map Annotation {
+    _parent *---> Element
+    properties *--> AnnotationProperties
 }
-Element <|-- Identity
-Element <|-- Relationship
-Element <|-- Collection
-Element <|-- Artifact
-Element <|-- Annotation
 
-
-object ElementRef {
-    Either<SPDXID,Element>
+map Identity {
+    _parent *---> Element
+    IdentityType => Person\nOrganization\nTool
 }
-note right
-either
- - a reference via SPDXID
-or
- - an inlined Element
-end note
-Collection::elements .[hidden].. ElementRef
 
-}
 
 package software {
-    map Package {
+    map PackageProperties {
         packagePurpose => [SoftwarePurpose]
         downloadLocation => Maybe<URL>
         homePage => Maybe<URL>
     }
-    map File {
+    map Package {
+        _parent *-----> Artifact
+        properties *--> PackageProperties
+    }
+    map FileProperties {
         filePurpose => [SoftwarePurpose]
         contentType => Maybe<MediaType>
     }
-    Map Snippet {
+    map File {
+        _parent *-----> Artifact
+        properties *--> FileProperties
+    }
+    map SnippetProperties {
         snippetPurpose => [SnippetPurpose]
         location => SnippetLocation
     }
-    diamond artifact_software.dia
-    artifact_software.dia --> Package
-    artifact_software.dia --> File
-    artifact_software.dia --> Snippet
-    Artifact : software *--> artifact_software.dia
-    Artifact::software --> artifact_software.dia
+    map Snippet {
+        _parent *-----> Artifact
+        properties *--> SnippetProperties
+    }
+    map SBOM {
+        _parent *-> BOM
+    }
+    map SoftwareDependencyRelationshipProperties {
+        linkType => NOASSERTION [default] | STATIC | DYNAMIC | OTHER
+        scope => NOASSERTION [default] | BUILD | DEV | TEST | RUNTIME | OTHER
+        requirement => NOASSERTION [default] | OPTIONAL | REQUIRED | PROVIDED | PREREQUISITE
+    }
+    map SoftwareDependencyRelationship {
+        _parent *-----> Relationship
+        properties *--> SoftwareDependencyRelationshipProperties
+    }
 }
 
-package licensing {
-    map LicensInformation {
-        licenseConcluded => LicenseExpression
-        LicenseInfoInFile => LicenseExpression
-        CopyrightText => [String]
-    }
-    Artifact : licensing *--> licensing.LicensInformation
-    Artifact::licensing --> LicensInformation
-}
+' package licensing {
+'     map LicensInformation {
+'         licenseConcluded => LicenseExpression
+'         LicenseInfoInFile => LicenseExpression
+'         CopyrightText => [String]
+'     }
+'     Artifact : licensing *--> licensing.LicensInformation
+'     Artifact::licensing --> LicensInformation
+' }
 
 
 

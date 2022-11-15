@@ -125,13 +125,6 @@ Map ExternalIdentifier {
     comments => Maybe<String>
 }
 Element::externalIdentifiers .[#CCCCCC,dashed,thickness=3]. ExternalIdentifier
-map ElementRef {
-    SPDXID => SPDXID
-}
-diamond element.dia
-element.dia -r-> Element
-element.dia -l-> ElementRef
-' ElementRef::SPDXID -r---> Element
 
 map Artifact {
     _parent *---> Element
@@ -145,8 +138,6 @@ map Collection {
     elements => List<ElementRef>
     rootElements => List<SPDXID>
 }
-Collection::elements .[#CCCCCC,dashed,thickness=3].. element.dia
-Collection::rootElements .[#CCCCCC,dashed,thickness=3].. element.dia
 object NamespaceMap
 Collection::namespaces .[#CCCCCC,dashed,thickness=3]. NamespaceMap
 object ExternalMap
@@ -172,21 +163,18 @@ map Relationship {
     from => ElementRef
     to => List<ElementRef>
 }
-Relationship::to .[#CCCCCC,dashed,thickness=3].. element.dia
-Relationship::from .[#CCCCCC,dashed,thickness=3].. element.dia
 Relationship::relationshipType .[#CCCCCC,dashed,thickness=3]. RelationshipType
 
 map Annotation {
-    _parent *---> Element
+    _parent *--> Element
     statement => String
     annotationType => AnnotationType
     contentType => Maybe<MediaType>
     subject => ElementRef
 }
-Annotation::subject .[#CCCCCC,dashed,thickness=3].. element.dia
 
 map Identity {
-    _parent *---> Element
+    _parent *--> Element
 }
 map Person {
     _parent *--> Identity
@@ -202,18 +190,18 @@ map Tool {
 package software {
     map Package {
         _parent *---> Artifact
-        packagePurpose => [SoftwarePurpose]
+        packagePurpose => List<SoftwarePurpose>
         downloadLocation => Maybe<URL>
         homePage => Maybe<URL>
     }
     map File {
         _parent *---> Artifact
-        filePurpose => [SoftwarePurpose]
+        filePurpose => List<SoftwarePurpose>
         contentType => Maybe<MediaType>
     }
     map Snippet {
         _parent *---> Artifact
-        snippetPurpose => [SnippetPurpose]
+        snippetPurpose => List<SnippetPurpose>
         location => SnippetLocation
     }
     map SBOM {

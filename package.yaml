@@ -35,6 +35,7 @@ dependencies:
 - time
 - unordered-containers
 - vinyl
+- hex-text
 
 ghc-options:
 - -Wall

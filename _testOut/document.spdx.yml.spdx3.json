@@ -118,7 +118,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "ECMAScript parser",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "c6d29a21283fd6dfa110a55645b5241dc8c6d7d2"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -217,7 +223,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Modern, fast React.js JSX parser",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "daa22548fb7261e863319f91f539dda8445f3f0b"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -316,7 +328,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Create an error from multiple errors",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "e3fac27cc9fa8adbb526702d4dd7fccd6dace467"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -415,7 +433,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Another JSON Schema Validator",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "4de4747a1be1d31b3ee386a4d132c6c02ce6dc32"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -514,7 +538,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Another JSON Schema Validator",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "23a6c2173de51a56fe9eebe852a4b76174f007ed"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -613,7 +643,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Easily add ANSI colors to your text and symbols in the terminal. A faster drop-in replacement for chalk, kleur and turbocolor (without the dependencies and rendering bugs).",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "fe1339367be8fc36c82b22f63c32aee59438d4e0"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -712,7 +748,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Regular expression for matching ANSI escape codes",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "0ff83907a143e61ec6d1dc4781a633d8222bbf20"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -811,7 +853,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Regular expression for matching ANSI escape codes",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "fd3ce5fc6993081d27979b2e35d77876037138bc"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -910,7 +958,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "ANSI escape codes for styling strings in the terminal",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "8ff959f63cea3318ee89d41f1e378099272dd29a"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -1009,7 +1063,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "ANSI escape codes for styling strings in the terminal",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "380c326f32fc65eee764bb20552967bd05fba93a"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -1108,7 +1168,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Matches strings against configurable strings, globs, regular expressions, and/or functions",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "15dff05ae14f1f04ae120488d5be65781490dc5e"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -1207,7 +1273,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Install a transform to `require.extensions` that always runs last, even if additional extensions are added later.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "aa91ddbbb3bc577df02d9b692e24a7df2c0813a3"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -1306,7 +1378,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "render nested hierarchies `npm ls` style with unicode pipes",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "9ae0bc176d8c2f435e2dcd6b794b6745c7ebbfd5"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -1405,7 +1483,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Very powerful CLI arguments parser. Native port of argparse - python's options parsing library",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "211c2c4c0155706efc30af622a050c90a532c864"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -1504,7 +1588,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "CLI arguments parser. Native port of python's argparse.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "8cbb1a902aa17af62738940a31000e9db70ea119"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -1603,7 +1693,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "An ES7/ES2016 spec-compliant `Array.prototype.includes` shim/polyfill/replacement that works as far down as ES3.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "1de372d337923bf4384e2aea6eddf1cf4a769f59"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -1702,7 +1798,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "An ES2019 spec-compliant `Array.prototype.flat` shim/polyfill/replacement that works as far down as ES3.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "b520b70d66912d3cfd62b81fef36ad5112ffed6f"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -1801,7 +1903,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Regular expression for matching astral symbols",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "1c513f2aad307658d4893064ab4e73177afd4750"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -1900,7 +2008,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Match balanced character pairs, like \"{\" and \"}\"",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "22140976933c7c4cf2e2656d9249a5c94df903f6"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -1999,7 +2113,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "List of binary file extensions",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "abe4895605ae2ca0c38c4d2066936d6a8c3e9994"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -2098,7 +2218,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Brace expansion as known from sh/bash",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "7a3f9b6f417144b880ca74f4fd9329cfe6a6bf39"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -2197,7 +2323,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Bash-like brace expansion, implemented in JavaScript. Safer than other brace expansion libs, with complete support for the Bash 4.3 braces specification, without sacrificing speed.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "49efbd16e955cdce2390a0d28fda99e9e936ae2b"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -2329,7 +2461,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "`process.stdout` in your browser.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "f6d9defa526a85a541d2eb4e18a949822a95dbb4"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -2395,7 +2533,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Share target browsers between different front-end tools, like Autoprefixer, Stylelint and babel-env-preset",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "cbcdc2a7c7ed110a46f82bc55c61ee833563fe36"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -2494,7 +2638,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Wraps a transform and provides caching",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "9ab78b15aa960ffc5c609fe4a7abf6282d03df17"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -2593,7 +2743,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Robustly `.call.bind()` a function",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "09b893a178d27c2662b45e2b4ea537a5099d6277"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -2692,7 +2848,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Get callsites from the V8 stack trace API",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "7aadd4dc331c927a063f3b9839b54b86d2f50fd3"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -2791,7 +2953,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Convert a dash/dot/underscore/space separated string to camelCase or PascalCase: `foo-bar` → `fooBar`",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "78fec894168815f7167cb93c7e996719b5317ce2"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -2890,7 +3058,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Convert a dash/dot/underscore/space separated string to camelCase or PascalCase: `foo-bar` → `fooBar`",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "f3733da0219ea4f0e1f696dd5d9dbfe0ba1b7afe"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -3022,7 +3196,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "A smaller version of caniuse-db, with only the essentials!",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "98cf5fc03eb5dbdccaffd75337c491fb4aab5cb5"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -3088,7 +3268,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Terminal string styling done right",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "f91631f4d0915617a6ce12b89395ecfdbbc1d940"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -3187,7 +3373,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Terminal string styling done right",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "434fcb8e6dc4e785001cdadbd304a0240669cab3"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -3286,7 +3478,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "HTML character entity information",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "d2d22295174eae641f78aef648dadbe6bee1982c"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -3385,7 +3583,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "HTML legacy character entity information",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "f56cadbcbd996df4a902cc958ed6500df9d62ec1"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -3484,7 +3688,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "HTML invalid numeric character reference information",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "ad8306e1089b58b466a92f3b6b5e4639b60a9fe5"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -3583,7 +3793,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Minimal and efficient cross-platform file watching library",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "9c4a897e296376cf9c7cbe80ddf53122df147d53"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -3682,7 +3898,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Clean up error stack traces",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "4697c9e022300fb210af5b5ef7da913f83e6e49e"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -3814,7 +4036,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "easily create complex multi-column command-line-interfaces",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "7a6d8779e80a95bca72b9bd5227ce7e292d228a8"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -3880,7 +4108,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "easily create complex multi-column command-line-interfaces",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "ca2131c0767ac05d211e61474f5369df1964379e"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -3979,7 +4213,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Plain color conversion functions",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "c216b541f6c0833f7f6a70e77408315154d86995"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -4078,7 +4318,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Plain color conversion functions",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "b5a1567bd2a2ca8d90b599ef6e6f5f7a8bfc00a0"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -4210,7 +4456,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "A list of color names and its values",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "d5b965dcc57906e03d2545175723f0d56507cc49"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -4309,7 +4561,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "A list of color names and its values",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "71cb2c323a4f2f44ad3eacea7e120e696198605f"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -4375,7 +4633,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Easily set the color and style of text in the terminal.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "50a58cb349565e2f45b0c8733943da2f0f91987d"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -4474,7 +4738,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "compute the closest common parent for file paths",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "1f1de01dadcd10ace0bfa94e1f1442ce95d35ec9"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -4573,7 +4843,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "concatenative mapdashery",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "08f98501c40de5768a46952a04d55811ce9b29df"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -4672,7 +4948,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Converts a source-map from/to  different formats and allows adding/changing properties.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "43c17dd3ca1e925decf09d37ea1a106ed49d005c"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -4804,7 +5086,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Cross platform child_process#spawn and child_process#spawnSync",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "4369b6ba1303611e266a1645afdb1b4efd6da974"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -4870,7 +5158,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "small debugging utility",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "2be67f1f362988d42f65a19b17651b99680ddbd9"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -4969,7 +5263,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "small debugging utility",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "e490c8e0d8946543653ebc052c98ce66be712666"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -5068,7 +5368,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "small debugging utility",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "5bada0fdc868c4a2a891397afc1d39714772e724"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -5167,7 +5473,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Convert a camelized string into a lowercased one with a custom separator: unicornRainbow → unicorn_rainbow",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "4d86f1dc536875a4b827497ad2c11422b5d58a41"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -5266,7 +5578,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Convert a camelized string into a lowercased one with a custom separator: unicornRainbow → unicorn_rainbow",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "81c2bfe8b95b099374e645e7eca45f74465c666a"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -5365,7 +5683,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "node's assert.deepEqual algorithm except for NaN being equal to NaN",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "3153f54cd26b6b0281d4a66a7fc64a087e6479f7"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -5464,7 +5788,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Node's default require extensions as a separate module",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "8ab11ec5b3335c3f084cce9ee6ff81b67818633d"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -5563,7 +5893,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Define multiple non-enumerable properties at once. Uses `Object.defineProperty` when available; falls back to standard assignment in older engines.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "e8288ffe23445427ee9711afe4c4340ef8614a0d"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -5662,7 +5998,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "A javascript text diff implementation.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "5fb211e185faeb0ef6cf9bca58eda8046a2cf58e"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -5761,7 +6103,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "JSDoc parser",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "8c99a0fe88584e85a678840ee4c60cc0eed15f1d"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -5860,7 +6208,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "JSDoc parser",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "9d7d1eb3e2f290812155b4585208d3f3fcbda228"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -5959,7 +6313,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Provides a list of electron-to-chromium version mappings",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "568f2455de319e22be511840686178f3a7d366c8"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -6058,7 +6418,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "A regular expression to match all Emoji-only symbols as per the Unicode Standard.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "aef9470331afa74400a9e782a3cff66443c99cdb"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -6157,7 +6523,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Stylish, intuitive and user-friendly prompt system. Fast and lightweight enough for small projects, powerful and extensible enough for the most advanced use cases.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "0d99eb5bee3b74cd5487713c7847a2667644f421"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -6256,7 +6628,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Easy error subclassing and stack customization",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "e45d4ae5bc9e81396f767009ea1300afcf59f919"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -6355,7 +6733,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "ECMAScript spec abstract operations.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "9c6599107b75036799e159c18814e1903fe8a715"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -6454,7 +6838,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "ECMAScript “ToPrimitive” algorithm. Provides ES5 and ES2015 versions.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "2046efa9316fd8ce9448bbfe7a55ef0115dd5986"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -6553,7 +6943,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Easily-extendable error for use with ES6 classes",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "c33ee715b60472c8458ce432f5bcf6ff5cc85877"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -6652,7 +7048,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "A tiny (183B to 210B) and fast utility to ascend parent directories",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "9b6bc84c05af25b1dedf7e5dfd38f594f9fd88ac"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -6751,7 +7153,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Escape RegExp special characters",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "8003c493f351b3bbef9f65e610e10733d8a7aef7"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -6850,7 +7258,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Escape RegExp special characters",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "325f32981e287b405d3e4826d6fd09e8b6028257"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -6949,7 +7363,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "An AST-based pattern checker for JavaScript.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "edb6f74754c747cc0249b3fa479ed239f2c53f99"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -7048,7 +7468,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "JavaScript Standard Style - ESLint Shareable Config",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "2283b21ac006a04feaa5e703ba0958aac5dc1c72"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -7147,7 +7573,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Node default behavior import resolution plugin for eslint-plugin-import.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "beaf928a3c6db98efb77d9c9cb7f4a637068613f"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -7279,7 +7711,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Core utilities to support eslint-plugin-import and other module-related plugins.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "fc3811de99cb44f7a5f0543d8dde88adb4e6bc46"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -7345,7 +7783,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "ESLint plugin about ECMAScript syntactic features.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "d600482f22f617da723b0197459d8443394d0721"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -7444,7 +7888,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Import with sanity.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "46101ff08abe0271c58dbd67625679472f6dc669"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -7543,7 +7993,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "An ESLint plugin to lint JavaScript in Markdown code fences.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "d294ecd4827107b31024b6beea554b2afd66c9b0"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -7642,7 +8098,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Additional ESLint's rules for Node.js",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "ffb98fe0a086def4f01853005bf9463aa7021cc5"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -7741,7 +8203,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Enforce best practices for JavaScript promises",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "ac635eeeb41f6ea403bdbd9b5bbe6a1eaeac1d2b"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -7840,7 +8308,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "ESlint Plugin for the Standard Linter",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "633449daf56daf7e051368a77a79f167f877c453"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -7939,7 +8413,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "ECMAScript scope analyzer for ESLint",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "e89fa7127eecb33069f699cf943e948658b5c825"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -8038,7 +8518,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Utilities for ESLint plugins.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "6151ca733e9cbb96cd45b47ab4a1c1e13147eef8"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -8137,7 +8623,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Constants and utilities about visitor keys to traverse AST.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "73739f2333c9e247debfea8ca324aee2847cbca7"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -8236,7 +8728,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Constants and utilities about visitor keys to traverse AST.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "eb265bcc0607955d65247a2bce3ed14fb38553e3"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -8335,7 +8833,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "An Esprima-compatible JavaScript parser built on Acorn",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "c935ac53a7b9669e170900654b07f9be5ea3b557"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -8434,7 +8938,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "ECMAScript parsing infrastructure for multipurpose analysis",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "b45dfdc69983bc6f8c54b3ce91c46d968a78a0c8"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -8533,7 +9043,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "A query library for ECMAScript AST using a CSS selector like query language.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "db6594461643c523fd20cf56c2a668f96d254ee3"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -8632,7 +9148,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "ECMAScript AST recursive visitor",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "f900b740e4d57c4393dba545a8fec2a1782d06d1"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -8764,7 +9286,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "ECMAScript JS AST traversal functions",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "59ece0a170b2b04d9ef234a43b4d518b8a26d884"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -8863,7 +9391,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "ECMAScript JS AST traversal functions",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "093f10c6bab1845c06816f893d63e17e3e1515dc"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -8962,7 +9496,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "utility box for ECMAScript language tools",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "bcf85e9a4be5259fb611c9a370cd15946ac1a472"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -9028,7 +9568,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Fast deep equal",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "7e2da0e2238058818230befc198d081a63542911"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -9127,7 +9673,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "deterministic `JSON.stringify()` - a faster version of substack's json-stable-strigify without jsonify",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "a0e4fd9073d86f2c207634ee1b4a7c28b25ec69d"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -9226,7 +9778,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Efficient implementation of Levenshtein algorithm  with locale-specific collator support.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "9289853f6d638ee6be223ef87a29e38914c23bba"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -9325,7 +9883,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Super simple cache for file metadata, useful for process that work o a given series of files and that only need to repeat the job on the changed ones since the previous run of the process",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "495ef815f51e2cf8c144a17ae6ab730a5b902d86"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -9424,7 +9988,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Fill in a range of numbers or letters, optionally passing an increment or `step` to use, or create a regex-compatible range with `options.toRegex`",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "2a9f8a9ec85dc32de53ebfffaab5838dcc3e26d4"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -9523,7 +10093,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Finds the common standard cache directory",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "e53e01142bc8895b8660d2a78467407f407bd1cc"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -9622,7 +10198,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Find a file by walking up parent directories",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "179792ba9e8596f2126d337c81dab5ef85fa21f4"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -9721,7 +10303,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Find a file or directory by walking up parent directories",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "066e096011f3e25adb0c18881c21e02d834d7bd1"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -9820,7 +10408,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Find a file or directory by walking up parent directories",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "121ded1c784238b057fe12b14f3d476cde4afe12"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -9919,7 +10513,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Take a nested Javascript object and flatten it, or unflatten an object with delimited keys",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "d04f214cebe2f584ff3fcd8a2b5e3f0cc71b750b"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -10018,7 +10618,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "A stupidly simple key/value storage using files to persist some data",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "ad5d3640a8516cc3c7c0f1e2cf4707d0abcad6f5"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -10117,7 +10723,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "A super light and fast circular JSON parser.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "1bfb947654af47408cf66525e54930ae7eeb66e5"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -10216,7 +10828,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Run a child as if it's the foreground process.  Give it stdio.  Exit when it exits.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "f703ddb4e5d07499f8d3730e5581a0673fa30709"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -10315,7 +10933,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Object.fromEntries() ponyfill (in 6 lines)",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "c238f79dc6a6038c04a584d16abb4dfbe74f2daf"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -10414,7 +11038,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Use node's fs.realpath, but fall back to the JS implementation if the native one fails",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "d7416b88555fb8d655130de960d3d9123a3f75c3"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -10513,7 +11143,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Native Access to MacOS FSEvents",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "d29e06d08c5626f69e557440f795d154761de3d2"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -10612,7 +11248,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Implementation of Function.prototype.bind",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "ff2888143f94646a890590726462017daf25f1be"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -10744,7 +11386,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "A fully persistent balanced binary search tree",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "66dfe4a0e6bd0ff86c0a0d0be68eb4fea8fc7b3a"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -10810,7 +11458,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Allows users to use generators in order to write common functions that can be both sync or async.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "ef3c366cafbde39d77313eb1af8946371044bc91"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -10909,7 +11563,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "[![Build Status](https://travis-ci.org/stefanpenner/get-caller-file.svg?branch=master)](https://travis-ci.org/stefanpenner/get-caller-file) [![Build status](https://ci.appveyor.com/api/projects/status/ol2q94g1932cy14a/branch/master?svg=true)](https://ci.a",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "9e81fd1fe45ade4d83b8593fb45b9d5340ba936a"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -11008,7 +11668,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Get and robustly cache all JS language-level intrinsics at first require time",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "0bb110b3cc6bb25fbf872451224e55291ec3af26"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -11107,7 +11773,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Determine the `package.json#type` which applies to a location",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "7fd83fecf8315ccc3b5de876e36d502ee117f079"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -11206,7 +11878,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "a little globber",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "e95edda7fc4d9ae8e278fd17e6792d80f19abd64"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -11305,7 +11983,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "a little globber",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "cb2eb2398ec7dedc0d4ddb31edd10142d547e4d4"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -11404,7 +12088,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Extract the non-magic parent path from a glob string.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "bda4d255bc39751240ae4cffdcd77b0fe478ebbc"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -11503,7 +12193,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Global identifiers from different JavaScript environments",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "e4de8fe164ac2777d7f8bb7845b68f0f7f0b3f9e"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -11602,7 +12298,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Global identifiers from different JavaScript environments",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "8df2b32df00f7ec4c00bb249c29e7a7a898b6dcf"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -11701,7 +12403,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Global identifiers from different JavaScript environments",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "db43afb9f4bc3872f578efd03a892348097c70d3"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -11800,7 +12508,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "A drop-in replacement for fs, making various improvements.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "e2456ba9ea820353f10c716a00671fcb1489fda5"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -11899,7 +12613,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Growl unobtrusive notifications",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "a79cf732956a15453c0e7d5bde28beab5070bf6b"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -11998,7 +12718,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Object.prototype.hasOwnProperty.call shortcut",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "3bed5d3f02b61906db939c174202230f5e45c8db"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -12097,7 +12823,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Determine if the JS environment has BigInt support.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "7ab69ce61e6816ba899787890068a20bd12ec017"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -12196,7 +12928,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Check if argv has a specific flag",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "e179665cb29d457bc3357d6d0a5753e1f63df309"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -12295,7 +13033,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Check if argv has a specific flag",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "f288c2ac91181abc054c11e73c4f041b04c20209"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -12394,7 +13138,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Determine if the JS environment has Symbol support. Supports spec, or shams.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "0fbe73174dca360ca9f56d276244fef499f58c87"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -12493,7 +13243,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Hashing made simple. Get the hash of a buffer/string/stream/file.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "092707978155c4fe22be9d711a31d6f8a793ec52"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -12592,7 +13348,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "A robust HTML entities encoder/decoder with full Unicode support.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "bfdecf90b54a92348d616e39bf7a67e4b474b98b"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -12691,7 +13453,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Provides metadata and conversions from repository urls for Github, Bitbucket and Gitlab",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "9b2474bd79e933a841e62f3823048176253fb737"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -12790,7 +13558,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "fast and safe way to escape and unescape &<>'\" chars",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "5aa365d0b76ef5ba37866f91b4211fd33e5775cf"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -12922,7 +13696,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Ignore is a manager and filter for .gitignore rules.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "173d8a139e2e07ed857752a907a931258ba35de9"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -13021,7 +13801,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Ignore is a manager and filter for .gitignore rules, the one used by eslint, gitbook and many others.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "9daae2511eccdd6dee0d04971b149e34760fc694"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -13087,7 +13873,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Import a module while bypassing the cache",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "a46c531c36092a008afab3dd06c0cdafc54ee532"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -13186,7 +13978,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "An incremental implementation of MurmurHash3",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "425d9a8635bd5efb9ac42af25329a8a6699d16ad"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -13285,7 +14083,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Indent each line in a string",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "e2c83c7e8dd53f794f5bc929253a069348662abf"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -13384,7 +14188,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Add callbacks to requests in flight to avoid async duplication",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "19eb22c701dc33e5a5e41530538c5c366ce6ae7c"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -13483,7 +14293,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Browser-friendly inheritance fully compatible with standard node.js inherits()",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "7e2b58e157955cb2dd7e874ff12da2dee7344938"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -13582,7 +14398,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Check if a character is alphabetical",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "d61be67572ab231fd6a44bf68c0d11f8a174fbcd"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -13681,7 +14503,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Check if a character is alphanumerical",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "4e02bfa4ff6ba669080b0070180dbde3212390c0"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -13780,7 +14608,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Determines if an object can be used as an array",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "f23907d2ca92068e329f6f1b09c28fea019a9242"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -13879,7 +14713,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Is this value an ES BigInt?",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "5e7dded375998d685e800f20d9b540bf5c6b666a"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -13978,7 +14818,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Check if a file path is a binary file",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "3d71c7abb9ce56cab2da8735fa8e2366af627ab3"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -14077,7 +14923,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Is this value a JS Boolean? This module works cross-realm/iframe, and despite ES6 @@toStringTag.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "6a017be8ebdc90dea886b7727b85b0b9b98a151e"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -14176,7 +15028,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Is this JS value callable? Works with Functions and GeneratorFunctions, despite ES6 @@toStringTag.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "f4c95edf4945102190e61e5436f3197ba450fbac"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -14275,7 +15133,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Is this specifier a node.js core module?",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "70cacdc6f759df0161fdbe7651888fe0055f4667"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -14374,7 +15238,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Is this value a JS Date object? This module works cross-realm/iframe, and despite ES6 @@toStringTag.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "22619a48165158f9d761eb865e79a9d08d37619d"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -14473,7 +15343,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Check if a character is decimal",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "94163dfbb7d37e36dfb4631ba87bd9c8416f9ebb"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -14572,7 +15448,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Returns true if a string has an extglob.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "44437e9c94ecb01ae75b2c9a380f8135bf18f83a"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -14671,7 +15553,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Check if the character represented by a given Unicode code point is fullwidth",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "368123fc5f4e5870f4f1e11027b5b99b001bcc15"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -14770,7 +15658,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Check if the character represented by a given Unicode code point is fullwidth",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "ea9c6a2d1579f077ffe0656f28e901cf6bbcb7d9"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -14869,7 +15763,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Returns `true` if the given string looks like a glob pattern or an extglob pattern. This makes it easy to create code that only uses external modules like node-glob when necessary, resulting in much faster code execution and initialization time, and a bet",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "be748cc630e90fe1bb4bfb36de55eadd4eb51b24"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -14968,7 +15868,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Check if a character is hexadecimal",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "5915e8fa7e89de09cbdd92ac97f941f70e8a9153"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -15067,7 +15973,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Is this value negative zero? === will lie to you",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "a28a88f4d452fc894a738f47b3febe960e5c137c"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -15166,7 +16078,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Returns true if a number or string value is a finite number. Useful for regex matches, parsing, user input, etc.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "7b8923028bc1bd5ae1d4e9267b91fcca0d32c0a1"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -15265,7 +16183,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Is this value a JS Number object? This module works cross-realm/iframe, and despite ES6 @@toStringTag.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "ac66ddffdd86b015591c3386918db26d60b05da9"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -15364,7 +16288,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Check if a value is a plain object",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "9ba6f517032bae3f9394f43355a80b944e3a402c"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -15463,7 +16393,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Is this value a JS regex? Works cross-realm/iframe, and despite ES6 @@toStringTag",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "56df8cc2b15540fad0a86a5e6d62342392680fbe"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -15562,7 +16498,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Check if something is a Node.js stream",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "efc4bad00aeaf0bfb24455f3bab873079b3c0b42"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -15661,7 +16603,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Is this value a JS String object or primitive? This module works cross-realm/iframe, and despite ES6 @@toStringTag.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "a55a4b2e597feec4c44b51a2643ad4490c2d58f9"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -15760,7 +16708,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Determine if a value is an ES6 Symbol or not.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "7b52063eb047b42d88090923fddc18f926256143"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -15859,7 +16813,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Detect whether or not an object is a Typed Array",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "cc0a458c1a9aa4ecf783d513dce57447a3464e17"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -15958,7 +16918,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Returns true if the platform is windows. UMD module, works with node.js, commonjs, browser, AMD, electron, etc.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "577fd8e894eb39cbd24adc4185e7eb89cb6b2366"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -16057,7 +17023,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Minimal module to check if a file is executable.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "54e12eb0d72b5251b6a75a604700c3e7215dd694"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -16189,7 +17161,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Data library for istanbul coverage objects",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "e9131d5b9e4e4a11f2325c91a4df1b9be70ff529"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -16288,7 +17266,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Hooks for require, vm and script used in istanbul",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "3a3444e1c0655ed1891a2ce5282e0b33cebd53f9"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -16387,7 +17371,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Core istanbul API for JS code coverage",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "884dca0cee459c31ce8b4c31ca1edf4abcfc5991"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -16453,7 +17443,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "A utility for managing the `processinfo` folder that NYC uses.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "f2acc297a2e59a761a6729422638822a35665570"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -16585,7 +17581,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Base reporting library for istanbul",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "e06353d72ce0b5c0d858dc48b53e529f0e20de9a"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -16684,7 +17686,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Source maps support for istanbul",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "eccdebde8404f8d4492256708c4dbf0514e7bc68"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -16783,7 +17791,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "istanbul reports",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "9c896998a186607afd8c62586b78079bb9ff91ef"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -16849,7 +17863,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "A regex that tokenizes JavaScript.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "033ae3007000949f75e8a7fb7637c5435a5b1c0f"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -16948,7 +17968,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "YAML 1.2 parser and serializer",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "5c8117f7d674f6cd9e08707e088f99fec0e3ee3b"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -17047,7 +18073,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "YAML 1.2 parser and serializer",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "24abbf6fbc573183a96adddc07d285c44d8fc3d6"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -17146,7 +18178,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Given some data, jsesc returns the shortest possible stringified & ASCII-safe representation of that data.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "3d08db495d8a1e651f6d666bd4612630fbba8760"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -17245,7 +18283,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "JSON.parse with context information on error",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "7ff48383af9afe5d796789396d67832f28ad863e"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -17344,7 +18388,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Traverse JSON Schema passing each schema object to callback",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "3b50bd3ab4a8afb023e6bb386df10d5f595aa9a0"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -17443,7 +18493,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Traverse JSON Schema passing each schema object to callback",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "a9498c4a521730a219ddee65c078e9f0381ec139"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -17542,7 +18598,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "deterministic JSON.stringify() with custom sorting to get deterministic hashes from stringified results, with no public domain dependencies",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "f845599fb5aba46a0b2d67d22959916ce55ecfac"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -17641,7 +18703,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "JSON for humans.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "7673ae1831cb8078f29cc82286510c6ad6fb25d7"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -17740,7 +18808,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "JSON for humans.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "c95cc7045c1e5f0d2ad7eda068c8f1b4a79f7ede"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -17839,7 +18913,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Light ECMAScript (JavaScript) Value Notation - human written, concise, typed, flexible",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "24a4ef8a7016a9d2a508fea791ff3192ff9ec461"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -17938,7 +19018,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Read and parse a JSON file",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "77095ece748caaa58f00e3753e934498f3a572a9"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -18037,7 +19123,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Get the first path that exists on disk of multiple paths",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "0571fa45d47ef716b4eb61ca16ef0a4918637f52"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -18136,7 +19228,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Get the first path that exists on disk of multiple paths",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "d1db33d4b75b6379861f076d65189de1c1feefde"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -18235,7 +19333,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Get the first path that exists on disk of multiple paths",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "fb83189391902b0b5e5a498766295978db08a8df"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -18334,7 +19438,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "The lodash method `_.cloneDeep` exported as a module.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "426daf8cca1a956fd44cedc1cf7c369f48c7b8b5"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -18433,7 +19543,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "The lodash method `_.flattenDeep` exported as a module.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "37f41bf160757bbc47b51cf9ea2e96964d4fbc43"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -18532,7 +19648,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "The Lodash method `_.merge` exported as a module.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "24eb4a06c3494868a829694af44763870bc32f69"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -18631,7 +19753,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "The lodash method `_.truncate` exported as a module.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "26c7669fbe670ecd1b2163ab0af6128be7544b09"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -18730,7 +19858,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Colored symbols for various log levels. Example: `✔︎ Success`",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "1cc2b64ef90262fdeec46fd3bfe4e50cc31005a9"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -18829,7 +19963,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "A cache object that deletes the least-recently-used items.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "0e6bcb3dc03c26c46e438fcf2788bd125ebe8f6c"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -18928,7 +20068,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Make a directory and its parents if needed - Think `mkdir -p`",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "cfd817362c5829835afdcb557ebe97d5a567afdf"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -19027,7 +20173,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "mdast utility to parse markdown",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "2177975979610b4ec09bb7cbe24813c52a36026f"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -19126,7 +20278,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "mdast utility to get the plain text content of a node",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "c22e04e4ed8be8a429c9b1309eabd6ea39cdc450"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -19225,7 +20383,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "small commonmark compliant markdown parser with positional info and concrete tokens",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "9434838f144a01deb166017e6b36075cf1e1f3f5"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -19324,7 +20488,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Media Type Database",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "7e38eab3c505fa515c0a6f19c8abbab0f55e8483"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -19423,7 +20593,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "a glob matcher in javascript",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "4ec83a9218c950fd4208716f3aaee46fee01243a"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -19522,7 +20698,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "parse argument options",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "4c16a86c6f0f43cbb0ec45d0ecb44c0cb64bee57"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -19621,7 +20803,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "simple, flexible, fun test framework",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "3a32b72f85d172c395b8d8537af57d9752c55f48"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -19720,7 +20908,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Tiny milisecond conversion utility",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "fc4b4c25728c9b80d269b935c67a8ef64f3bdb5b"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -19819,7 +21013,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Tiny millisecond conversion utility",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "9a3463991adeb908e5cd881ab9b05c290fc7b772"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -19918,7 +21118,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Tiny millisecond conversion utility",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "49c93ef41307ced954d41355f911928d55297757"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -20017,7 +21223,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "A tiny (108 bytes), secure URL-friendly unique string ID generator",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "d6d779da4c41aaf0411f3f7fd8280aafeb49066a"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -20116,7 +21328,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Compare strings containing a mix of letters and numbers in the way a human being would in sort order.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "8db27b40f5fec30f35440831abe62f9810b49aad"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -20215,7 +21433,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Request that Node.js child processes preload modules",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "65230312dee4e8c17c062a004c59ff512a385a80"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -20314,7 +21538,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Node.js releases data",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "f637b74fa4ea1388a33bae64fa3e8ec9cb570d43"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -20413,7 +21643,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Normalizes data that can be found in package.json files.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "cd079e1ce028bf1b95e9a562d035a00323b1ce4e"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -20512,7 +21748,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Normalize slashes in a file path to be posix/unix-like forward slashes. Also condenses repeat slashes to a single slash and removes and trailing slashes, unless disabled.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "b0b351e43bf63c399bde7311992b960b9a9e0172"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -20644,7 +21886,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "the Istanbul command line interface",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "6e6cd332c46ec2eb863709be4f7feebf02505c1c"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -20710,7 +21958,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "string representations of objects in node and the browser",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "7768dc38e70cac4bb93da8cbaa5c0358cfc06eb3"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -20809,7 +22063,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "An Object.keys replacement, in case Object.keys is not available. From https://github.com/es-shims/es5-shim",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "8421fab5b77f9bb920ae6ed54a5918017aea9937"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -20908,7 +22168,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "ES6 spec-compliant Object.assign shim. From https://github.com/es-shims/es6-shim",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "f91f68bef09ed183f2a6d4776ba6d5fb4118aa75"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -21007,7 +22273,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "ES2017 spec-compliant Object.values shim.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "a4c7b6e9e1e8bd3613e9550a11991654abc79efe"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -21106,7 +22378,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Run a function exactly one time",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "9946cef1fd4a924f2fd80bb9ca82aea79d41bcab"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -21205,7 +22483,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "option parsing and help generation",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "949291c7b0b2c46eedbf85f2e317a915e6cff407"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -21304,7 +22588,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Run multiple promise-returning & async functions with limited concurrency",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "f7b80f64a519567aaef18253c132f1295a61ddc2"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -21403,7 +22693,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Run multiple promise-returning & async functions with limited concurrency",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "8b92d885e55321e6ff76469162d380af5d033686"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -21502,7 +22798,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Run multiple promise-returning & async functions with limited concurrency",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "2d327265754dc2ec25d8558ae7f5116acd412df9"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -21601,7 +22903,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Get the first fulfilled promise that satisfies the provided testing function",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "48ff2d77ffaab5d0a582ac42109ba759362f09c9"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -21700,7 +23008,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Get the first fulfilled promise that satisfies the provided testing function",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "62bf2de15a6c48e3d8a3eb60e9d952f87b3275de"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -21799,7 +23113,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Get the first fulfilled promise that satisfies the provided testing function",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "17f267857bf8eb38782841a303820bb3e75db4ce"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -21898,7 +23218,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Map over promises concurrently",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "f7895ac43cb0009f121f874c57bd6fb9dfb2c319"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -21997,7 +23323,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "`Promise#try()` ponyfill - Starts a promise chain",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "5ce2e45f7e11d83370a874c191feaf2223180f22"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -22096,7 +23428,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "`Start a promise chain",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "c7037077b06f9e6cb54ef7d9aad3c0bee91ffeb7"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -22195,7 +23533,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Generates a hash for an installed npm package, useful for salting caches",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "2648966bf3d46f25cbe9dd275b0bf8b809f8e3b4"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -22294,7 +23638,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Get the path of the parent module",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "4e18a491f88a4353868e14224eb6f7cc6ce4ce1c"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -22393,7 +23743,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Parse HTML character references: fast, spec-compliant, positional information",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "6a89c6f722e61445bb05c129493fbd488216ae13"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -22492,7 +23848,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Parse JSON with more helpful errors",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "6b2cdb0a5e5f2747db3e5f05d1bcb5ba34aca9c8"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -22591,7 +23953,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Check if a path exists",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "797eb0e198e3ca286254f3a654923d941d8e5655"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -22690,7 +24058,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Check if a path exists",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "af35bc239defe0ca64c4ed26b13a947cd9b209dc"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -22789,7 +24163,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Node.js 0.12 path.isAbsolute() ponyfill",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "3e077a2a690ad0d95178438efdd6ab7727746a19"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -22888,7 +24268,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Get the PATH environment variable key cross-platform",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "602543d7d6841a23bbe7944cb95409a186b39a1a"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -22987,7 +24373,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Node.js path.parse() ponyfill",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "d1cf2d428fb3420aaf09156375a5587c12927e25"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -23086,7 +24478,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Check if a path is a file, directory, or symlink",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "381bd41d9c9a49806a28f9c9cad5cc16a5737cf7"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -23185,7 +24583,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Blazing fast and accurate glob matcher written in JavaScript, with no dependencies and full support for standard and extended Bash glob features, including braces, extglobs, POSIX brackets, and regular expressions.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "a2777f0978457b063a8a04542ee7355c91009a99"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -23284,7 +24688,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Promisify a callback-style function",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "fb7b8b8a33c6a05bc0687f991fc3bd225a9928a1"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -23383,7 +24793,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Find the root directory of a Node.js project or npm package",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "cec6b8f2d078800bcf561ce391e67e8b56ce7192"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -23482,7 +24898,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Find the root directory of a Node.js project or npm package",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "86d617cf662e450181a0ce9bb74294c44fda81e8"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -23581,7 +25003,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Find the closest package.json file",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "56e8898e03ab43e3da36c7049af61c64750ea760"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -23680,7 +25108,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "prelude.ls is a functionally oriented utility library. It is powerful and flexible. Almost all of its functions are curried. It is written in, and is the recommended base library for, LiveScript.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "ae25c8ab8ca153f2c3102f5538e198b2cc4c836e"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -23779,7 +25213,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Execute callbacks when child processes are spawned",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "afe291c1b7169b2e5e5a9b7395ef167ba50efd66"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -23878,7 +25318,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Flexible ascii progress bar",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "7038270889c2326906e9db6173450e84246f3bf4"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -23977,7 +25423,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "A robust Punycode converter that fully complies to RFC 3492 and RFC 5891, and works on nearly all JavaScript platforms.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "f3bfc8c557728ef20b635cf421322aee00cadacf"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -24109,7 +25561,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "random bytes from browserify stand alone",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "164f94feaf35ad8bba3121ad5ac65a6d9b4ae7cf"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -24175,7 +25633,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Read a package.json file",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "1f59b7f366ee6af64b9c057e37159bd3d5b16136"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -24274,7 +25738,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Read the closest package.json file",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "6b3bbece5bc5242f43acdded4059293cc1a9788e"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -24373,7 +25843,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Recursive version of fs.readdir with streaming API.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "df0962033b8b1bf7caab737729d343383129c8b4"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -24472,7 +25948,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Regular expression parser for ECMAScript.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "ed56a8f773b7646098e2facf8fb5b8d82833ae50"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -24571,7 +26053,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Helps you write code with promise-like chains that can run both synchronously and asynchronously",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "b06b2b353e71d55084d32d0668cf708d04ac3407"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -24670,7 +26158,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Recursively iterates over specified directory, require()'ing each file, and returning a nested hash structure containing those modules.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "6e567e148223f4fe7058d6e6da27c508ce36670f"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -24769,7 +26263,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Require module from string",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "60541a2fc5d3dbb517f58a32d56a173b37155ed8"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -24901,7 +26401,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "shim for require.main.filename() that works in as many environments as possible",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "78a0208fb30545cf4b008ed9e35629a1aae689a7"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -24967,7 +26473,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "resolve like require.resolve() on behalf of files asynchronously and synchronously",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "f2f64ab30af35ff0afeb1d444c880997f3aab9d1"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -25066,7 +26578,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Resolve the path of a module like `require.resolve()` but from a given path",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "89655dbfa1dd85404ba76ed9ec2113e0bac22633"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -25165,7 +26683,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Resolve the path of a module like `require.resolve()` but from a given path",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "d992d5758fd4719823f8e23339c1d7b81c8ce02e"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -25264,7 +26788,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "A deep deletion module for node (like `rm -rf`)",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "a629d4b62ff063aeb68bee5950c14ff12d174f35"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -25363,7 +26893,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Safer Node.js Buffer API",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "528c5aa7f4ad023f932acad59c10e389fa96afa2"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -25462,7 +26998,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Safer Node.js Buffer API",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "239e2673e59edd9ebd4ede9cab479c441194fc35"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -25561,7 +27103,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "The semantic version parser used by npm.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "ef6af197b635c7f5b136f734c9b90442cc323200"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -25660,7 +27208,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "The semantic version parser used by npm.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "8f9057813198dcb73877c9b2fea1820579dcffc7"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -25759,7 +27313,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "The semantic version parser used by npm.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "f47cc71297382df4aeecb082ae970305f08daa4d"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -25858,7 +27418,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Serialize JavaScript to a superset of JSON that includes regular expressions and functions.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "b9ab045599f6bf37a682a78af865c7ec5d68fba2"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -25957,7 +27523,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "set blocking stdio and stderr ensuring that terminal output does not truncate",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "5f64f464cca81c4c1a9ceacd2d93ca74dea26db5"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -26056,7 +27628,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Get the command from a shebang",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "e79e87e11a1e65b12dd499b2ec6fe4407cd4b360"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -26155,7 +27733,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Regular expression for matching a shebang line",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "a4815772ffc8c9d8621981b1d2bd7a964f855a6b"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -26254,7 +27838,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "when you want to fire an event no matter how a process exits.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "8f989686ad955edb0476222ed13f44efa26092ec"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -26353,7 +27943,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Slice a string with ANSI escape codes",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "26e2250c37e89149a1d5414dcab39c205b480075"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -26485,7 +28081,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Generates and consumes source maps",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "8ef56e249c70df475cd180aad03b274dbcd41725"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -26584,7 +28186,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Generates and consumes source maps",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "c2ef46be4e6717c82358dd24dee61f42e52374a3"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -26650,7 +28258,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Wrap all spawned Node.js child processes by adding environs and arguments ahead of the main JavaScript file argument.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "5380bb96d1f96092477fe6f5e5b62d7e75622203"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -26749,7 +28363,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "correct invalid SPDX expressions",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "b4688b4660e082a30b94f145c279072a1631815a"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -26848,7 +28468,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "list of SPDX standard license exceptions",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "927c22f24d82352f8d49cb0931232c61d8a4684a"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -26947,7 +28573,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "parse SPDX license expressions",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "ec904bb55d51f0e2fe1436164f176f624adf89b4"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -27046,7 +28678,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "A list of SPDX license identifiers",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "80ce2247879c81ca5f328bc87c9ac65aedad98bc"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -27145,7 +28783,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "JavaScript sprintf implementation",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "fbaa7ef4396c01c824b02af20a28f9d82b13a317"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -27244,7 +28888,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Get the visual width of a string - the number of columns required to display it",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "ce018749e83d92107c8d600ed757ae7e5a49ed21"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -27343,7 +28993,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Get the visual width of a string - the number of columns required to display it",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "e0c7195279208b6f0401b60511a68eb0f3b53798"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -27442,7 +29098,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "ES2019 spec-compliant String.prototype.trimEnd shim.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "2e03641a0af395e21985aab2c342ff516513f708"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -27541,7 +29203,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "ES2019 spec-compliant String.prototype.trimStart shim.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "48e67ece6c6e484aa73e80297ffee46b47e1401d"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -27640,7 +29308,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Strip ANSI escape codes",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "357417ac0f78b965185fb9a0d995359f1b7e4816"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -27739,7 +29413,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Strip ANSI escape codes from a string",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "80c5aa575536564e6d2fe32f63271840668a48e6"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -27838,7 +29518,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Strip UTF-8 byte order mark (BOM) from a string",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "d8e448d4784eac18ae29badabc68e41e045cc74f"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -27937,7 +29623,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Strip UTF-8 byte order mark (BOM) from a string",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "94e2aad30b81581a12bb8f51763fbd07b4d7c283"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -28036,7 +29728,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Strip comments from JSON. Lets you use comments in your JSON files!",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "ee5994caff824db2a2dd81c09f07ec1ef8aa16a0"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -28135,7 +29833,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Detect whether a terminal supports color",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "0772da08fa7c48b96a798f7871abe827661e1135"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -28234,7 +29938,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Detect whether a terminal supports color",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "4b796c4f8893c5cb29e4c607c4dcda0021871662"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -28333,7 +30043,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Detect whether a terminal supports color",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "9d76a3687f90ddb6999a8875a46787695f78244c"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -28432,7 +30148,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Formats data into a string table.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "7b338f6c758c94a086e4e1a57e4553fb85951019"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -28531,7 +30253,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "test for inclusion or exclusion of paths using globs",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "7ef7f42045687c141ffc40314406a9bc57a93c67"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -28630,7 +30358,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "borderless text tables with alignment",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "ee292cfa007561fc3477f1519584bdd8340665bc"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -28729,7 +30463,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Force V8 to use fast properties for an object",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "928ca855ce734fad5aa6e2015f2044567154475a"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -28828,7 +30568,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Pass two numbers, get a regex-compatible source string for matching ranges. Validated against more than 2.78 million test assertions.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "2e4dae6283ca6a2120cc4736c79f968bb9c41f13"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -28927,7 +30673,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Load node modules according to tsconfig paths, in run-time or via API.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "05ac8fc7cf781112c9ac486a0396b64812266364"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -29026,7 +30778,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "type-check allows you to check the types of JavaScript values at runtime with a Haskell like type syntax.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "96ebc771b8f5eee51caf62ea623d95ef30e6824d"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -29125,7 +30883,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "A collection of essential TypeScript types",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "2576a3220dadf2cd09726d8a1187cb218d5a7fc1"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -29224,7 +30988,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "A collection of essential TypeScript types",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "ee7ba58493633f3645c1af2aca68c99ada29dfcb"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -29323,7 +31093,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Convert a typed array to a Buffer without a copy",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "8befc11165adc845d7965e84e9962e7e772308c5"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -29422,7 +31198,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Unbox a boxed JS primitive value.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "f0e92f6537d29dd114d98dac9ecd6b659f99aaa2"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -29521,7 +31303,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "unist utility to serialize a node, position, or point as a human readable location",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "91a455e24af07fc51ccfbbfeef07ae328230d2cb"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -29653,7 +31441,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "An RFC 3986/3987 compliant, scheme extendable URI/IRI parsing/validating/resolving library for JavaScript.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "e24fcc86e40b361ca9c4101025c0d94fc4a70268"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -29719,7 +31513,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "RFC4122 (v1, v4, and v5) UUIDs",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "a153ef72e9f6e27c59362597847013ce82c87903"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -29818,7 +31618,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Require hook for automatic V8 compile cache persistence",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "0f03624912b6bc838703d4477383db9341cb32b8"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -29917,7 +31723,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Give me a string and I'll tell you if it's a valid npm package license string",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "c40dd5957722150939f00dca0f5fb717e96114f7"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -30016,7 +31828,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Like which(1) unix command. Find the first instance of an executable in the PATH.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "24f185e70877043a463a4369ae10542624d35c65"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -30115,7 +31933,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Which kind of boxed JS primitive is this?",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "2a9028a2ee035225ac19f41b2d7e28aec6546799"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -30214,7 +32038,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Find the module object for something that was require()d",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "f811c4624ced2d4e7eb733cf0918a95bf18627c0"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -30313,7 +32143,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "A wide-character aware text alignment function for use on the console or with fixed width fonts.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "3269dae78e40ab4a1b3583fc6787736b007e3599"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -30412,7 +32248,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Wrap words to a specified length.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "6eccf097016e34611b3e67e4b45b3054fd0ba44c"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -30511,7 +32353,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Offload tasks to a pool of workers on node.js and in the browser",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "3885fe99f7b32d4f01204ee30deb19eead733eee"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -30610,7 +32458,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Wordwrap a string with ANSI escape codes",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "c79d0a0f6a0750086c3b0851009fcb4476e0f80e"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -30709,7 +32563,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Wordwrap a string with ANSI escape codes",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "01a831a820223c0b34ae9a0ebfd9b7a2d768c8fb"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -30808,7 +32668,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Callback wrapping utility",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "75e875891eab05fc672ce59abd151fcf51f422db"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -30907,7 +32773,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Write files in an atomic fashion w/configurable ownership",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "41216468af6810bdcb1911fe98f25d04f5747997"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -31039,7 +32911,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "the bare-bones internationalization library used by yargs",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "f7cb6689067915ddda2ef566a80023aef276dc8d"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -31105,7 +32983,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "the bare-bones internationalization library used by yargs",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "d98215dfb6465df6a1a9579f317188c59d63b4de"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -31204,7 +33088,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Yet Another Linked List",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "65c2199ecca93f97066ae8ca3a9474b6d7999d58"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -31303,7 +33193,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "yargs the modern, pirate-themed, successor to optimist.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "3d0c0922976b89d7db184ff97903fee79539aea7"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -31402,7 +33298,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "yargs the modern, pirate-themed, successor to optimist.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "886776a26798fb1a7df0b9cbe7d1abb69cf7e131"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -31501,7 +33403,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "the mighty option parser used by yargs",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "670d7c3626801534b923b53ce2255d6b8c6f5eda"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -31600,7 +33508,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "the mighty option parser used by yargs",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "f85f1b9b492da68cce56d9725e08255046db9d0e"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -31699,7 +33613,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Converts back a yargs argv object to its original array form",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "d6b7ab6300d07c0ecf3d049ec7c5fe90327c4736"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -31798,7 +33718,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Tiny queue data structure",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "ed581fdd2347d01fea3650a5066fb85e63b11dd8"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -31897,7 +33823,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Generate errors that contain a code frame that point to source locations.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "2e089524afa912570f5eff9643a4988ecaebad3b"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -31996,7 +33928,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Generate errors that contain a code frame that point to source locations.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "1ab0eea3da479a8e8188f7123d2030cf2100f42f"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -32095,7 +34033,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "NONE",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "dc3947eb6dec03ae0b38f06b715d6bec67344c0f"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -32194,7 +34138,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Babel compiler core.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "e61fbb96905e87a4196d84b96d37edf02d48aee7"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -32293,7 +34243,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Turns an AST into code.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "f3a797f7c5e5033388774ef822e9dbc8d35eee32"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -32392,7 +34348,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Helper functions on Babel compilation targets",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "03e5153eeb8ebf70c321fa3356996238b32880d8"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -32491,7 +34453,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Helper function to change the property 'name' of every function",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "d728d18be92029e6bfdbfe3b44b64e863fc98e5b"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -32590,7 +34558,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Helper function to get function arity",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "968fb2b9c4f2393fb2d799ebb2affae219a90e69"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -32689,7 +34663,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Helper function to replace certain member expressions with function calls",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "e9400186ddc1902eb4e63d8e6d5c91bc06d12bec"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -32788,7 +34768,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Babel helper functions for inserting module loads",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "f412c1dd5bc48660b95d48edc2190720f1b5d68a"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -32887,7 +34873,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Babel helper functions for implementing ES6 module transformations",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "2bc527a81f1c0dc7a012eb2caffb023cf85ace28"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -32986,7 +34978,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Helper function to optimise call expression",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "67c2df7bc1dc30454fbd6525f60a05796e4e3510"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -33085,7 +35083,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Helper function to replace supers",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "01384d5a94f4407da5298c58750e44054f4dc6d2"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -33184,7 +35188,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Babel helper for ensuring that access to a given value is performed through simple accesses",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "978bd78876861830fc27359c7514ae84d90cc06b"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -33283,7 +35293,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "NONE",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "1789c911ec55e462e4d35bb99419e795af0295a6"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -33382,7 +35398,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Validate identifier/keywords name",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "7ebcf196bc0f42d5b863b60a9324566c4548352e"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -33481,7 +35503,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Validate plugin/preset options",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "4276d2d857455922071d9ab67bc9dfe89c2f8a33"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -33580,7 +35608,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Collection of helper functions used by Babel transforms.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "2640aad4b3bb33024ab0b9b1e8a03726c6488d66"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -33679,7 +35713,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Syntax highlight JavaScript strings for output in terminals.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "b555e7ea4b17b50e3e6c1a9ec97519492c3bd35d"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -33778,7 +35818,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "A JavaScript parser",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "1e6c29fed021d34b060ce4d6435576acb2ddb895"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -33877,7 +35923,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Generate an AST from a string template.",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "d8cda82b990e5323de103f9ef84f75fac2b934c5"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -33976,7 +36028,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "The Babel Traverse module maintains the overall tree state, and is responsible for replacing, removing, and adding nodes",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "33f1f3458946b602149566c1c6bdc475c8d50869"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -34075,7 +36133,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Babel Types is a Lodash-esque utility library for AST nodes",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "41fd4417389fa4da195cd66c4088d9d58cf93207"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -34174,7 +36238,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "The legacy ESLintRC config file format for ESLint",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "5513a164c15d90830b34006213403648e2996878"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -34273,7 +36343,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Utility function to load nyc configuration",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "300d94d4c6b460c15abb78936b8be4113c50bc37"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -34372,7 +36448,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "Schemas describing various structures used by nyc and istanbuljs",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "77659b91acac71f0a624223565c789087a1e2237"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -34504,7 +36586,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "TypeScript definitions for JSON5",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "a84d6432fb755b0c836e2f444827e9c19df2a3b2"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -34603,7 +36691,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "TypeScript definitions for Mdast",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "b6eca36528792ff5ee2dc07eeb2daff240fd6f60"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -34702,7 +36796,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "TypeScript definitions for non-npm package Unist",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "94d404d3051208847deb13af7f217b5d0fe8cdd0"
+                }
+            ]
         },
         {
             "@type": "Package",
@@ -34768,7 +36868,13 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "A cross platform Promise.allSettled polyfill",
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "d307e4701af32afef33161d1099a9a1e89e7018b"
+                }
+            ]
         },
         {
             "@type": "Package",

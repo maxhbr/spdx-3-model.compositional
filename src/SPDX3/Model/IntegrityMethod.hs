@@ -13,25 +13,36 @@
 
 module SPDX3.Model.IntegrityMethod
     where
-import           Control.Monad.Reader
 import           Data.Aeson
-import           Data.Aeson.Types
-import qualified Data.HashMap.Strict  as Map
 import qualified Data.Text            as T
 import           GHC.Generics         (Generic)
-import           GHC.Word             (Word8)
+import Text.Hex
+
+readHashHexValue :: String -> Maybe ByteString
+readHashHexValue = decodeHex . T.pack
+
+writeHashValueAsHex :: ByteString -> String
+writeHashValueAsHex = T.unpack . encodeHex
 
 type HashAlgorithm  = String
 data IntegrityMethod where
-    Hash :: Maybe String -> HashAlgorithm -> [Word8] -> IntegrityMethod
+    Hash :: Maybe String -> HashAlgorithm -> ByteString -> IntegrityMethod
   deriving (Generic, Show)
 instance ToJSON IntegrityMethod where
     toJSON (Hash comment algorithm hashValue) = object ["comment" .= comment
                                                        ,"algorithm" .= algorithm
-                                                       ,"hashValue" .= hashValue
+                                                       ,"hashValue" .= writeHashValueAsHex hashValue
                                                        ]
 instance FromJSON IntegrityMethod where
     parseJSON = withObject "IntegrityMethod" $ \o -> do
-        Hash <$> o .:? "comment"
-             <*> o .: "algorithm"
-             <*> o .: "hashValue"
+        hashValueHex <- o .: "hashValue"
+        case readHashHexValue hashValueHex of
+            Just hashValue -> Hash <$> o .:? "comment"
+                                   <*> o .: "algorithm"
+                                   <*> return hashValue
+            Nothing -> fail ("failed to parse hex string=" ++ hashValueHex)
+
+mkHash :: HashAlgorithm -> String -> IntegrityMethod
+mkHash hashAlgorithm hashValueHex = case readHashHexValue hashValueHex of
+    Just hashValue -> Hash Nothing hashAlgorithm hashValue
+    Nothing -> Hash (Just ("failed to parse hex=" ++ hashValueHex)) hashAlgorithm mempty

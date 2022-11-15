@@ -14,7 +14,7 @@
 module SPDX3.From2
     where
 import qualified Data.ByteString.Lazy            as BSL
-import           Data.Maybe                      (fromMaybe)
+import           Data.Maybe                      (fromMaybe, maybeToList)
 import           Data.Time.Format.ISO8601
 import           SPDX3.Model
 import           SPDX3.Monad
@@ -22,18 +22,19 @@ import           SPDX3.Monad
 import qualified SPDX.Document                   as SPDX2
 import qualified SPDX.Document.RelationshipTypes as SPDX2R
 
+parseSpdx2Actor :: String -> Actor
+parseSpdx2Actor ('P':'e':'r':'s':'o':'n':':':' ':name) = Actor (Just name) (Just PERSON)
+parseSpdx2Actor ('O':'r':'g':'a':'n':'i':'z':'a':'t':'i':'o':'n':':':' ':name) = Actor (Just name) (Just ORGANIZATION)
+parseSpdx2Actor ('T':'o':'o':'l':':':' ':name) = Actor (Just name) (Just TOOL)
+parseSpdx2Actor name = Actor (Just name) Nothing
+
+
 convertCreationInfo :: SPDX2.SPDXCreationInfo -> String -> (CreationInfo, Maybe String)
 convertCreationInfo spdx2CreationInformation spdx2DataLicense = let
       spdx2CreationInfoComment = SPDX2._SPDXCreationInfo_comment spdx2CreationInformation
       spdx2CreationInfoCreated = SPDX2._SPDXCreationInfo_created spdx2CreationInformation
       spdx2CreationInfoCreators = SPDX2._SPDXCreationInfo_creators spdx2CreationInformation
       spdx2CreationInfoLicenseListVersion = SPDX2._SPDXCreationInfo_licenseListVersion spdx2CreationInformation
-
-      parseSpdx2Creator :: String -> Actor
-      parseSpdx2Creator ('P':'e':'r':'s':'o':'n':':':' ':name) = Actor (Just name) (Just PERSON)
-      parseSpdx2Creator ('O':'r':'g':'a':'n':'i':'z':'a':'t':'i':'o':'n':':':' ':name) = Actor (Just name) (Just ORGANIZATION)
-      parseSpdx2Creator ('T':'o':'o':'l':':':' ':name) = Actor (Just name) (Just TOOL)
-      parseSpdx2Creator name = Actor (Just name) Nothing
 
       spdx3CreationInfoCreated = let
             fallback = fromMaybe undefined (iso8601ParseM "2022-11-13T13:14:36.324980945Z")
@@ -45,7 +46,7 @@ convertCreationInfo spdx2CreationInformation spdx2DataLicense = let
             , _dataLicense = case spdx2DataLicense of
                 "CC0-1.0" -> CC0
                 _         -> undefined
-            , _createdBy = map parseSpdx2Creator spdx2CreationInfoCreators
+            , _createdBy = map parseSpdx2Actor spdx2CreationInfoCreators
             }), spdx2CreationInfoLicenseListVersion)
 
 convertFile :: SPDX2.SPDXFile -> SPDX_M (SPDX ())
@@ -66,6 +67,7 @@ convertFile spdx2File = let
         -- spdx2FileFileDependencies = SPDX2._SPDXFile_fileDependencies spdx2File
         -- spdx2FileName = SPDX2._SPDXFile_name spdx2File
 
+        spdx3VerifiedUsing = map (\ (SPDX2.SPDXChecksum spdx2Algorithm spdx2ChecksumValue) -> mkHash (show spdx2Algorithm) spdx2ChecksumValue) spdx2FileChecksums
         spdx3FileType = case spdx2FileFileTypes of
             Nothing   -> Nothing
             Just []   -> Nothing
@@ -74,6 +76,7 @@ convertFile spdx2File = let
 
         spdx3ElementProperties = def { _elementName = Just spdx2FileFileName
                                      , _elementComment = spdx2FileComment
+                                     , _elementVerifiedUsing = spdx3VerifiedUsing
                                      }
         spdx3ArtifactProperties = ArtifactProperties []
         spdx3FileProperties = FileProperties Nothing [] spdx3FileType
@@ -105,26 +108,37 @@ convertPackage spdx2Package = let
         -- spdx2PackageAttributionTexts = SPDX2._SPDXPackage_attributionTexts spdx2Package
         spdx2PackageHasFiles = SPDX2._SPDXPackage_hasFiles spdx2Package
 
+        spdx3VerifiedUsing = let
+            fromChecksums = map (\ (SPDX2.SPDXChecksum spdx2Algorithm spdx2ChecksumValue) -> mkHash (show spdx2Algorithm) spdx2ChecksumValue) spdx2PackageChecksums
+            fromVerificationCode = case spdx2PackagePackageVerificationCode of
+                Just (SPDX2.SPDXPackageVerificationCode packageVerificationHex _) -> [mkHash "packageVerificationCode" packageVerificationHex ]
+                Nothing -> []
+            in fromChecksums ++ fromVerificationCode
         spdx3ElementProperties = def { _elementName = Just spdx2PackageName
                                      , _elementComment = spdx2PackageComment
                                      , _elementSummary = spdx2PackageSummary
                                      , _elementDescription = spdx2PackageDescription
+                                     , _elementVerifiedUsing = spdx3VerifiedUsing
                                      }
-        spdx3ArtifactProperties = def
+        spdx3ArtifactProperties = def {_artifactOriginatedBy = map parseSpdx2Actor (maybeToList spdx2PackageOriginator)}
         spdx3PackageProperties = def { _downloadLocation = SPDX2.spdxMaybeToMaybe spdx2PackageDownloadLocation
                                      , _packageHomePage = spdx2PackageHomepage
                                      }
-
     in do
         p <- package (Just spdx2PackageSPDXID) spdx3PackageProperties spdx3ArtifactProperties spdx3ElementProperties
-        additionalElements <- case spdx2PackageHasFiles of
+
+        spdx3FileCorrespondingToPackage <- case spdx2PackagePackageFileName of
+            Just _ -> do
+                f <- file Nothing def def def{_elementName = spdx2PackagePackageFileName}
+                (:[]) <$> relationship (Just "The File of that packages is") (RelationshipProperties PACKAGES f [Ref spdx2PackageSPDXID] Nothing) def
+            Nothing -> return []
+        spdx3FromHasFiles <- case spdx2PackageHasFiles of
             Just spdx2PackageHasFiles' -> do
                 let fileRefs = map Ref spdx2PackageHasFiles'
-                fileRefsRel <- relationship Nothing (RelationshipProperties CONTAINS (Ref spdx2PackageSPDXID) fileRefs Nothing) def
-                return (fileRefsRel :fileRefs)
+                (:[]) <$> relationship Nothing (RelationshipProperties CONTAINS (Ref spdx2PackageSPDXID) fileRefs Nothing) def
             Nothing -> return []
 
-        return (p, additionalElements)
+        return (p, spdx3FileCorrespondingToPackage ++ spdx3FromHasFiles)
 
 convertRelationship :: SPDX2.SPDXRelationship -> SPDX_M (SPDX ())
 convertRelationship spdx2Relationship = let
@@ -143,40 +157,40 @@ convertRelationship spdx2Relationship = let
             SPDX2R.DEPENDENCY_MANIFEST_OF -> Left DEPENDENCY_MANIFEST
             SPDX2R.BUILD_DEPENDENCY_OF -> Left DEPENDENCY_MANIFEST
             SPDX2R.DEV_DEPENDENCY_OF -> Left DEV_DEPENDENCY
-            -- SPDX2R.OPTIONAL_DEPENDENCY_OF -> OTHER
-            -- SPDX2R.PROVIDED_DEPENDENCY_OF -> OTHER
-            -- SPDX2R.TEST_DEPENDENCY_OF -> OTHER
-            -- SPDX2R.RUNTIME_DEPENDENCY_OF -> OTHER
-            -- SPDX2R.EXAMPLE_OF -> OTHER
-            -- SPDX2R.GENERATES -> OTHER
+            -- SPDX2R.OPTIONAL_DEPENDENCY_OF -> undefined
+            -- SPDX2R.PROVIDED_DEPENDENCY_OF -> undefined
+            -- SPDX2R.TEST_DEPENDENCY_OF -> undefined
+            -- SPDX2R.RUNTIME_DEPENDENCY_OF -> undefined
+            -- SPDX2R.EXAMPLE_OF -> undefined
+            -- SPDX2R.GENERATES -> undefined
             SPDX2R.GENERATED_FROM -> Left GENERATES
-            -- SPDX2R.ANCESTOR_OF -> OTHER
-            -- SPDX2R.DESCENDANT_OF -> OTHER
-            -- SPDX2R.VARIANT_OF -> OTHER
-            -- SPDX2R.DISTRIBUTION_ARTIFACT -> OTHER
-            -- SPDX2R.PATCH_FOR -> OTHER
-            -- SPDX2R.PATCH_APPLIED -> OTHER
+            -- SPDX2R.ANCESTOR_OF -> undefined
+            -- SPDX2R.DESCENDANT_OF -> undefined
+            -- SPDX2R.VARIANT_OF -> undefined
+            -- SPDX2R.DISTRIBUTION_ARTIFACT -> undefined
+            -- SPDX2R.PATCH_FOR -> undefined
+            -- SPDX2R.PATCH_APPLIED -> undefined
             SPDX2R.COPY_OF -> Right COPY
-            -- SPDX2R.FILE_ADDED -> OTHER
-            -- SPDX2R.FILE_DELETED -> OTHER
-            -- SPDX2R.FILE_MODIFIED -> OTHER
-            -- SPDX2R.EXPANDED_FROM_ARCHIVE -> OTHER
+            -- SPDX2R.FILE_ADDED -> undefined
+            -- SPDX2R.FILE_DELETED -> undefined
+            -- SPDX2R.FILE_MODIFIED -> undefined
+            -- SPDX2R.EXPANDED_FROM_ARCHIVE -> undefined
             SPDX2R.DYNAMIC_LINK -> Right DYNAMIC_LINK
-            -- SPDX2R.STATIC_LINK -> OTHER
-            -- SPDX2R.DATA_FILE_OF -> OTHER
-            -- SPDX2R.TEST_CASE_OF -> OTHER
-            -- SPDX2R.BUILD_TOOL_OF -> OTHER
-            -- SPDX2R.DEV_TOOL_OF -> OTHER
-            -- SPDX2R.TEST_OF -> OTHER
-            -- SPDX2R.TEST_TOOL_OF -> OTHER
-            -- SPDX2R.DOCUMENTATION_OF -> OTHER
-            -- SPDX2R.OPTIONAL_COMPONENT_OF -> OTHER
-            -- SPDX2R.METAFILE_OF -> OTHER
-            -- SPDX2R.PACKAGE_OF -> OTHER
-            -- SPDX2R.AMENDS -> OTHER
-            -- SPDX2R.PREREQUISITE_FOR -> OTHER
-            -- SPDX2R.HAS_PREREQUISITE -> OTHER
-            -- SPDX2R.OTHER -> OTHER
+            -- SPDX2R.STATIC_LINK -> undefined
+            -- SPDX2R.DATA_FILE_OF -> undefined
+            -- SPDX2R.TEST_CASE_OF -> undefined
+            -- SPDX2R.BUILD_TOOL_OF -> undefined
+            -- SPDX2R.DEV_TOOL_OF -> undefined
+            -- SPDX2R.TEST_OF -> undefined
+            -- SPDX2R.TEST_TOOL_OF -> undefined
+            -- SPDX2R.DOCUMENTATION_OF -> undefined
+            -- SPDX2R.OPTIONAL_COMPONENT_OF -> undefined
+            -- SPDX2R.METAFILE_OF -> undefined
+            -- SPDX2R.PACKAGE_OF -> undefined
+            -- SPDX2R.AMENDS -> undefined
+            -- SPDX2R.PREREQUISITE_FOR -> undefined
+            -- SPDX2R.HAS_PREREQUISITE -> undefined
+            -- SPDX2R.OTHER -> undefined
             SPDX2R.SPECIFICATION_FOR -> Right OTHER -- TODO!
             t -> error ("failed to translate RelationsihpType=" ++ show t)
 

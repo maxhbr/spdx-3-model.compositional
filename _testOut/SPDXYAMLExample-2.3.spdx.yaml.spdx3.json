@@ -64,10 +64,120 @@
             "externalReferences": [],
             "homePage": "http://ftp.gnu.org/gnu/glibc",
             "name": "glibc",
-            "originatedBy": [],
+            "originatedBy": [
+                {
+                    "actorType": "ORGANIZATION",
+                    "name": "ExampleCodeInspect (contact@example.com)"
+                }
+            ],
             "packagePurpose": [],
             "packageUrl": null,
             "summary": "GNU C library.",
+            "verifiedUsing": [
+                {
+                    "algorithm": "MD5",
+                    "comment": null,
+                    "hashValue": "624c1abb3664f4b35547e7c73864ad24"
+                },
+                {
+                    "algorithm": "SHA1",
+                    "comment": null,
+                    "hashValue": "85ed0817af83a24ad8da68c2b5094de69833983c"
+                },
+                {
+                    "algorithm": "SHA256",
+                    "comment": null,
+                    "hashValue": "11b6d3ee554eedf79299905a98f9b9a04e498210b59f15094c916c91d150efcd"
+                },
+                {
+                    "algorithm": "BLAKE2b384",
+                    "comment": null,
+                    "hashValue": "aaabd89c926ab525c242e6621f2f5fa73aa4afe3d9e24aed727faaadd6af38b620bdb623dd2b4788b1c8086984af8706"
+                },
+                {
+                    "algorithm": "packageVerificationCode",
+                    "comment": null,
+                    "hashValue": "d6a770ba38583ed4bb4525bd96e50461655d2758"
+                }
+            ]
+        },
+        {
+            "@type": "Relationship",
+            "SPDXID": "The File of that packages is",
+            "comment": null,
+            "creationInfo": {
+                "created": "2010-01-29T18:30:22Z",
+                "createdBy": [
+                    {
+                        "actorType": "TOOL",
+                        "name": "LicenseFind-1.0"
+                    },
+                    {
+                        "actorType": "ORGANIZATION",
+                        "name": "ExampleCodeInspect ()"
+                    },
+                    {
+                        "actorType": "PERSON",
+                        "name": "Jane Doe ()"
+                    }
+                ],
+                "dataLicense": "CC0",
+                "profile": [
+                    "core",
+                    "software",
+                    "licensing"
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "from": {
+                "@type": "File",
+                "SPDXID": "urn:File:e7092ae43fbdb72dab8f9e524ad7ba5a",
+                "comment": null,
+                "contentIdentifier": null,
+                "contentType": null,
+                "creationInfo": {
+                    "created": "2010-01-29T18:30:22Z",
+                    "createdBy": [
+                        {
+                            "actorType": "TOOL",
+                            "name": "LicenseFind-1.0"
+                        },
+                        {
+                            "actorType": "ORGANIZATION",
+                            "name": "ExampleCodeInspect ()"
+                        },
+                        {
+                            "actorType": "PERSON",
+                            "name": "Jane Doe ()"
+                        }
+                    ],
+                    "dataLicense": "CC0",
+                    "profile": [
+                        "core",
+                        "software",
+                        "licensing"
+                    ],
+                    "specVer": "3.0.0"
+                },
+                "description": null,
+                "externalIdentifiers": [],
+                "externalReferences": [],
+                "filePurpose": [],
+                "name": "glibc-2.11.1.tar.gz",
+                "originatedBy": [],
+                "summary": null,
+                "verifiedUsing": []
+            },
+            "name": null,
+            "relationshipCompleteness": null,
+            "relationshipType": "PACKAGES",
+            "summary": null,
+            "to": [
+                "SPDXRef-Package"
+            ],
             "verifiedUsing": []
         },
         {
@@ -124,20 +234,6 @@
             ],
             "verifiedUsing": []
         },
-        "SPDXRef-Specification",
-        "SPDXRef-Specification",
-        "SPDXRef-CommonsLangSrc",
-        "SPDXRef-Specification",
-        "SPDXRef-CommonsLangSrc",
-        "SPDXRef-JenaLib",
-        "SPDXRef-Specification",
-        "SPDXRef-CommonsLangSrc",
-        "SPDXRef-JenaLib",
-        "SPDXRef-DoapSource",
-        "SPDXRef-Specification",
-        "SPDXRef-CommonsLangSrc",
-        "SPDXRef-JenaLib",
-        "SPDXRef-DoapSource",
         {
             "@type": "Package",
             "SPDXID": "SPDXRef-fromDoap-1",
@@ -259,6 +355,91 @@
             "packagePurpose": [],
             "packageUrl": null,
             "summary": null,
+            "verifiedUsing": [
+                {
+                    "algorithm": "SHA1",
+                    "comment": null,
+                    "hashValue": "85ed0817af83a24ad8da68c2b5094de69833983c"
+                }
+            ]
+        },
+        {
+            "@type": "Relationship",
+            "SPDXID": "The File of that packages is",
+            "comment": null,
+            "creationInfo": {
+                "created": "2010-01-29T18:30:22Z",
+                "createdBy": [
+                    {
+                        "actorType": "TOOL",
+                        "name": "LicenseFind-1.0"
+                    },
+                    {
+                        "actorType": "ORGANIZATION",
+                        "name": "ExampleCodeInspect ()"
+                    },
+                    {
+                        "actorType": "PERSON",
+                        "name": "Jane Doe ()"
+                    }
+                ],
+                "dataLicense": "CC0",
+                "profile": [
+                    "core",
+                    "software",
+                    "licensing"
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "from": {
+                "@type": "File",
+                "SPDXID": "urn:File:483ed665efdf38f7b57961f9a1274e56",
+                "comment": null,
+                "contentIdentifier": null,
+                "contentType": null,
+                "creationInfo": {
+                    "created": "2010-01-29T18:30:22Z",
+                    "createdBy": [
+                        {
+                            "actorType": "TOOL",
+                            "name": "LicenseFind-1.0"
+                        },
+                        {
+                            "actorType": "ORGANIZATION",
+                            "name": "ExampleCodeInspect ()"
+                        },
+                        {
+                            "actorType": "PERSON",
+                            "name": "Jane Doe ()"
+                        }
+                    ],
+                    "dataLicense": "CC0",
+                    "profile": [
+                        "core",
+                        "software",
+                        "licensing"
+                    ],
+                    "specVer": "3.0.0"
+                },
+                "description": null,
+                "externalIdentifiers": [],
+                "externalReferences": [],
+                "filePurpose": [],
+                "name": "saxonB-8.8.zip",
+                "originatedBy": [],
+                "summary": null,
+                "verifiedUsing": []
+            },
+            "name": null,
+            "relationshipCompleteness": null,
+            "relationshipType": "PACKAGES",
+            "summary": null,
+            "to": [
+                "SPDXRef-Saxon"
+            ],
             "verifiedUsing": []
         },
         {
@@ -298,7 +479,13 @@
             "name": "./src/org/spdx/parser/DOAPProject.java",
             "originatedBy": [],
             "summary": null,
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "SHA1",
+                    "comment": null,
+                    "hashValue": "2fd4e1c67a2d28fced849ee1bb76e7391b93eb12"
+                }
+            ]
         },
         {
             "@type": "File",
@@ -337,7 +524,13 @@
             "name": "./lib-source/commons-lang3-3.1-sources.jar",
             "originatedBy": [],
             "summary": null,
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "SHA1",
+                    "comment": null,
+                    "hashValue": "c2b4e1c67a2d28fced849ee1bb76e7391b93f125"
+                }
+            ]
         },
         {
             "@type": "File",
@@ -376,7 +569,13 @@
             "name": "./lib-source/jena-2.6.3-sources.jar",
             "originatedBy": [],
             "summary": null,
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "SHA1",
+                    "comment": null,
+                    "hashValue": "3ab4e1c67a2d28fced849ee1bb76e7391b93f125"
+                }
+            ]
         },
         {
             "@type": "File",
@@ -415,7 +614,13 @@
             "name": "./docs/myspec.pdf",
             "originatedBy": [],
             "summary": null,
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "SHA1",
+                    "comment": null,
+                    "hashValue": "fff4e1c67a2d28fced849ee1bb76e7391b93f125"
+                }
+            ]
         },
         {
             "@type": "File",
@@ -454,7 +659,18 @@
             "name": "./package/foo.c",
             "originatedBy": [],
             "summary": null,
-            "verifiedUsing": []
+            "verifiedUsing": [
+                {
+                    "algorithm": "SHA1",
+                    "comment": null,
+                    "hashValue": "d6a770ba38583ed4bb4525bd96e50461655d2758"
+                },
+                {
+                    "algorithm": "MD5",
+                    "comment": null,
+                    "hashValue": "624c1abb3664f4b35547e7c73864ad24"
+                }
+            ]
         },
         {
             "@type": "Relationship",

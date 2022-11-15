@@ -47,6 +47,7 @@ library
     , base >=4.7 && <5
     , bytestring
     , data-default
+    , hex-text
     , lens
     , mtl
     , pureMD5
@@ -72,6 +73,7 @@ executable spdx3model-exe
     , base >=4.7 && <5
     , bytestring
     , data-default
+    , hex-text
     , lens
     , mtl
     , pureMD5
@@ -102,6 +104,7 @@ test-suite spdx3model-test
     , directory
     , file-embed
     , filepath
+    , hex-text
     , lens
     , mtl
     , pureMD5

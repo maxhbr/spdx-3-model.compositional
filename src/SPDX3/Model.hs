@@ -45,7 +45,6 @@ import           SPDX3.Model.ExternalReference as X
 import           SPDX3.Model.IntegrityMethod as X
 import           SPDX3.Model.RelationshipType as X
 import           SPDX3.Model.SPDXID as X
-import Control.Lens (sets)
 
 -- -- ############################################################################
 -- -- ##  Element  ###############################################################

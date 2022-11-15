@@ -17,9 +17,15 @@
         ],
         "dataLicense": "CC0",
         "profile": [
-            "core",
-            "software",
-            "licensing"
+            {
+                "name": "core"
+            },
+            {
+                "name": "software"
+            },
+            {
+                "name": "licensing"
+            }
         ],
         "specVer": "3.0.0"
     },
@@ -46,9 +52,15 @@
                 ],
                 "dataLicense": "CC0",
                 "profile": [
-                    "core",
-                    "software",
-                    "licensing"
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
                 ],
                 "specVer": "3.0.0"
             },
@@ -62,7 +74,7 @@
         },
         {
             "@type": "Bundle",
-            "SPDXID": "urn:Bundle:33ef32efdebea7d1c2305e9cf88dff98",
+            "SPDXID": "urn:Bundle:b635d31d8e828a6d47afac48338321ac",
             "comment": null,
             "context": null,
             "creationInfo": {
@@ -79,9 +91,15 @@
                 ],
                 "dataLicense": "CC0",
                 "profile": [
-                    "core",
-                    "software",
-                    "licensing"
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
                 ],
                 "specVer": "3.0.0"
             },
@@ -105,9 +123,15 @@
                         ],
                         "dataLicense": "CC0",
                         "profile": [
-                            "core",
-                            "software",
-                            "licensing"
+                            {
+                                "name": "core"
+                            },
+                            {
+                                "name": "software"
+                            },
+                            {
+                                "name": "licensing"
+                            }
                         ],
                         "specVer": "3.0.0"
                     },

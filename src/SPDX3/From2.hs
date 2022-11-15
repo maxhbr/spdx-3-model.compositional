@@ -41,7 +41,7 @@ convertCreationInfo spdx2CreationInformation spdx2DataLicense = let
         in fromMaybe fallback (iso8601ParseM spdx2CreationInfoCreated)
     in ((CreationInfo
             { _specVer = "3.0.0"
-            , _profile = ["core", "software", "licensing"]
+            , _profile = map ProfileIdentifier ["core", "software", "licensing"]
             , _created = spdx3CreationInfoCreated
             , _dataLicense = case spdx2DataLicense of
                 "CC0-1.0" -> CC0

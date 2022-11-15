@@ -3,7 +3,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 module SPDX3.Model.CreationInfo where
 import           Data.Aeson
-import           Data.Aeson.Encoding      (string)
 import           Data.Time.Clock
 import           Data.Time.Format.ISO8601
 import           GHC.Generics             (Generic)
@@ -24,7 +23,13 @@ instance FromJSON Actor where
     Actor <$> o .: "name" <*> o .: "actorType"
 
 type SemVer = String
-type ProfileIdentifier = String
+newtype ProfileIdentifier = ProfileIdentifier String
+  deriving (Eq, Show)
+instance ToJSON ProfileIdentifier where
+  toJSON (ProfileIdentifier name) = object ["name" .= name]
+instance FromJSON ProfileIdentifier where
+  parseJSON = withObject "ProfileIdentifier" $ \o -> do
+    ProfileIdentifier <$> o .: "name"
 data DataLicense = CC0
   deriving (Generic, Eq, Show)
 instance ToJSON DataLicense where
@@ -63,7 +68,7 @@ instance FromJSON  CreationInfo where
 
 mkCreationInfo :: [Actor] -> UTCTime -> CreationInfo
 mkCreationInfo actors created =
-  CreationInfo "3.0.0" ["core", "software", "licensing"] created CC0 actors
+  CreationInfo "3.0.0" (map ProfileIdentifier ["core", "software", "licensing"]) created CC0 actors
 
 mkCreationInfoIO :: [Actor] -> IO CreationInfo
 mkCreationInfoIO []     = fail "Actors are required"

@@ -21,9 +21,15 @@
         ],
         "dataLicense": "CC0",
         "profile": [
-            "core",
-            "software",
-            "licensing"
+            {
+                "name": "core"
+            },
+            {
+                "name": "software"
+            },
+            {
+                "name": "licensing"
+            }
         ],
         "specVer": "3.0.0"
     },
@@ -52,9 +58,15 @@
                 ],
                 "dataLicense": "CC0",
                 "profile": [
-                    "core",
-                    "software",
-                    "licensing"
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
                 ],
                 "specVer": "3.0.0"
             },
@@ -123,9 +135,15 @@
                 ],
                 "dataLicense": "CC0",
                 "profile": [
-                    "core",
-                    "software",
-                    "licensing"
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
                 ],
                 "specVer": "3.0.0"
             },
@@ -134,7 +152,7 @@
             "externalReferences": [],
             "from": {
                 "@type": "File",
-                "SPDXID": "urn:File:e7092ae43fbdb72dab8f9e524ad7ba5a",
+                "SPDXID": "urn:File:55ed6a2f646ffcce4534e00a2de38046",
                 "comment": null,
                 "contentIdentifier": null,
                 "contentType": null,
@@ -156,9 +174,15 @@
                     ],
                     "dataLicense": "CC0",
                     "profile": [
-                        "core",
-                        "software",
-                        "licensing"
+                        {
+                            "name": "core"
+                        },
+                        {
+                            "name": "software"
+                        },
+                        {
+                            "name": "licensing"
+                        }
                     ],
                     "specVer": "3.0.0"
                 },
@@ -182,7 +206,7 @@
         },
         {
             "@type": "Relationship",
-            "SPDXID": "urn:Relationship:298848e0ab3711612e7eab83f38e699b",
+            "SPDXID": "urn:Relationship:b79afc94d62a6c2000288f01bfa32cd6",
             "comment": null,
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
@@ -202,9 +226,15 @@
                 ],
                 "dataLicense": "CC0",
                 "profile": [
-                    "core",
-                    "software",
-                    "licensing"
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
                 ],
                 "specVer": "3.0.0"
             },
@@ -257,9 +287,15 @@
                 ],
                 "dataLicense": "CC0",
                 "profile": [
-                    "core",
-                    "software",
-                    "licensing"
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
                 ],
                 "specVer": "3.0.0"
             },
@@ -298,9 +334,15 @@
                 ],
                 "dataLicense": "CC0",
                 "profile": [
-                    "core",
-                    "software",
-                    "licensing"
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
                 ],
                 "specVer": "3.0.0"
             },
@@ -339,9 +381,15 @@
                 ],
                 "dataLicense": "CC0",
                 "profile": [
-                    "core",
-                    "software",
-                    "licensing"
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
                 ],
                 "specVer": "3.0.0"
             },
@@ -385,9 +433,15 @@
                 ],
                 "dataLicense": "CC0",
                 "profile": [
-                    "core",
-                    "software",
-                    "licensing"
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
                 ],
                 "specVer": "3.0.0"
             },
@@ -396,7 +450,7 @@
             "externalReferences": [],
             "from": {
                 "@type": "File",
-                "SPDXID": "urn:File:483ed665efdf38f7b57961f9a1274e56",
+                "SPDXID": "urn:File:c5c554abc559c415821ae6aa07bf3537",
                 "comment": null,
                 "contentIdentifier": null,
                 "contentType": null,
@@ -418,9 +472,15 @@
                     ],
                     "dataLicense": "CC0",
                     "profile": [
-                        "core",
-                        "software",
-                        "licensing"
+                        {
+                            "name": "core"
+                        },
+                        {
+                            "name": "software"
+                        },
+                        {
+                            "name": "licensing"
+                        }
                     ],
                     "specVer": "3.0.0"
                 },
@@ -466,9 +526,15 @@
                 ],
                 "dataLicense": "CC0",
                 "profile": [
-                    "core",
-                    "software",
-                    "licensing"
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
                 ],
                 "specVer": "3.0.0"
             },
@@ -511,9 +577,15 @@
                 ],
                 "dataLicense": "CC0",
                 "profile": [
-                    "core",
-                    "software",
-                    "licensing"
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
                 ],
                 "specVer": "3.0.0"
             },
@@ -556,9 +628,15 @@
                 ],
                 "dataLicense": "CC0",
                 "profile": [
-                    "core",
-                    "software",
-                    "licensing"
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
                 ],
                 "specVer": "3.0.0"
             },
@@ -601,9 +679,15 @@
                 ],
                 "dataLicense": "CC0",
                 "profile": [
-                    "core",
-                    "software",
-                    "licensing"
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
                 ],
                 "specVer": "3.0.0"
             },
@@ -646,9 +730,15 @@
                 ],
                 "dataLicense": "CC0",
                 "profile": [
-                    "core",
-                    "software",
-                    "licensing"
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
                 ],
                 "specVer": "3.0.0"
             },
@@ -674,7 +764,7 @@
         },
         {
             "@type": "Relationship",
-            "SPDXID": "urn:Relationship:2ec27847af41fb637eb925d98f1ea565",
+            "SPDXID": "urn:Relationship:596db04fe79dcad533c60e48034273c8",
             "comment": null,
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
@@ -694,9 +784,15 @@
                 ],
                 "dataLicense": "CC0",
                 "profile": [
-                    "core",
-                    "software",
-                    "licensing"
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
                 ],
                 "specVer": "3.0.0"
             },
@@ -715,7 +811,7 @@
         },
         {
             "@type": "Relationship",
-            "SPDXID": "urn:Relationship:3cc950d181b594ed93838c75a4a14b26",
+            "SPDXID": "urn:Relationship:f0b4826fcc1f93db9087681af122526a",
             "comment": null,
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
@@ -735,9 +831,15 @@
                 ],
                 "dataLicense": "CC0",
                 "profile": [
-                    "core",
-                    "software",
-                    "licensing"
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
                 ],
                 "specVer": "3.0.0"
             },
@@ -756,7 +858,7 @@
         },
         {
             "@type": "Relationship",
-            "SPDXID": "urn:Relationship:fda95af77ebdaca267d1a3c62aa5555b",
+            "SPDXID": "urn:Relationship:2bb211936259dd56603cec1f0360edea",
             "comment": null,
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
@@ -776,9 +878,15 @@
                 ],
                 "dataLicense": "CC0",
                 "profile": [
-                    "core",
-                    "software",
-                    "licensing"
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
                 ],
                 "specVer": "3.0.0"
             },
@@ -797,7 +905,7 @@
         },
         {
             "@type": "Relationship",
-            "SPDXID": "urn:Relationship:8151c11fc401c270f0fa82fe707936e7",
+            "SPDXID": "urn:Relationship:1a99be14cd53145d887148fdb5ee0da1",
             "comment": null,
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
@@ -817,9 +925,15 @@
                 ],
                 "dataLicense": "CC0",
                 "profile": [
-                    "core",
-                    "software",
-                    "licensing"
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
                 ],
                 "specVer": "3.0.0"
             },
@@ -838,7 +952,7 @@
         },
         {
             "@type": "Relationship",
-            "SPDXID": "urn:Relationship:5c29a356ddc43c36a67072b2b11ec407",
+            "SPDXID": "urn:Relationship:dd7034984191d63b525d1810f36ec436",
             "comment": null,
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
@@ -858,9 +972,15 @@
                 ],
                 "dataLicense": "CC0",
                 "profile": [
-                    "core",
-                    "software",
-                    "licensing"
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
                 ],
                 "specVer": "3.0.0"
             },
@@ -879,7 +999,7 @@
         },
         {
             "@type": "Relationship",
-            "SPDXID": "urn:Relationship:e7078986162d7a81b3e586d4bbcb2683",
+            "SPDXID": "urn:Relationship:54c4ff2f5f7323a64a92aa81a198a662",
             "comment": null,
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
@@ -899,9 +1019,15 @@
                 ],
                 "dataLicense": "CC0",
                 "profile": [
-                    "core",
-                    "software",
-                    "licensing"
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
                 ],
                 "specVer": "3.0.0"
             },
@@ -920,7 +1046,7 @@
         },
         {
             "@type": "Relationship",
-            "SPDXID": "urn:Relationship:acd0e6f2ae8982f63250ec0aadec3506",
+            "SPDXID": "urn:Relationship:7981d6882bc52c08ba66cadde4110805",
             "comment": null,
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
@@ -940,9 +1066,15 @@
                 ],
                 "dataLicense": "CC0",
                 "profile": [
-                    "core",
-                    "software",
-                    "licensing"
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
                 ],
                 "specVer": "3.0.0"
             },
@@ -961,7 +1093,7 @@
         },
         {
             "@type": "Relationship",
-            "SPDXID": "urn:Relationship:337d80241dbd29707b4a83d880522655",
+            "SPDXID": "urn:Relationship:9858deacb0133d91cff3020445d4fd5c",
             "comment": null,
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
@@ -981,9 +1113,15 @@
                 ],
                 "dataLicense": "CC0",
                 "profile": [
-                    "core",
-                    "software",
-                    "licensing"
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
                 ],
                 "specVer": "3.0.0"
             },
@@ -1002,7 +1140,7 @@
         },
         {
             "@type": "Relationship",
-            "SPDXID": "urn:Relationship:541efd02ec0987fd28a142092115b6b3",
+            "SPDXID": "urn:Relationship:954d39f230774757eb9648250fc84906",
             "comment": null,
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
@@ -1022,9 +1160,15 @@
                 ],
                 "dataLicense": "CC0",
                 "profile": [
-                    "core",
-                    "software",
-                    "licensing"
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
                 ],
                 "specVer": "3.0.0"
             },

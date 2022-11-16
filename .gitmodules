@@ -4,3 +4,6 @@
 [submodule "spdx-tools-hs"]
 	path = spdx-tools-hs
 	url = https://github.com/maxhbr/spdx-tools-hs
+[submodule "packageurl-hs"]
+	path = packageurl-hs
+	url = https://github.com/maxhbr/packageurl-hs/

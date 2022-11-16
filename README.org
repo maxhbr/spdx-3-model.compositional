@@ -11,3 +11,55 @@ This is just a proof of concept and probably roughtly 80% complete, but it has t
 - *complete deserialization* from JSON
 - *conversion* from SPDX 2.2 or 2.3 to 3.0
   - this uses [[https://github.com/maxhbr/spdx-tools-hs/][spdx-tools-hs]]
+
+** Some comments on the Serialization to JSON
+
+Lets look at a =Package=:
+#+BEGIN_EXAMPLE 
+        { 
+            "@type": "Package",
+            "SPDXID": "urn:spdx:Package0",
+            "comment": null,
+            "contentIdentifier": null,
+            "creationInfo": {
+                "created": "2022-11-13T13:14:36.324980945Z",
+                "createdBy": [
+                    {
+                        "actorType": "PERSON",
+                        "name": "Some Actor"
+                    },
+                    {
+                        "actorType": "TOOL",
+                        "name": "This Tool"
+                    }
+                ],
+                "dataLicense": "CC0",
+                "profile": [
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "downloadLocation": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "homePage": null,
+            "name": null,
+            "originatedBy": [],
+            "packagePurpose": [],
+            "packageUrl": null,
+            "summary": null,
+            "verifiedUsing": []
+        }
+#+END_EXAMPLE
+This contanis all properties of =Package=, =Artifact= and =Element=, pulled to one flat JSON object.
+For parsing, the type is specified in ="@type"=, and here all fields are filled with dummy data or their default values.
+The =null= and =[]= entries are optional.

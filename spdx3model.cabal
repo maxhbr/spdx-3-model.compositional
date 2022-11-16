@@ -50,6 +50,7 @@ library
     , hex-text
     , lens
     , mtl
+    , packageurl
     , pureMD5
     , singletons
     , singletons-th
@@ -76,6 +77,7 @@ executable spdx3model-exe
     , hex-text
     , lens
     , mtl
+    , packageurl
     , pureMD5
     , singletons
     , singletons-th
@@ -107,6 +109,7 @@ test-suite spdx3model-test
     , hex-text
     , lens
     , mtl
+    , packageurl
     , pureMD5
     , singletons
     , singletons-th

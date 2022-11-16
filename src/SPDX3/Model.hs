@@ -38,6 +38,7 @@ import           Data.Aeson.Types
 import           Data.Digest.Pure.MD5           (md5)
 import qualified Data.HashMap.Strict            as Map
 import qualified Data.Text                      as T
+import qualified Purl.Purl as Purl
 import           SPDX3.Model.Common as X
 import           SPDX3.Model.CreationInfo as X
 import           SPDX3.Model.ExternalIdentifier as X
@@ -322,26 +323,22 @@ instance ToJSON (SPDX a) where
           getJsons (Pack e)             = getJsons e
 
           getJsons (Element spdxid creationInfo e) = [ object ["SPDXID" .= spdxid , "creationInfo" .= creationInfo]
-                                          , toJSON  e]
+                                                     , toJSON  e]
 
-          getJsons (Artifact _ aps)     =  [toJSON aps]
-          getJsons (Collection _ cps)   = [toJSON cps]
-          getJsons (Bundle _ bps)       = [toJSON bps]
-          getJsons (BOM _)              = []
-          getJsons (SpdxDocument _)     = []
-          getJsons (Relationship _ rps) = [ toJSON rps ]
-          getJsons (Annotation _ aps)   = [ toJSON aps ]
+          getJsons (Artifact p aps)     = toJSON aps : getJsons p
+          getJsons (Collection p cps)   = toJSON cps : getJsons p
+          getJsons (Bundle p bps)       = toJSON bps : getJsons p
+          getJsons (BOM p)              = getJsons p
+          getJsons (SpdxDocument p)     = getJsons p
+          getJsons (Relationship p rps) = toJSON rps : getJsons p
+          getJsons (Annotation p aps)   = toJSON aps : getJsons p
 
-          getJsons (Package _ pps)      = [toJSON pps]
-          getJsons (File _ fps)         = [toJSON fps]
-          getJsons (Snippet _ sps)      = [toJSON sps]
-          getJsons (SBOM _)             = []
+          getJsons (Package p pps)      = toJSON pps : getJsons p
+          getJsons (File p fps)         = toJSON fps : getJsons p
+          getJsons (Snippet p sps)      = toJSON sps : getJsons p
+          getJsons (SBOM p)             = getJsons p
 
-          parent :: [Value]
-          parent = case getParent e of
-            Just parent' -> [toJSON parent']
-            Nothing      -> []
-        in mergeObjects $ t : getJsons e ++ parent
+        in mergeObjects $ t : getJsons e
 
 instance FromJSON (SPDX ()) where
     parseJSON (String s) = return $ Ref (T.unpack s)
@@ -394,7 +391,9 @@ instance FromJSON (SPDX ()) where
                 SBOM <$> parseBOMJSON o
         in ((v .: "@type") :: Parser String) >>= \case
             "Ref"          -> fail "Ref is not an object"
+
             "Element"      -> pack <$> parseElementJSON v
+
             "Artifact"     -> pack <$> parseArtifactJSON v
             "Collection"   -> pack <$> parseCollectionJSON v
             "Bundle"       -> pack <$> parseBundleJSON v
@@ -402,6 +401,7 @@ instance FromJSON (SPDX ()) where
             "SpdxDocument" -> pack <$> parseSpdxDocumentJSON v
             "Relationship" -> pack <$> parseRelationshipJSON v
             "Annotation"   -> pack <$> parseAnnotationJSON v
+
             "Package"      -> pack <$> parsePackageJSON v
             "File"         -> pack <$> parseFileJSON v
             "Snippet"      -> pack <$> parseSnippetJSON v

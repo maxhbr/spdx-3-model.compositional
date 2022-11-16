@@ -36,6 +36,7 @@ dependencies:
 - unordered-containers
 - vinyl
 - hex-text
+- packageurl
 
 ghc-options:
 - -Wall

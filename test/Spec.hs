@@ -33,7 +33,7 @@ mkExample' = do
         r1 <- ref "urn:spdx:Ref1"
         r2 <- ref "urn:spdx:Ref2"
 
-        a0 <- artifact (Just "urn:spdx:Artifact0") def def
+        a0 <- package (Just "urn:spdx:Package0") def def def
 
         an0 <- annotation (Just "urn:spdx:Annotation0") (AnnotationProperties "some Annotation" r2) def
         c1 <- bundle Nothing def def{_collectionElements = [an0]} def

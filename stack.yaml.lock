@@ -5,17 +5,6 @@
 
 packages:
 - completed:
-    commit: 81d3701a1a630e529862d3c639a69e09848f7cf6
-    git: https://github.com/maxhbr/packageurl-hs
-    name: packageurl
-    pantry-tree:
-      sha256: 8b6fd73871ec59b03fbe2878db98dac0769ffd37e7f8d75de142cdcfc4181257
-      size: 519
-    version: 0.1.0.0
-  original:
-    commit: 81d3701a1a630e529862d3c639a69e09848f7cf6
-    git: https://github.com/maxhbr/packageurl-hs
-- completed:
     commit: ef1807e08299150e4b42dfb33e87e2982be8d49c
     git: https://github.com/phadej/spdx
     name: spdx

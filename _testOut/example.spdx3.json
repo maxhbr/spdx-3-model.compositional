@@ -35,9 +35,10 @@
         "urn:spdx:Ref1",
         "urn:spdx:Ref2",
         {
-            "@type": "Artifact",
-            "SPDXID": "urn:spdx:Artifact0",
+            "@type": "Package",
+            "SPDXID": "urn:spdx:Package0",
             "comment": null,
+            "contentIdentifier": null,
             "creationInfo": {
                 "created": "2022-11-13T13:14:36.324980945Z",
                 "createdBy": [
@@ -65,10 +66,14 @@
                 "specVer": "3.0.0"
             },
             "description": null,
+            "downloadLocation": null,
             "externalIdentifiers": [],
             "externalReferences": [],
+            "homePage": null,
             "name": null,
             "originatedBy": [],
+            "packagePurpose": [],
+            "packageUrl": null,
             "summary": null,
             "verifiedUsing": []
         },

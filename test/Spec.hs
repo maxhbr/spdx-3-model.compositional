@@ -27,16 +27,18 @@ mkExample' = do
     let creationInfo = mkCreationInfo actors created
     return . runSPDX creationInfo $ do
 
-        r0 <- ref "urn:spdx:Ref0"
-        r1 <- ref "urn:spdx:Ref1"
-        r2 <- ref "urn:spdx:Ref2"
-
         a0 <- package (Just "urn:spdx:curl-7.50.3-1") def{_packageUrl = Purl.parsePurl "pkg:deb/debian/curl@7.50.3-1?arch=i386&distro=jessie" } def def{_elementName = Just "curl-7.50.3-1"}
 
-        an0 <- annotation (Just "urn:spdx:Annotation0") (AnnotationProperties "some Annotation" r2) def
+
+        f0 <- file Nothing def def def{_elementName = Just "path/to/the/file/f0"}
+        f1 <- file Nothing def def def{_elementName = Just "path/to/the/file/f1"}
+
+        r0 <- relationship Nothing (RelationshipProperties CONTAINS (toRef a0) [toRef f0, f1] Nothing) def
+
+        an0 <- annotation (Just "urn:spdx:Annotation0") (AnnotationProperties "some Annotation" (toRef a0)) def
         c1 <- bundle Nothing def def{_collectionElements = [an0]} def
 
-        spdxDocument (Just "urn:spdx:Collection0" ) def def{_collectionElements = [r0, r1, r2, a0, c1]} def{_elementName = Just "The Document"}
+        spdxDocument (Just "urn:spdx:Document" ) def def{_collectionElements = [a0, r0, f0, c1]} def{_elementName = Just "The Document"}
 
 mkExample :: IO (SPDX ())
 mkExample = do

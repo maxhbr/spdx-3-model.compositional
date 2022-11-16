@@ -61,7 +61,7 @@ This is just a proof of concept and probably roughtly 80% complete, but it has t
         }
 #+END_EXAMPLE
 This contanis all properties of =Package=, =Artifact= and =Element=, pulled to one flat JSON object.
-For parsing, the type is specified in ="@type"=, and here all fields are filled with dummy data or their default values.
+For parsing, the type is specified in =@type=, and here all fields are filled with dummy data or their default values.
 The =null= and =[]= entries are optional.
 
 dropping all optional fields would result in:
@@ -99,4 +99,273 @@ dropping all optional fields would result in:
             "name": "curl-7.50.3-1",
             "packageUrl": "pkg:deb/debian/curl@7.50.3-1?arch=i386&distro=jessie"
         }
+#+END_EXAMPLE
+
+*** Lets pack it into a =Collection=:
+Now lets pack the package from above into a collection, a =SpdxDocument= in this case.
+Lets give it the name ="Tho Document"=, the SPDXID ="urn:spdx:Document"= and the same creationInfo as our =Package=.
+Additionally we add a rather small Annotation that just contains the text ="some Annotation"= and has our package as the subject.
+The subject can either be an inline =Element= or a =String= which is then the SPDXID.
+
+#+BEGIN_EXAMPLE 
+{
+    "@type": "SpdxDocument",
+    "SPDXID": "urn:spdx:Document",
+    "comment": null,
+    "context": null,
+    "creationInfo": {
+        "created": "2022-11-13T13:14:36.324980945Z",
+        "createdBy": [
+            {
+                "actorType": "PERSON",
+                "name": "Some Actor"
+            },
+            {
+                "actorType": "TOOL",
+                "name": "This Tool"
+            }
+        ],
+        "dataLicense": "CC0-1.0",
+        "profile": [
+            {
+                "name": "core"
+            },
+            {
+                "name": "software"
+            },
+            {
+                "name": "licensing"
+            }
+        ],
+        "specVer": "3.0.0"
+    },
+    "description": null,
+    "elements": [
+        {
+            "@type": "Package",
+            "SPDXID": "urn:spdx:curl-7.50.3-1",
+            "comment": null,
+            "contentIdentifier": null,
+            "creationInfo": {
+                "created": "2022-11-13T13:14:36.324980945Z",
+                "createdBy": [
+                    {
+                        "actorType": "PERSON",
+                        "name": "Some Actor"
+                    },
+                    {
+                        "actorType": "TOOL",
+                        "name": "This Tool"
+                    }
+                ],
+                "dataLicense": "CC0-1.0",
+                "profile": [
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "downloadLocation": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "homePage": null,
+            "name": "curl-7.50.3-1",
+            "originatedBy": [],
+            "packagePurpose": [],
+            "packageUrl": "pkg:deb/debian/curl@7.50.3-1?arch=i386&distro=jessie",
+            "summary": null,
+            "verifiedUsing": []
+        },
+        {
+            "@type": "Annotation",
+            "SPDXID": "urn:spdx:Annotation0",
+            "comment": null,
+            "creationInfo": {
+                "created": "2022-11-13T13:14:36.324980945Z",
+                "createdBy": [
+                    {
+                        "actorType": "PERSON",
+                        "name": "Some Actor"
+                    },
+                    {
+                        "actorType": "TOOL",
+                        "name": "This Tool"
+                    }
+                ],
+                "dataLicense": "CC0-1.0",
+                "profile": [
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "name": null,
+            "statement": "some Annotation",
+            "subject": "urn:spdx:curl-7.50.3-1",
+            "summary": null,
+            "verifiedUsing": []
+        }
+    ],
+    "externalIdentifiers": [],
+    "externalReferences": [],
+    "imports": {},
+    "name": "The Document",
+    "namespaces": {},
+    "rootElements": [],
+    "summary": null,
+    "verifiedUsing": []
+}
+#+END_EXAMPLE
+
+*** For more complexity and for demonstrating inlining, lets add a =Relationsihp=:
+Lets create two random files contained in our Package, ="urn:File:efe40ac114769e83b4d4971da76295a4"= and ="urn:File:65f2e7526fd42ae9f0893991e2473915"=.
+Then add a Relationship which represents this, where one file is inlined and one is referenced and placed in the =SpdxDocument=.
+This defines two elements which then can be added to the document:
+
+#+BEGIN_EXAMPLE 
+[...]
+        {
+            "@type": "Relationship",
+            "SPDXID": "urn:Relationship:d74e9f23525b8766dc81f5ada441e4fb",
+            "comment": null,
+            "creationInfo": {
+                "created": "2022-11-13T13:14:36.324980945Z",
+                "createdBy": [
+                    {
+                        "actorType": "PERSON",
+                        "name": "Some Actor"
+                    },
+                    {
+                        "actorType": "TOOL",
+                        "name": "This Tool"
+                    }
+                ],
+                "dataLicense": "CC0-1.0",
+                "profile": [
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "from": "urn:spdx:curl-7.50.3-1",
+            "name": null,
+            "relationshipCompleteness": null,
+            "relationshipType": "CONTAINS",
+            "summary": null,
+            "to": [
+                "urn:File:efe40ac114769e83b4d4971da76295a4",
+                {
+                    "@type": "File",
+                    "SPDXID": "urn:File:65f2e7526fd42ae9f0893991e2473915",
+                    "comment": null,
+                    "contentIdentifier": null,
+                    "contentType": null,
+                    "creationInfo": {
+                        "created": "2022-11-13T13:14:36.324980945Z",
+                        "createdBy": [
+                            {
+                                "actorType": "PERSON",
+                                "name": "Some Actor"
+                            },
+                            {
+                                "actorType": "TOOL",
+                                "name": "This Tool"
+                            }
+                        ],
+                        "dataLicense": "CC0-1.0",
+                        "profile": [
+                            {
+                                "name": "core"
+                            },
+                            {
+                                "name": "software"
+                            },
+                            {
+                                "name": "licensing"
+                            }
+                        ],
+                        "specVer": "3.0.0"
+                    },
+                    "description": null,
+                    "externalIdentifiers": [],
+                    "externalReferences": [],
+                    "filePurpose": [],
+                    "name": "path/to/the/file/f1",
+                    "originatedBy": [],
+                    "summary": null,
+                    "verifiedUsing": []
+                }
+            ],
+            "verifiedUsing": []
+        },
+        {
+            "@type": "File",
+            "SPDXID": "urn:File:efe40ac114769e83b4d4971da76295a4",
+            "comment": null,
+            "contentIdentifier": null,
+            "contentType": null,
+            "creationInfo": {
+                "created": "2022-11-13T13:14:36.324980945Z",
+                "createdBy": [
+                    {
+                        "actorType": "PERSON",
+                        "name": "Some Actor"
+                    },
+                    {
+                        "actorType": "TOOL",
+                        "name": "This Tool"
+                    }
+                ],
+                "dataLicense": "CC0-1.0",
+                "profile": [
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "filePurpose": [],
+            "name": "path/to/the/file/f0",
+            "originatedBy": [],
+            "summary": null,
+            "verifiedUsing": []
+        },
+[...]
 #+END_EXAMPLE

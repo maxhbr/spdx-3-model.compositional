@@ -27,6 +27,7 @@ module SPDX3.Model
     , SBOM (..)
     , SPDX (..)
     , pack
+    , toRef
     , getType
     , getParent
     , setSPDXIDFromContent
@@ -268,6 +269,9 @@ instance HasSPDXID (SPDX a) where
     getSPDXID (File a _)          = getSPDXID a
     getSPDXID (Snippet a _)       = getSPDXID a
     getSPDXID (SBOM b)            = getSPDXID b
+
+toRef :: SPDX a -> SPDX ()
+toRef = Ref . getSPDXID
 
 getType :: SPDX a -> String
 getType (Ref _)           = "Ref"

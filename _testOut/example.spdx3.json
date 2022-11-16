@@ -1,6 +1,6 @@
 {
     "@type": "SpdxDocument",
-    "SPDXID": "urn:spdx:Collection0",
+    "SPDXID": "urn:spdx:Document",
     "comment": null,
     "context": null,
     "creationInfo": {
@@ -31,9 +31,6 @@
     },
     "description": null,
     "elements": [
-        "urn:spdx:Ref0",
-        "urn:spdx:Ref1",
-        "urn:spdx:Ref2",
         {
             "@type": "Package",
             "SPDXID": "urn:spdx:curl-7.50.3-1",
@@ -78,8 +75,133 @@
             "verifiedUsing": []
         },
         {
+            "@type": "Relationship",
+            "SPDXID": "urn:Relationship:d74e9f23525b8766dc81f5ada441e4fb",
+            "comment": null,
+            "creationInfo": {
+                "created": "2022-11-13T13:14:36.324980945Z",
+                "createdBy": [
+                    {
+                        "actorType": "PERSON",
+                        "name": "Some Actor"
+                    },
+                    {
+                        "actorType": "TOOL",
+                        "name": "This Tool"
+                    }
+                ],
+                "dataLicense": "CC0-1.0",
+                "profile": [
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "from": "urn:spdx:curl-7.50.3-1",
+            "name": null,
+            "relationshipCompleteness": null,
+            "relationshipType": "CONTAINS",
+            "summary": null,
+            "to": [
+                "urn:File:efe40ac114769e83b4d4971da76295a4",
+                {
+                    "@type": "File",
+                    "SPDXID": "urn:File:65f2e7526fd42ae9f0893991e2473915",
+                    "comment": null,
+                    "contentIdentifier": null,
+                    "contentType": null,
+                    "creationInfo": {
+                        "created": "2022-11-13T13:14:36.324980945Z",
+                        "createdBy": [
+                            {
+                                "actorType": "PERSON",
+                                "name": "Some Actor"
+                            },
+                            {
+                                "actorType": "TOOL",
+                                "name": "This Tool"
+                            }
+                        ],
+                        "dataLicense": "CC0-1.0",
+                        "profile": [
+                            {
+                                "name": "core"
+                            },
+                            {
+                                "name": "software"
+                            },
+                            {
+                                "name": "licensing"
+                            }
+                        ],
+                        "specVer": "3.0.0"
+                    },
+                    "description": null,
+                    "externalIdentifiers": [],
+                    "externalReferences": [],
+                    "filePurpose": [],
+                    "name": "path/to/the/file/f1",
+                    "originatedBy": [],
+                    "summary": null,
+                    "verifiedUsing": []
+                }
+            ],
+            "verifiedUsing": []
+        },
+        {
+            "@type": "File",
+            "SPDXID": "urn:File:efe40ac114769e83b4d4971da76295a4",
+            "comment": null,
+            "contentIdentifier": null,
+            "contentType": null,
+            "creationInfo": {
+                "created": "2022-11-13T13:14:36.324980945Z",
+                "createdBy": [
+                    {
+                        "actorType": "PERSON",
+                        "name": "Some Actor"
+                    },
+                    {
+                        "actorType": "TOOL",
+                        "name": "This Tool"
+                    }
+                ],
+                "dataLicense": "CC0-1.0",
+                "profile": [
+                    {
+                        "name": "core"
+                    },
+                    {
+                        "name": "software"
+                    },
+                    {
+                        "name": "licensing"
+                    }
+                ],
+                "specVer": "3.0.0"
+            },
+            "description": null,
+            "externalIdentifiers": [],
+            "externalReferences": [],
+            "filePurpose": [],
+            "name": "path/to/the/file/f0",
+            "originatedBy": [],
+            "summary": null,
+            "verifiedUsing": []
+        },
+        {
             "@type": "Bundle",
-            "SPDXID": "urn:Bundle:be83f49ebe0a905955561b9317913f69",
+            "SPDXID": "urn:Bundle:8d0301b77393ccc451f7f3a2d40d2333",
             "comment": null,
             "context": null,
             "creationInfo": {
@@ -145,7 +267,7 @@
                     "externalReferences": [],
                     "name": null,
                     "statement": "some Annotation",
-                    "subject": "urn:spdx:Ref2",
+                    "subject": "urn:spdx:curl-7.50.3-1",
                     "summary": null,
                     "verifiedUsing": []
                 }

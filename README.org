@@ -104,7 +104,7 @@ dropping all optional fields would result in:
 *** Lets pack it into a =Collection=:
 Now lets pack the package from above into a collection, a =SpdxDocument= in this case.
 Lets give it the name "=Tho Document=", the SPDXID "=urn:spdx:Document=" and the same creationInfo as our =Package=.
-Additionally we add a rather small Annotation that just contains the text ="some Annotation"= and has our package as the subject.
+Additionally we add a rather small Annotation that just contains the text "=some Annotation=" and has our package as the subject.
 The subject can either be an inline =Element= or a =String= which is then the SPDXID.
 
 #+BEGIN_EXAMPLE 

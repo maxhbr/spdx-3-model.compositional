@@ -82,7 +82,9 @@
                     "name": "ExampleCodeInspect (contact@example.com)"
                 }
             ],
-            "packagePurpose": [],
+            "packagePurpose": [
+                "SOURCE"
+            ],
             "packageUrl": null,
             "summary": "GNU C library.",
             "verifiedUsing": [
@@ -152,10 +154,10 @@
             "externalReferences": [],
             "from": {
                 "@type": "File",
-                "SPDXID": "urn:File:f207ceb9b6cd822d22a2be28f6c2a9ff",
+                "SPDXID": "urn:File:b51894e2b880fc1dbc1d424220c0df45",
                 "comment": null,
                 "contentIdentifier": null,
-                "contentType": null,
+                "contentType": [],
                 "creationInfo": {
                     "created": "2010-01-29T18:30:22Z",
                     "createdBy": [
@@ -450,10 +452,10 @@
             "externalReferences": [],
             "from": {
                 "@type": "File",
-                "SPDXID": "urn:File:4d4a12010d0f153ad853930f43441f87",
+                "SPDXID": "urn:File:bfd0da3ee92273989341fff42e021c4c",
                 "comment": null,
                 "contentIdentifier": null,
-                "contentType": null,
+                "contentType": [],
                 "creationInfo": {
                     "created": "2010-01-29T18:30:22Z",
                     "createdBy": [
@@ -507,7 +509,9 @@
             "SPDXID": "SPDXRef-DoapSource",
             "comment": null,
             "contentIdentifier": null,
-            "contentType": "media-type-SOURCE",
+            "contentType": [
+                "text/source"
+            ],
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
                 "createdBy": [
@@ -558,7 +562,9 @@
             "SPDXID": "SPDXRef-CommonsLangSrc",
             "comment": "This file is used by Jena",
             "contentIdentifier": null,
-            "contentType": "media-type-ARCHIVE",
+            "contentType": [
+                "archive/*"
+            ],
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
                 "createdBy": [
@@ -609,7 +615,9 @@
             "SPDXID": "SPDXRef-JenaLib",
             "comment": "This file belongs to Jena",
             "contentIdentifier": null,
-            "contentType": "media-type-ARCHIVE",
+            "contentType": [
+                "archive/*"
+            ],
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
                 "createdBy": [
@@ -660,7 +668,9 @@
             "SPDXID": "SPDXRef-Specification",
             "comment": "Specification Documentation",
             "contentIdentifier": null,
-            "contentType": "media-type-DOCUMENTATION",
+            "contentType": [
+                "text/documentation"
+            ],
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
                 "createdBy": [
@@ -711,7 +721,9 @@
             "SPDXID": "SPDXRef-File",
             "comment": "The concluded license was taken from the package level that the file was included in.\nThis information was found in the COPYING.txt file in the xyz directory.",
             "contentIdentifier": null,
-            "contentType": "media-type-SOURCE",
+            "contentType": [
+                "text/source"
+            ],
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
                 "createdBy": [

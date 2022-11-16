@@ -185,11 +185,11 @@ instance FromJSON Package where
 data File where
     FileProperties :: {_fileContentIdentifier :: Maybe String
                       ,_filePurpose :: [SoftwarePurpose]
-                      , _fileContentType :: Maybe MediaType
+                      , _fileContentType :: [MediaType]
                       } -> File
   deriving (Show)
 instance Default File where
-    def = FileProperties Nothing [] Nothing
+    def = FileProperties Nothing mempty mempty
 instance ToJSON File where
     toJSON (FileProperties contentIdentifier filePurpose contentType) =
          object [ "contentIdentifier" .= contentIdentifier
@@ -199,8 +199,10 @@ instance ToJSON File where
 instance FromJSON File where
     parseJSON = withObject "FileProperties" $ \o -> do
         FileProperties <$> o .:? "contentIdentifier"
-                          <*> o .: "filePurpose"
-                          <*> o .:? "contentType"
+                       <*> o .: "filePurpose"
+                       <*> ((\case 
+                                Just a -> a
+                                Nothing -> []) <$> o .:? "contentType")
 data Snippet where
     SnippetProperties :: {_snippetContentIdentifier :: Maybe String
                          ,_snippetPurpose :: [SoftwarePurpose]

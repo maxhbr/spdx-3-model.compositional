@@ -76,7 +76,7 @@
         },
         {
             "@type": "Relationship",
-            "SPDXID": "urn:Relationship:d74e9f23525b8766dc81f5ada441e4fb",
+            "SPDXID": "urn:Relationship:96fc4a4fc2734a5108421dafb80121be",
             "comment": null,
             "creationInfo": {
                 "created": "2022-11-13T13:14:36.324980945Z",
@@ -113,13 +113,13 @@
             "relationshipType": "CONTAINS",
             "summary": null,
             "to": [
-                "urn:File:efe40ac114769e83b4d4971da76295a4",
+                "urn:File:4656fe5de1749f26b14d65065dce6aa8",
                 {
                     "@type": "File",
-                    "SPDXID": "urn:File:65f2e7526fd42ae9f0893991e2473915",
+                    "SPDXID": "urn:File:dd55c276ea1ade6536d3436d41c13e12",
                     "comment": null,
                     "contentIdentifier": null,
-                    "contentType": null,
+                    "contentType": [],
                     "creationInfo": {
                         "created": "2022-11-13T13:14:36.324980945Z",
                         "createdBy": [
@@ -160,10 +160,10 @@
         },
         {
             "@type": "File",
-            "SPDXID": "urn:File:efe40ac114769e83b4d4971da76295a4",
+            "SPDXID": "urn:File:4656fe5de1749f26b14d65065dce6aa8",
             "comment": null,
             "contentIdentifier": null,
-            "contentType": null,
+            "contentType": [],
             "creationInfo": {
                 "created": "2022-11-13T13:14:36.324980945Z",
                 "createdBy": [

@@ -28,6 +28,18 @@ parseSpdx2Actor ('O':'r':'g':'a':'n':'i':'z':'a':'t':'i':'o':'n':':':' ':name) =
 parseSpdx2Actor ('T':'o':'o':'l':':':' ':name) = Actor (Just name) (Just TOOL)
 parseSpdx2Actor name = Actor (Just name) Nothing
 
+mapContentType :: SPDX2.SPDXFileType -> String
+mapContentType SPDX2.OTHER = "$OTHER"
+mapContentType SPDX2.DOCUMENTATION = "text/documentation"
+mapContentType SPDX2.IMAGE = "image/*"
+mapContentType SPDX2.VIDEO = "video/*"
+mapContentType SPDX2.ARCHIVE = "archive/*"
+mapContentType SPDX2.SPDX = "text/SPDX"
+mapContentType SPDX2.APPLICATION = "application/*"
+mapContentType SPDX2.SOURCE = "text/source"
+mapContentType SPDX2.BINARY = "application/*"
+mapContentType SPDX2.TEXT = "text/*"
+mapContentType SPDX2.AUDIO = "audio/*"
 
 convertCreationInfo :: SPDX2.SPDXCreationInfo -> String -> (CreationInfo, Maybe String)
 convertCreationInfo spdx2CreationInformation spdx2DataLicense = let
@@ -64,15 +76,12 @@ convertFile spdx2File = let
         -- spdx2FileNoticeText = SPDX2._SPDXFile_noticeText spdx2File
         -- spdx2FileFileContributors = SPDX2._SPDXFile_fileContributors spdx2File
         -- spdx2FileAttributionTexts = SPDX2._SPDXFile_attributionTexts spdx2File
-        -- spdx2FileFileDependencies = SPDX2._SPDXFile_fileDependencies spdx2File
-        -- spdx2FileName = SPDX2._SPDXFile_name spdx2File
+        -- spdx2FileFileDependencies = SPDX2._SPDXFile_fileDependencies spdx2File -- DEPRECATED
 
         spdx3VerifiedUsing = map (\ (SPDX2.SPDXChecksum spdx2Algorithm spdx2ChecksumValue) -> mkHash (show spdx2Algorithm) spdx2ChecksumValue) spdx2FileChecksums
         spdx3FileType = case spdx2FileFileTypes of
-            Nothing   -> Nothing
-            Just []   -> Nothing
-            Just [ft] -> Just ("media-type-"++ show ft) -- TODO
-            _         -> undefined
+             Just fts -> map mapContentType fts
+             Nothing -> []
 
         spdx3ElementProperties = def { _elementName = Just spdx2FileFileName
                                      , _elementComment = spdx2FileComment
@@ -106,6 +115,7 @@ convertPackage spdx2Package = let
         spdx2PackageDescription = SPDX2._SPDXPackage_description spdx2Package
         spdx2PackageComment = SPDX2._SPDXPackage_comment spdx2Package
         -- spdx2PackageAttributionTexts = SPDX2._SPDXPackage_attributionTexts spdx2Package
+        spdx2PrimaryPackagePurpose = SPDX2._SPDXPackage_primaryPackagePurpose  spdx2Package
         spdx2PackageHasFiles = SPDX2._SPDXPackage_hasFiles spdx2Package
 
         spdx3VerifiedUsing = let
@@ -123,6 +133,7 @@ convertPackage spdx2Package = let
         spdx3ArtifactProperties = def {_artifactOriginatedBy = map parseSpdx2Actor (maybeToList spdx2PackageOriginator)}
         spdx3PackageProperties = def { _downloadLocation = SPDX2.spdxMaybeToMaybe spdx2PackageDownloadLocation
                                      , _packageHomePage = spdx2PackageHomepage
+                                     , _packagePurpose = map show (maybeToList spdx2PrimaryPackagePurpose)
                                      }
     in do
         p <- package (Just spdx2PackageSPDXID) spdx3PackageProperties spdx3ArtifactProperties spdx3ElementProperties

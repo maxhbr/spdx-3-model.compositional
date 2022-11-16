@@ -1,10 +1,10 @@
 module SPDX3.Monad
     where
-import           Control.Monad.Except         (ExceptT, runExceptT)
-import           Control.Monad.Identity       (Identity)
+import           Control.Monad.Except   (ExceptT, runExceptT)
+import           Control.Monad.Identity (Identity)
 import           Control.Monad.Reader
+import           GHC.Generics           (Datatype (packageName))
 import           SPDX3.Model
-import GHC.Generics (Datatype(packageName))
 
 
 -- ############################################################################
@@ -22,7 +22,7 @@ ref = return . Ref
 
 packM :: Maybe SPDXID ->  SPDX_M (SPDXID -> SPDX a) -> SPDX_M (SPDX ())
 packM (Just spdxid) = fmap (pack . (\f -> f spdxid))
-packM Nothing = fmap (pack . setSPDXIDFromContent)
+packM Nothing       = fmap (pack . setSPDXIDFromContent)
 
 element' :: Element -> SPDX_M (SPDXID -> SPDX Element)
 element' ep = do

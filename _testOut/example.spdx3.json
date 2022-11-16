@@ -15,7 +15,7 @@
                 "name": "This Tool"
             }
         ],
-        "dataLicense": "CC0",
+        "dataLicense": "CC0-1.0",
         "profile": [
             {
                 "name": "core"
@@ -36,7 +36,7 @@
         "urn:spdx:Ref2",
         {
             "@type": "Package",
-            "SPDXID": "urn:spdx:Package0",
+            "SPDXID": "urn:spdx:curl-7.50.3-1",
             "comment": null,
             "contentIdentifier": null,
             "creationInfo": {
@@ -51,7 +51,7 @@
                         "name": "This Tool"
                     }
                 ],
-                "dataLicense": "CC0",
+                "dataLicense": "CC0-1.0",
                 "profile": [
                     {
                         "name": "core"
@@ -70,16 +70,16 @@
             "externalIdentifiers": [],
             "externalReferences": [],
             "homePage": null,
-            "name": null,
+            "name": "curl-7.50.3-1",
             "originatedBy": [],
             "packagePurpose": [],
-            "packageUrl": null,
+            "packageUrl": "pkg:deb/debian/curl@7.50.3-1?arch=i386&distro=jessie",
             "summary": null,
             "verifiedUsing": []
         },
         {
             "@type": "Bundle",
-            "SPDXID": "urn:Bundle:b635d31d8e828a6d47afac48338321ac",
+            "SPDXID": "urn:Bundle:be83f49ebe0a905955561b9317913f69",
             "comment": null,
             "context": null,
             "creationInfo": {
@@ -94,7 +94,7 @@
                         "name": "This Tool"
                     }
                 ],
-                "dataLicense": "CC0",
+                "dataLicense": "CC0-1.0",
                 "profile": [
                     {
                         "name": "core"
@@ -126,7 +126,7 @@
                                 "name": "This Tool"
                             }
                         ],
-                        "dataLicense": "CC0",
+                        "dataLicense": "CC0-1.0",
                         "profile": [
                             {
                                 "name": "core"

@@ -33,19 +33,19 @@ module SPDX3.Model
     )
     where
 import           Data.Aeson
-import Data.Default as X ( Default(..) )
 import           Data.Aeson.Types
+import           Data.Default                   as X (Default (..))
 import           Data.Digest.Pure.MD5           (md5)
 import qualified Data.HashMap.Strict            as Map
 import qualified Data.Text                      as T
-import qualified Purl.Purl as Purl
-import           SPDX3.Model.Common as X
-import           SPDX3.Model.CreationInfo as X
+import qualified Purl.Purl                      as Purl
+import           SPDX3.Model.Common             as X
+import           SPDX3.Model.CreationInfo       as X
 import           SPDX3.Model.ExternalIdentifier as X
-import           SPDX3.Model.ExternalReference as X
-import           SPDX3.Model.IntegrityMethod as X
-import           SPDX3.Model.RelationshipType as X
-import           SPDX3.Model.SPDXID as X
+import           SPDX3.Model.ExternalReference  as X
+import           SPDX3.Model.IntegrityMethod    as X
+import           SPDX3.Model.RelationshipType   as X
+import           SPDX3.Model.SPDXID             as X
 
 -- -- ############################################################################
 -- -- ##  Element  ###############################################################
@@ -160,7 +160,7 @@ data Package where
     PackageProperties :: {_packageContentIdentifier :: Maybe URI
                          , _packagePurpose :: [SoftwarePurpose]
                          , _downloadLocation :: Maybe URL
-                         , _packageUrl :: Maybe URL
+                         , _packageUrl :: Maybe Purl.Purl
                          , _packageHomePage :: Maybe URL
                          } -> Package
   deriving (Show)
@@ -171,7 +171,7 @@ instance ToJSON Package where
          object [ "contentIdentifier" .= contentIdentifier
                 , "packagePurpose" .= packagePurpose
                 , "downloadLocation" .= downloadLocation
-                , "packageUrl" .= packageUrl
+                , "packageUrl" .= fmap show packageUrl
                 , "homePage" .= homePage
                 ]
 instance FromJSON Package where
@@ -251,23 +251,23 @@ pack e@(Pack _) = e
 pack e          = Pack e
 
 instance HasSPDXID (SPDX a) where
-    getSPDXID (Ref i)                                            = i
-    getSPDXID (Pack e)                                           = getSPDXID e
+    getSPDXID (Ref i)             = i
+    getSPDXID (Pack e)            = getSPDXID e
 
-    getSPDXID (Element i _ _) = i
+    getSPDXID (Element i _ _)     = i
 
-    getSPDXID (Artifact ie _)                                    = getSPDXID ie
-    getSPDXID (Collection ie _)                                  = getSPDXID ie
-    getSPDXID (Bundle c _)                                       = getSPDXID c
-    getSPDXID (BOM b)                                            = getSPDXID b
-    getSPDXID (SpdxDocument b)                                   = getSPDXID b
-    getSPDXID (Relationship ie _)                                = getSPDXID ie
-    getSPDXID (Annotation ie _)                                  = getSPDXID ie
+    getSPDXID (Artifact ie _)     = getSPDXID ie
+    getSPDXID (Collection ie _)   = getSPDXID ie
+    getSPDXID (Bundle c _)        = getSPDXID c
+    getSPDXID (BOM b)             = getSPDXID b
+    getSPDXID (SpdxDocument b)    = getSPDXID b
+    getSPDXID (Relationship ie _) = getSPDXID ie
+    getSPDXID (Annotation ie _)   = getSPDXID ie
 
-    getSPDXID (Package a _)                                      = getSPDXID a
-    getSPDXID (File a _)                                         = getSPDXID a
-    getSPDXID (Snippet a _)                                      = getSPDXID a
-    getSPDXID (SBOM b)                                           = getSPDXID b
+    getSPDXID (Package a _)       = getSPDXID a
+    getSPDXID (File a _)          = getSPDXID a
+    getSPDXID (Snippet a _)       = getSPDXID a
+    getSPDXID (SBOM b)            = getSPDXID b
 
 getType :: SPDX a -> String
 getType (Ref _)           = "Ref"
@@ -320,10 +320,10 @@ instance ToJSON (SPDX a) where
 
           getJsons :: SPDX a -> [Value]
           getJsons (Ref _)              = undefined
-          getJsons (Pack e)             = getJsons e
+          getJsons (Pack p)             = getJsons p
 
-          getJsons (Element spdxid creationInfo e) = [ object ["SPDXID" .= spdxid , "creationInfo" .= creationInfo]
-                                                     , toJSON  e]
+          getJsons (Element spdxid creationInfo eps) = [ object ["SPDXID" .= spdxid , "creationInfo" .= creationInfo]
+                                                       , toJSON  eps]
 
           getJsons (Artifact p aps)     = toJSON aps : getJsons p
           getJsons (Collection p cps)   = toJSON cps : getJsons p
@@ -342,7 +342,7 @@ instance ToJSON (SPDX a) where
 
 instance FromJSON (SPDX ()) where
     parseJSON (String s) = return $ Ref (T.unpack s)
-    parseJSON o@(Object v) = let
+    parseJSON (Object v) = let
             parseElementJSON :: Object -> Parser (SPDX Element)
             parseElementJSON o = do
                 Element <$> o .: "SPDXID"

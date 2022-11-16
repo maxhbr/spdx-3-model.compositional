@@ -14,9 +14,9 @@
 module SPDX3.Model.IntegrityMethod
     where
 import           Data.Aeson
-import qualified Data.Text            as T
-import           GHC.Generics         (Generic)
-import Text.Hex
+import qualified Data.Text    as T
+import           GHC.Generics (Generic)
+import           Text.Hex
 
 readHashHexValue :: String -> Maybe ByteString
 readHashHexValue = decodeHex . T.pack

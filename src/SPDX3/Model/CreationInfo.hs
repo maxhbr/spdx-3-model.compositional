@@ -33,9 +33,12 @@ instance FromJSON ProfileIdentifier where
 data DataLicense = CC0
   deriving (Generic, Eq, Show)
 instance ToJSON DataLicense where
-  toJSON CC0 = "CC0"
+  toJSON CC0 = "CC0-1.0"
 instance FromJSON DataLicense where
-  parseJSON _ = return CC0
+  parseJSON (String s) = if s == "CC0-1.0"
+                         then return CC0
+                         else fail "only accepted DataLicense is 'CC0-1.0'"
+  parseJSON _ = fail "only accepted DataLicense is 'CC0-1.0'"
 data CreationInfo = CreationInfo
   { _specVer     :: SemVer
   , _profile     :: [ProfileIdentifier]

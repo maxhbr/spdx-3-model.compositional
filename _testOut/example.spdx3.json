@@ -1,8 +1,6 @@
 {
     "@type": "SpdxDocument",
     "SPDXID": "urn:spdx:Document",
-    "comment": null,
-    "context": null,
     "creationInfo": {
         "created": "2022-11-13T13:14:36.324980945Z",
         "createdBy": [
@@ -29,13 +27,10 @@
         ],
         "specVer": "3.0.0"
     },
-    "description": null,
     "elements": [
         {
             "@type": "Package",
             "SPDXID": "urn:spdx:curl-7.50.3-1",
-            "comment": null,
-            "contentIdentifier": null,
             "creationInfo": {
                 "created": "2022-11-13T13:14:36.324980945Z",
                 "createdBy": [
@@ -62,22 +57,12 @@
                 ],
                 "specVer": "3.0.0"
             },
-            "description": null,
-            "downloadLocation": null,
-            "externalIdentifiers": [],
-            "externalReferences": [],
-            "homePage": null,
             "name": "curl-7.50.3-1",
-            "originatedBy": [],
-            "packagePurpose": [],
-            "packageUrl": "pkg:deb/debian/curl@7.50.3-1?arch=i386&distro=jessie",
-            "summary": null,
-            "verifiedUsing": []
+            "packageUrl": "pkg:deb/debian/curl@7.50.3-1?arch=i386&distro=jessie"
         },
         {
             "@type": "Relationship",
-            "SPDXID": "urn:Relationship:96fc4a4fc2734a5108421dafb80121be",
-            "comment": null,
+            "SPDXID": "urn:Relationship:3e791964a05349d41c3e57f58162d646",
             "creationInfo": {
                 "created": "2022-11-13T13:14:36.324980945Z",
                 "createdBy": [
@@ -104,22 +89,13 @@
                 ],
                 "specVer": "3.0.0"
             },
-            "description": null,
-            "externalIdentifiers": [],
-            "externalReferences": [],
             "from": "urn:spdx:curl-7.50.3-1",
-            "name": null,
-            "relationshipCompleteness": null,
             "relationshipType": "CONTAINS",
-            "summary": null,
             "to": [
-                "urn:File:4656fe5de1749f26b14d65065dce6aa8",
+                "urn:File:3862ac4a6a06574b3e79e87b8a7e9edf",
                 {
                     "@type": "File",
-                    "SPDXID": "urn:File:dd55c276ea1ade6536d3436d41c13e12",
-                    "comment": null,
-                    "contentIdentifier": null,
-                    "contentType": [],
+                    "SPDXID": "urn:File:ee4df1ea5cef84e7a065792eb6fd0290",
                     "creationInfo": {
                         "created": "2022-11-13T13:14:36.324980945Z",
                         "createdBy": [
@@ -146,24 +122,13 @@
                         ],
                         "specVer": "3.0.0"
                     },
-                    "description": null,
-                    "externalIdentifiers": [],
-                    "externalReferences": [],
-                    "filePurpose": [],
-                    "name": "path/to/the/file/f1",
-                    "originatedBy": [],
-                    "summary": null,
-                    "verifiedUsing": []
+                    "name": "path/to/the/file/f1"
                 }
-            ],
-            "verifiedUsing": []
+            ]
         },
         {
             "@type": "File",
-            "SPDXID": "urn:File:4656fe5de1749f26b14d65065dce6aa8",
-            "comment": null,
-            "contentIdentifier": null,
-            "contentType": [],
+            "SPDXID": "urn:File:3862ac4a6a06574b3e79e87b8a7e9edf",
             "creationInfo": {
                 "created": "2022-11-13T13:14:36.324980945Z",
                 "createdBy": [
@@ -190,20 +155,11 @@
                 ],
                 "specVer": "3.0.0"
             },
-            "description": null,
-            "externalIdentifiers": [],
-            "externalReferences": [],
-            "filePurpose": [],
-            "name": "path/to/the/file/f0",
-            "originatedBy": [],
-            "summary": null,
-            "verifiedUsing": []
+            "name": "path/to/the/file/f0"
         },
         {
             "@type": "Bundle",
-            "SPDXID": "urn:Bundle:8d0301b77393ccc451f7f3a2d40d2333",
-            "comment": null,
-            "context": null,
+            "SPDXID": "urn:Bundle:4b25e0186262f4efeedb4ab69ccd4afb",
             "creationInfo": {
                 "created": "2022-11-13T13:14:36.324980945Z",
                 "createdBy": [
@@ -230,12 +186,10 @@
                 ],
                 "specVer": "3.0.0"
             },
-            "description": null,
             "elements": [
                 {
                     "@type": "Annotation",
                     "SPDXID": "urn:spdx:Annotation0",
-                    "comment": null,
                     "creationInfo": {
                         "created": "2022-11-13T13:14:36.324980945Z",
                         "createdBy": [
@@ -262,32 +216,11 @@
                         ],
                         "specVer": "3.0.0"
                     },
-                    "description": null,
-                    "externalIdentifiers": [],
-                    "externalReferences": [],
-                    "name": null,
                     "statement": "some Annotation",
-                    "subject": "urn:spdx:curl-7.50.3-1",
-                    "summary": null,
-                    "verifiedUsing": []
+                    "subject": "urn:spdx:curl-7.50.3-1"
                 }
-            ],
-            "externalIdentifiers": [],
-            "externalReferences": [],
-            "imports": {},
-            "name": null,
-            "namespaces": {},
-            "rootElements": [],
-            "summary": null,
-            "verifiedUsing": []
+            ]
         }
     ],
-    "externalIdentifiers": [],
-    "externalReferences": [],
-    "imports": {},
-    "name": "The Document",
-    "namespaces": {},
-    "rootElements": [],
-    "summary": null,
-    "verifiedUsing": []
+    "name": "The Document"
 }

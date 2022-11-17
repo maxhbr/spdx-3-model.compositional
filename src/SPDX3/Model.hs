@@ -35,6 +35,7 @@ module SPDX3.Model
     where
 import           Data.Aeson
 import           Data.Aeson.Types
+import qualified Data.Aeson.KeyMap as KM
 import           Data.Default                   as X (Default (..))
 import           Data.Digest.Pure.MD5           (md5)
 import qualified Data.HashMap.Strict            as Map
@@ -80,9 +81,9 @@ instance FromJSON Element where
                           <*> o .:? "summary"
                           <*> o .:? "description"
                           <*> o .:? "comment"
-                          <*> o .: "verifiedUsing"
-                          <*> o .: "externalReferences"
-                          <*> o .: "externalIdentifiers"
+                          <*> o .:? "verifiedUsing" .!= mempty
+                          <*> o .:? "externalReferences" .!= mempty
+                          <*> o .:? "externalIdentifiers" .!= mempty
 
 data Artifact where
     ArtifactProperties :: {_artifactOriginatedBy :: [Actor]} -> Artifact
@@ -93,7 +94,7 @@ instance ToJSON Artifact where
     toJSON (ArtifactProperties originatedBy) = object [ "originatedBy" .= originatedBy ]
 instance FromJSON Artifact where
     parseJSON = withObject "ArtifactProperties" $ \o -> do
-        ArtifactProperties <$> o .: "originatedBy"
+        ArtifactProperties <$> o .:? "originatedBy" .!= mempty
 type NamespaceMap = Map.HashMap String IRI
 type ExternalMap = Map.HashMap IRI (Maybe URL, IntegrityMethod)
 data Collection where
@@ -114,10 +115,10 @@ instance ToJSON Collection where
                 ]
 instance FromJSON Collection where
     parseJSON = withObject "CollectionProperties" $ \o -> do
-        CollectionProperties <$> o .: "elements"
-                             <*> o .: "rootElements"
-                             <*> o .: "namespaces"
-                             <*> o .: "imports"
+        CollectionProperties <$> o .:? "elements" .!= mempty
+                             <*> o .:? "rootElements" .!= mempty
+                             <*> o .:? "namespaces" .!= mempty
+                             <*> o .:? "imports" .!= mempty
 data Bundle where
     BundleProperties :: {_bundleContext :: Maybe String
                         } -> Bundle
@@ -129,7 +130,7 @@ instance ToJSON Bundle where
          object [ "context" .= context]
 instance FromJSON Bundle where
     parseJSON = withObject "BundleProperties" $ \o -> do
-        BundleProperties <$> o .: "context"
+        BundleProperties <$> o .:? "context"
 data SpdxDocument
 data BOM
 data Relationship where
@@ -144,7 +145,7 @@ instance ToJSON Relationship where
          object [ "relationshipType" .= t , "from" .= from , "to" .= to, "relationshipCompleteness" .= relationshipCompleteness ]
 instance FromJSON Relationship where
     parseJSON = withObject "RelationshipProperties" $ \o -> do
-        RelationshipProperties <$> o .: "relationshipType" <*> o .: "from" <*> o .: "to" <*> o .: "relationshipCompleteness"
+        RelationshipProperties <$> o .: "relationshipType" <*> o .: "from" <*> o .: "to" <*> o .:? "relationshipCompleteness"
 data Annotation where
     AnnotationProperties :: {_annotationStatement :: String
                             ,_annotationSubject :: SPDX ()
@@ -178,7 +179,7 @@ instance ToJSON Package where
 instance FromJSON Package where
     parseJSON = withObject "PackageProperties" $ \o -> do
         PackageProperties <$> o .:? "contentIdentifier"
-                          <*> o .: "packagePurpose"
+                          <*> o .:? "packagePurpose" .!= []
                           <*> o .:? "downloadLocation"
                           <*> o .:? "packageUrl"
                           <*> o .:? "homePage"
@@ -199,10 +200,8 @@ instance ToJSON File where
 instance FromJSON File where
     parseJSON = withObject "FileProperties" $ \o -> do
         FileProperties <$> o .:? "contentIdentifier"
-                       <*> o .: "filePurpose"
-                       <*> ((\case 
-                                Just a -> a
-                                Nothing -> []) <$> o .:? "contentType")
+                       <*> o .:? "filePurpose" .!= []
+                       <*> o .:? "contentType" .!= []
 data Snippet where
     SnippetProperties :: {_snippetContentIdentifier :: Maybe String
                          ,_snippetPurpose :: [SoftwarePurpose]
@@ -317,6 +316,15 @@ instance ToJSON (SPDX a) where
     toJSON (Ref i) = toJSON i
     toJSON e = let
           t = object ["@type" .= getType e]
+          cleanValue :: Value -> Value
+          cleanValue (Object o) = Object $ KM.filter (\case
+            Null -> False
+            Array a -> not $ null a
+            Object o' -> not $ null o'
+            _ -> True) o
+          cleanValue v = v
+          cleanValues :: [Value] -> [Value]
+          cleanValues = map cleanValue
           mergeObjects :: [Value] -> Value
           mergeObjects list = let
               unObject :: Value -> Object
@@ -344,7 +352,7 @@ instance ToJSON (SPDX a) where
           getJsons (Snippet p sps)      = toJSON sps : getJsons p
           getJsons (SBOM p)             = getJsons p
 
-        in mergeObjects $ t : getJsons e
+        in mergeObjects . cleanValues $ t : getJsons e
 
 instance FromJSON (SPDX ()) where
     parseJSON (String s) = return $ Ref (T.unpack s)

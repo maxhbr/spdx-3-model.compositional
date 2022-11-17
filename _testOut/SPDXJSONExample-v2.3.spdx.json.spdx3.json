@@ -2,7 +2,6 @@
     "@type": "SpdxDocument",
     "SPDXID": "SPDXRef-DOCUMENT",
     "comment": "This document was created using SPDX 2.0 using licenses from the web site.",
-    "context": null,
     "creationInfo": {
         "created": "2010-01-29T18:30:22Z",
         "createdBy": [
@@ -33,13 +32,10 @@
         ],
         "specVer": "3.0.0"
     },
-    "description": null,
     "elements": [
         {
             "@type": "Package",
             "SPDXID": "SPDXRef-Package",
-            "comment": null,
-            "contentIdentifier": null,
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
                 "createdBy": [
@@ -72,8 +68,6 @@
             },
             "description": "The GNU C Library defines functions that are specified by the ISO C standard, as well as additional features specific to POSIX and other derivatives of the Unix operating system, and extensions specific to GNU systems.",
             "downloadLocation": "http://ftp.gnu.org/gnu/glibc/glibc-ports-2.15.tar.gz",
-            "externalIdentifiers": [],
-            "externalReferences": [],
             "homePage": "http://ftp.gnu.org/gnu/glibc",
             "name": "glibc",
             "originatedBy": [
@@ -85,7 +79,6 @@
             "packagePurpose": [
                 "SOURCE"
             ],
-            "packageUrl": null,
             "summary": "GNU C library.",
             "verifiedUsing": [
                 {
@@ -118,7 +111,6 @@
         {
             "@type": "Relationship",
             "SPDXID": "The File of that packages is",
-            "comment": null,
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
                 "createdBy": [
@@ -149,15 +141,9 @@
                 ],
                 "specVer": "3.0.0"
             },
-            "description": null,
-            "externalIdentifiers": [],
-            "externalReferences": [],
             "from": {
                 "@type": "File",
-                "SPDXID": "urn:File:b51894e2b880fc1dbc1d424220c0df45",
-                "comment": null,
-                "contentIdentifier": null,
-                "contentType": [],
+                "SPDXID": "urn:File:00ecc9af0969f545c9a0f3dc3831b442",
                 "creationInfo": {
                     "created": "2010-01-29T18:30:22Z",
                     "createdBy": [
@@ -188,28 +174,16 @@
                     ],
                     "specVer": "3.0.0"
                 },
-                "description": null,
-                "externalIdentifiers": [],
-                "externalReferences": [],
-                "filePurpose": [],
-                "name": "glibc-2.11.1.tar.gz",
-                "originatedBy": [],
-                "summary": null,
-                "verifiedUsing": []
+                "name": "glibc-2.11.1.tar.gz"
             },
-            "name": null,
-            "relationshipCompleteness": null,
             "relationshipType": "PACKAGES",
-            "summary": null,
             "to": [
                 "SPDXRef-Package"
-            ],
-            "verifiedUsing": []
+            ]
         },
         {
             "@type": "Relationship",
-            "SPDXID": "urn:Relationship:1248f6987b0118f9c3c67a24530975cc",
-            "comment": null,
+            "SPDXID": "urn:Relationship:df339a5c07abcbefbca61116778b7481",
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
                 "createdBy": [
@@ -240,14 +214,8 @@
                 ],
                 "specVer": "3.0.0"
             },
-            "description": null,
-            "externalIdentifiers": [],
-            "externalReferences": [],
             "from": "SPDXRef-Package",
-            "name": null,
-            "relationshipCompleteness": null,
             "relationshipType": "CONTAINS",
-            "summary": null,
             "to": [
                 "SPDXRef-Specification",
                 "SPDXRef-Specification",
@@ -263,14 +231,11 @@
                 "SPDXRef-CommonsLangSrc",
                 "SPDXRef-JenaLib",
                 "SPDXRef-DoapSource"
-            ],
-            "verifiedUsing": []
+            ]
         },
         {
             "@type": "Package",
             "SPDXID": "SPDXRef-fromDoap-1",
-            "comment": null,
-            "contentIdentifier": null,
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
                 "createdBy": [
@@ -301,23 +266,12 @@
                 ],
                 "specVer": "3.0.0"
             },
-            "description": null,
-            "downloadLocation": null,
-            "externalIdentifiers": [],
-            "externalReferences": [],
             "homePage": "http://commons.apache.org/proper/commons-lang/",
-            "name": "Apache Commons Lang",
-            "originatedBy": [],
-            "packagePurpose": [],
-            "packageUrl": null,
-            "summary": null,
-            "verifiedUsing": []
+            "name": "Apache Commons Lang"
         },
         {
             "@type": "Package",
             "SPDXID": "SPDXRef-fromDoap-0",
-            "comment": null,
-            "contentIdentifier": null,
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
                 "createdBy": [
@@ -348,23 +302,13 @@
                 ],
                 "specVer": "3.0.0"
             },
-            "description": null,
             "downloadLocation": "https://search.maven.org/remotecontent?filepath=org/apache/jena/apache-jena/3.12.0/apache-jena-3.12.0.tar.gz",
-            "externalIdentifiers": [],
-            "externalReferences": [],
             "homePage": "http://www.openjena.org/",
-            "name": "Jena",
-            "originatedBy": [],
-            "packagePurpose": [],
-            "packageUrl": null,
-            "summary": null,
-            "verifiedUsing": []
+            "name": "Jena"
         },
         {
             "@type": "Package",
             "SPDXID": "SPDXRef-Saxon",
-            "comment": null,
-            "contentIdentifier": null,
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
                 "createdBy": [
@@ -397,14 +341,8 @@
             },
             "description": "The Saxon package is a collection of tools for processing XML documents.",
             "downloadLocation": "https://sourceforge.net/projects/saxon/files/Saxon-B/8.8.0.7/saxonb8-8-0-7j.zip/download",
-            "externalIdentifiers": [],
-            "externalReferences": [],
             "homePage": "http://saxon.sourceforge.net/",
             "name": "Saxon",
-            "originatedBy": [],
-            "packagePurpose": [],
-            "packageUrl": null,
-            "summary": null,
             "verifiedUsing": [
                 {
                     "algorithm": "SHA1",
@@ -416,7 +354,6 @@
         {
             "@type": "Relationship",
             "SPDXID": "The File of that packages is",
-            "comment": null,
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
                 "createdBy": [
@@ -447,15 +384,9 @@
                 ],
                 "specVer": "3.0.0"
             },
-            "description": null,
-            "externalIdentifiers": [],
-            "externalReferences": [],
             "from": {
                 "@type": "File",
-                "SPDXID": "urn:File:bfd0da3ee92273989341fff42e021c4c",
-                "comment": null,
-                "contentIdentifier": null,
-                "contentType": [],
+                "SPDXID": "urn:File:029468bd5a7aa3b9aa185c90a9d111cc",
                 "creationInfo": {
                     "created": "2010-01-29T18:30:22Z",
                     "createdBy": [
@@ -486,29 +417,16 @@
                     ],
                     "specVer": "3.0.0"
                 },
-                "description": null,
-                "externalIdentifiers": [],
-                "externalReferences": [],
-                "filePurpose": [],
-                "name": "saxonB-8.8.zip",
-                "originatedBy": [],
-                "summary": null,
-                "verifiedUsing": []
+                "name": "saxonB-8.8.zip"
             },
-            "name": null,
-            "relationshipCompleteness": null,
             "relationshipType": "PACKAGES",
-            "summary": null,
             "to": [
                 "SPDXRef-Saxon"
-            ],
-            "verifiedUsing": []
+            ]
         },
         {
             "@type": "File",
             "SPDXID": "SPDXRef-DoapSource",
-            "comment": null,
-            "contentIdentifier": null,
             "contentType": [
                 "text/source"
             ],
@@ -542,13 +460,7 @@
                 ],
                 "specVer": "3.0.0"
             },
-            "description": null,
-            "externalIdentifiers": [],
-            "externalReferences": [],
-            "filePurpose": [],
             "name": "./src/org/spdx/parser/DOAPProject.java",
-            "originatedBy": [],
-            "summary": null,
             "verifiedUsing": [
                 {
                     "algorithm": "SHA1",
@@ -561,7 +473,6 @@
             "@type": "File",
             "SPDXID": "SPDXRef-CommonsLangSrc",
             "comment": "This file is used by Jena",
-            "contentIdentifier": null,
             "contentType": [
                 "archive/*"
             ],
@@ -595,13 +506,7 @@
                 ],
                 "specVer": "3.0.0"
             },
-            "description": null,
-            "externalIdentifiers": [],
-            "externalReferences": [],
-            "filePurpose": [],
             "name": "./lib-source/commons-lang3-3.1-sources.jar",
-            "originatedBy": [],
-            "summary": null,
             "verifiedUsing": [
                 {
                     "algorithm": "SHA1",
@@ -614,7 +519,6 @@
             "@type": "File",
             "SPDXID": "SPDXRef-JenaLib",
             "comment": "This file belongs to Jena",
-            "contentIdentifier": null,
             "contentType": [
                 "archive/*"
             ],
@@ -648,13 +552,7 @@
                 ],
                 "specVer": "3.0.0"
             },
-            "description": null,
-            "externalIdentifiers": [],
-            "externalReferences": [],
-            "filePurpose": [],
             "name": "./lib-source/jena-2.6.3-sources.jar",
-            "originatedBy": [],
-            "summary": null,
             "verifiedUsing": [
                 {
                     "algorithm": "SHA1",
@@ -667,7 +565,6 @@
             "@type": "File",
             "SPDXID": "SPDXRef-Specification",
             "comment": "Specification Documentation",
-            "contentIdentifier": null,
             "contentType": [
                 "text/documentation"
             ],
@@ -701,13 +598,7 @@
                 ],
                 "specVer": "3.0.0"
             },
-            "description": null,
-            "externalIdentifiers": [],
-            "externalReferences": [],
-            "filePurpose": [],
             "name": "./docs/myspec.pdf",
-            "originatedBy": [],
-            "summary": null,
             "verifiedUsing": [
                 {
                     "algorithm": "SHA1",
@@ -720,7 +611,6 @@
             "@type": "File",
             "SPDXID": "SPDXRef-File",
             "comment": "The concluded license was taken from the package level that the file was included in.\nThis information was found in the COPYING.txt file in the xyz directory.",
-            "contentIdentifier": null,
             "contentType": [
                 "text/source"
             ],
@@ -754,13 +644,7 @@
                 ],
                 "specVer": "3.0.0"
             },
-            "description": null,
-            "externalIdentifiers": [],
-            "externalReferences": [],
-            "filePurpose": [],
             "name": "./package/foo.c",
-            "originatedBy": [],
-            "summary": null,
             "verifiedUsing": [
                 {
                     "algorithm": "SHA1",
@@ -776,8 +660,7 @@
         },
         {
             "@type": "Relationship",
-            "SPDXID": "urn:Relationship:0e1b712ceac331cb4a6eee3951e67b69",
-            "comment": null,
+            "SPDXID": "urn:Relationship:199e1cae90e1267c66c4cbf4ee18554d",
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
                 "createdBy": [
@@ -808,23 +691,15 @@
                 ],
                 "specVer": "3.0.0"
             },
-            "description": null,
-            "externalIdentifiers": [],
-            "externalReferences": [],
             "from": "SPDXRef-File",
-            "name": null,
-            "relationshipCompleteness": null,
             "relationshipType": "DESCRIBES",
-            "summary": null,
             "to": [
                 "SPDXRef-DOCUMENT"
-            ],
-            "verifiedUsing": []
+            ]
         },
         {
             "@type": "Relationship",
-            "SPDXID": "urn:Relationship:e6e224477e2a66ab8334b679c22d1f38",
-            "comment": null,
+            "SPDXID": "urn:Relationship:6dfcfb8208e1ca7e9c70f71711f4a98d",
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
                 "createdBy": [
@@ -855,23 +730,15 @@
                 ],
                 "specVer": "3.0.0"
             },
-            "description": null,
-            "externalIdentifiers": [],
-            "externalReferences": [],
             "from": "SPDXRef-Package",
-            "name": null,
-            "relationshipCompleteness": null,
             "relationshipType": "DESCRIBES",
-            "summary": null,
             "to": [
                 "SPDXRef-DOCUMENT"
-            ],
-            "verifiedUsing": []
+            ]
         },
         {
             "@type": "Relationship",
-            "SPDXID": "urn:Relationship:e7076a6f23fc1be0f7ac08f1277dfccf",
-            "comment": null,
+            "SPDXID": "urn:Relationship:60e01b3e7a808f647e10da9d1a410d46",
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
                 "createdBy": [
@@ -902,23 +769,15 @@
                 ],
                 "specVer": "3.0.0"
             },
-            "description": null,
-            "externalIdentifiers": [],
-            "externalReferences": [],
             "from": "SPDXRef-Package",
-            "name": null,
-            "relationshipCompleteness": null,
             "relationshipType": "CONTAINS",
-            "summary": null,
             "to": [
                 "SPDXRef-DOCUMENT"
-            ],
-            "verifiedUsing": []
+            ]
         },
         {
             "@type": "Relationship",
-            "SPDXID": "urn:Relationship:94ea25c14cc33abd3a624129087e0b6b",
-            "comment": null,
+            "SPDXID": "urn:Relationship:d8cf621c16adeba0b8b33849f822ef8d",
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
                 "createdBy": [
@@ -949,23 +808,15 @@
                 ],
                 "specVer": "3.0.0"
             },
-            "description": null,
-            "externalIdentifiers": [],
-            "externalReferences": [],
             "from": "DocumentRef-spdx-tool-1.2:SPDXRef-ToolsElement",
-            "name": null,
-            "relationshipCompleteness": null,
             "relationshipType": "COPY",
-            "summary": null,
             "to": [
                 "SPDXRef-DOCUMENT"
-            ],
-            "verifiedUsing": []
+            ]
         },
         {
             "@type": "Relationship",
-            "SPDXID": "urn:Relationship:366ac3b84e4224bfb2453c2ee8258a1d",
-            "comment": null,
+            "SPDXID": "urn:Relationship:921cefb9906dbfbae3f6460947503881",
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
                 "createdBy": [
@@ -996,23 +847,15 @@
                 ],
                 "specVer": "3.0.0"
             },
-            "description": null,
-            "externalIdentifiers": [],
-            "externalReferences": [],
             "from": "SPDXRef-Saxon",
-            "name": null,
-            "relationshipCompleteness": null,
             "relationshipType": "DYNAMIC_LINK",
-            "summary": null,
             "to": [
                 "SPDXRef-Package"
-            ],
-            "verifiedUsing": []
+            ]
         },
         {
             "@type": "Relationship",
-            "SPDXID": "urn:Relationship:0610e7a766c2a3b54651e83626dd70bc",
-            "comment": null,
+            "SPDXID": "urn:Relationship:0e675ef38572f8a8d9b9a89427743c7b",
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
                 "createdBy": [
@@ -1043,23 +886,15 @@
                 ],
                 "specVer": "3.0.0"
             },
-            "description": null,
-            "externalIdentifiers": [],
-            "externalReferences": [],
             "from": "SPDXRef-CommonsLangSrc",
-            "name": null,
-            "relationshipCompleteness": null,
             "relationshipType": "GENERATES",
-            "summary": null,
             "to": [
                 "NOASSERTION"
-            ],
-            "verifiedUsing": []
+            ]
         },
         {
             "@type": "Relationship",
-            "SPDXID": "urn:Relationship:dddb7687f92c475a9a2d4b884bce6771",
-            "comment": null,
+            "SPDXID": "urn:Relationship:1640e87f8c68bb1a9667b6aa9a09fbd1",
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
                 "createdBy": [
@@ -1090,23 +925,15 @@
                 ],
                 "specVer": "3.0.0"
             },
-            "description": null,
-            "externalIdentifiers": [],
-            "externalReferences": [],
             "from": "SPDXRef-Package",
-            "name": null,
-            "relationshipCompleteness": null,
             "relationshipType": "CONTAINS",
-            "summary": null,
             "to": [
                 "SPDXRef-JenaLib"
-            ],
-            "verifiedUsing": []
+            ]
         },
         {
             "@type": "Relationship",
-            "SPDXID": "urn:Relationship:ae65a9210712494cb69c025196d5d96b",
-            "comment": null,
+            "SPDXID": "urn:Relationship:d6ab9c9f7b563885d93708156574f571",
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
                 "createdBy": [
@@ -1137,23 +964,15 @@
                 ],
                 "specVer": "3.0.0"
             },
-            "description": null,
-            "externalIdentifiers": [],
-            "externalReferences": [],
             "from": "SPDXRef-fromDoap-0",
-            "name": null,
-            "relationshipCompleteness": null,
             "relationshipType": "OTHER",
-            "summary": null,
             "to": [
                 "SPDXRef-Specification"
-            ],
-            "verifiedUsing": []
+            ]
         },
         {
             "@type": "Relationship",
-            "SPDXID": "urn:Relationship:da79f55e5c459f633661ceb6afe9da56",
-            "comment": null,
+            "SPDXID": "urn:Relationship:404aa56714a351411f6ae05952144027",
             "creationInfo": {
                 "created": "2010-01-29T18:30:22Z",
                 "createdBy": [
@@ -1184,26 +1003,12 @@
                 ],
                 "specVer": "3.0.0"
             },
-            "description": null,
-            "externalIdentifiers": [],
-            "externalReferences": [],
             "from": "SPDXRef-File",
-            "name": null,
-            "relationshipCompleteness": null,
             "relationshipType": "GENERATES",
-            "summary": null,
             "to": [
                 "SPDXRef-fromDoap-0"
-            ],
-            "verifiedUsing": []
+            ]
         }
     ],
-    "externalIdentifiers": [],
-    "externalReferences": [],
-    "imports": {},
-    "name": "SPDX-Tools-v2.0",
-    "namespaces": {},
-    "rootElements": [],
-    "summary": null,
-    "verifiedUsing": []
+    "name": "SPDX-Tools-v2.0"
 }

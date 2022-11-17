@@ -57,6 +57,7 @@ convertCreationInfo spdx2CreationInformation spdx2DataLicense = let
             , _created = spdx3CreationInfoCreated
             , _dataLicense = case spdx2DataLicense of
                 "CC0-1.0" -> CC0
+                "CC0" -> CC0 -- can this be found in the wild?
                 _         -> undefined
             , _createdBy = map parseSpdx2Actor spdx2CreationInfoCreators
             }), spdx2CreationInfoLicenseListVersion)

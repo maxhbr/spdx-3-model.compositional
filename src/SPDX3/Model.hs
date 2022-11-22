@@ -34,8 +34,8 @@ module SPDX3.Model
     )
     where
 import           Data.Aeson
+import qualified Data.Aeson.KeyMap              as KM
 import           Data.Aeson.Types
-import qualified Data.Aeson.KeyMap as KM
 import           Data.Default                   as X (Default (..))
 import           Data.Digest.Pure.MD5           (md5)
 import qualified Data.HashMap.Strict            as Map
@@ -318,10 +318,10 @@ instance ToJSON (SPDX a) where
           t = object ["@type" .= getType e]
           cleanValue :: Value -> Value
           cleanValue (Object o) = Object $ KM.filter (\case
-            Null -> False
-            Array a -> not $ null a
+            Null      -> False
+            Array a   -> not $ null a
             Object o' -> not $ null o'
-            _ -> True) o
+            _         -> True) o
           cleanValue v = v
           cleanValues :: [Value] -> [Value]
           cleanValues = map cleanValue

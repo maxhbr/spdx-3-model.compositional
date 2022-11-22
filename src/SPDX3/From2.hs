@@ -29,17 +29,17 @@ parseSpdx2Actor ('T':'o':'o':'l':':':' ':name) = Actor (Just name) (Just TOOL)
 parseSpdx2Actor name = Actor (Just name) Nothing
 
 mapContentType :: SPDX2.SPDXFileType -> String
-mapContentType SPDX2.OTHER = "$OTHER"
+mapContentType SPDX2.OTHER         = "$OTHER"
 mapContentType SPDX2.DOCUMENTATION = "text/documentation"
-mapContentType SPDX2.IMAGE = "image/*"
-mapContentType SPDX2.VIDEO = "video/*"
-mapContentType SPDX2.ARCHIVE = "archive/*"
-mapContentType SPDX2.SPDX = "text/SPDX"
-mapContentType SPDX2.APPLICATION = "application/*"
-mapContentType SPDX2.SOURCE = "text/source"
-mapContentType SPDX2.BINARY = "application/*"
-mapContentType SPDX2.TEXT = "text/*"
-mapContentType SPDX2.AUDIO = "audio/*"
+mapContentType SPDX2.IMAGE         = "image/*"
+mapContentType SPDX2.VIDEO         = "video/*"
+mapContentType SPDX2.ARCHIVE       = "archive/*"
+mapContentType SPDX2.SPDX          = "text/SPDX"
+mapContentType SPDX2.APPLICATION   = "application/*"
+mapContentType SPDX2.SOURCE        = "text/source"
+mapContentType SPDX2.BINARY        = "application/*"
+mapContentType SPDX2.TEXT          = "text/*"
+mapContentType SPDX2.AUDIO         = "audio/*"
 
 convertCreationInfo :: SPDX2.SPDXCreationInfo -> String -> (CreationInfo, Maybe String)
 convertCreationInfo spdx2CreationInformation spdx2DataLicense = let
@@ -57,7 +57,7 @@ convertCreationInfo spdx2CreationInformation spdx2DataLicense = let
             , _created = spdx3CreationInfoCreated
             , _dataLicense = case spdx2DataLicense of
                 "CC0-1.0" -> CC0
-                "CC0" -> CC0 -- can this be found in the wild?
+                "CC0"     -> CC0 -- can this be found in the wild?
                 _         -> undefined
             , _createdBy = map parseSpdx2Actor spdx2CreationInfoCreators
             }), spdx2CreationInfoLicenseListVersion)
@@ -82,7 +82,7 @@ convertFile spdx2File = let
         spdx3VerifiedUsing = map (\ (SPDX2.SPDXChecksum spdx2Algorithm spdx2ChecksumValue) -> mkHash (show spdx2Algorithm) spdx2ChecksumValue) spdx2FileChecksums
         spdx3FileType = case spdx2FileFileTypes of
              Just fts -> map mapContentType fts
-             Nothing -> []
+             Nothing  -> []
 
         spdx3ElementProperties = def { _elementName = Just spdx2FileFileName
                                      , _elementComment = spdx2FileComment
